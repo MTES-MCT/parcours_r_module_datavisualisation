@@ -49,6 +49,22 @@ Cela marche bien quand on a un seul type de données, mais en général on va av
 - Créer un répertoire `/src` ou vous mettrez vos scripts R.
 - Créer un répertoire `/figures` ou vous mettrez vos illustrations issues de R.
 
+## Utilisation du package savoirfR
+
+Pour faciliter le déroulé de ce module, l'ensemble des exercices (énoncés, corrigés et données) ont été intégrés à un package réalisé par le groupe de référent R: savoirfR
+
+```{r , eval=F}
+remotes::install_github("MTES-MCT/savoirfR")
+```
+
+Pour l'utiliser, il suffit de créer un nouveau projet dans un nouveau répertoire, en sélectionnant le "Project Type" **Exercice Parcours R MTES-MCT**.
+
+![](images/projetsavoirfR1.PNG){#id .class width=500}
+
+Remplissez et sélectionnez le module suivi.
+
+![](images/projetsavoirfR2.PNG){#id .class width=500}
+
 ## Activer les packages nécessaires
 
 Commencer par rajouter un script dans le répertoire `/src` à votre projet qui commencera par : 
@@ -79,8 +95,15 @@ library(glue)
 library(gganimate)
 library(htmlwidgets)
 library(ggspatial)
-load("data/data_exercices_formation.RData")
-load("data/ODD.RData")
+library(ggiraph)
+#remotes::install_github("spyrales/gouvdown")
+library(gouvdown)
+#remotes::install_github("dreamRs/apexcharter")
+library(apexcharter)
+load("extdata/ODD.RData")
+load("extdata/rpls_aggrege_large.RData")
+load("extdata/rpls_aggrege.RData")
+load("extdata/Carte_EPCI_France.RData")
 ```
 
 
