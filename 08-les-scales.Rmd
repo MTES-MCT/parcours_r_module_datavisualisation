@@ -1,17 +1,19 @@
 # Les scales
 
-Les fonctions **scales** permettent globalement de paramétrer les éléments rentrés dans l'aesthétic : 
+## Les fonctions
 
-- Si je veux un gradient de couleur fonction d'une variable continue : quelle palette de couleur je choisie, comment je cale mon dégradé en fonction de cette variable continue ?
+Les fonctions **scale** permettent globalement de paramétrer les éléments rentrés dans l'aesthétic : 
 
-- Si je mets une variable continue en ordonnée, comment je définis le minimum et maximum de cette axe, sa position, les valeurs que j'affiche sur l'échelle...
+- Si je veux un gradient de couleur fonction d'une variable continue : quelle palette de couleur je choisis, comment je cale mon dégradé en fonction de cette variable continue ?
+
+- Si je mets une variable continue en ordonnée, comment je définis le minimum et maximum de cet axe, sa position, les valeurs que j'affiche sur l'échelle...
 
 
-L'ensemble des scales possibles peuvent se décrire sous forme suivante:
+L'ensemble des scales possibles peuvent se décrire sous la forme suivante:
 
 `scale_xx_yy`
 
-ou `xx` peut être un des paramètres de l'aesthétic : 
+où `xx` peut être un des paramètres de l'aesthétic : 
 
 xx|description
 -----------------|---
@@ -25,7 +27,7 @@ x|variable de l'axe x
 y|variable de l'axe y
 
 
-Et y un type de paramétrage :  
+Et `yy` un type de paramétrage :  
 
 yy|description
 -----------------|--------------------------
@@ -34,26 +36,34 @@ discrete|gérer les variables discrètes
 date|gérer une variable au format date
 reverse|inverser l'axe
 log|convertire l'échelle d'une variable continue en échelle logarithmique
-log10|convertire l'échelle d'une variable continue en échelle logarithmique décimale
+log10|convertir l'échelle d'une variable continue en échelle logarithmique décimale
 viridis|utiliser une palette de couleur viridis
 brewer|utiliser une palette de couleur brewer (variable discrète)
 distiller|utiliser une palette de couleur brewer (variable continue)
 gradient|utiliser un gradient de 2 couleurs
 gradient2|utiliser un gradient divergent de 3 couleurs
+manuel|utiliser une palette de couleur via un vecteur défini par l'utilisateur
 
 
 ```{r, echo=T,eval=T,fig.height=3.5}
-ggplot(graphique1) +
+gg<-ggplot(ODD_graphique1) +
   geom_point(aes(x=log(Gross_Domestic_Product_GDP),
                  y=log(Maternal_mortality_ratio),
-                 color=Continent))+
+                 color=Continent))
+gg+
   scale_color_brewer(type="qual")
+
+#Pour visualiser les palettes disponibles 
+#RColorBrewer::display.brewer.all()
 ```
+
+
+
 
 Par exemple on peut exploiter une fonction scale pour définir une échelle logarithimique sur un axe.
 
 ```{r, echo=T,eval=T,fig.height=3.5}
-ggplot(graphique1) +
+ggplot(ODD_graphique1) +
   geom_point(aes(x=Gross_Domestic_Product_GDP,
                  y=Maternal_mortality_ratio,
                  color=Continent))+
@@ -62,13 +72,38 @@ ggplot(graphique1) +
   scale_y_log10()
 ```
 
+L'instruction `limits` permet de forcer les bornes maximum et minimum. Elle prend en valeur un vecteur des deux bornes souhaitées. 
+
+```{r, echo=T,eval=T,fig.height=3.5}
+gg+ 
+  scale_y_continuous(limits = c(NA, 10))
+```
+
+En mettant la borne minimum/maximum à NA permet de conserver la valeur minimum/maximum par défaut.
+
+## Scales - package gouvdown
+
+La fonction [scale_color_gouv_discrete()](https://spyrales.github.io/gouvdown/reference/scale_color_gouv_discrete.html) du package `gouvdown` permet d'utiliser les palettes de couleurs de ce package.
+Il en est de même pour `scale_color_gouv_continuous`, `scale_fill_gouv_discrete` et `scale_fill_gouv_continuous`
+
+```{r, echo=T,eval=T,fig.height=3.5}
+library(gouvdown)
+gg<-ggplot(ODD_graphique1) +
+  geom_point(aes(x=log(Gross_Domestic_Product_GDP),
+                 y=log(Maternal_mortality_ratio),
+                 color=Continent))
+gg+ scale_color_gouv_discrete(name = "", palette = "pal_gouv_qual1") +
+ theme_gouv()
+  
+```
+
 ## Formatage spécifique
 
 - Transformation en pourcentage;
 ```{r fg8_1, echo=T,eval=F}
   scale_y_continuous(labels=scales::percent)
 ```
-- Ajout du séparateurs des milliers;
+- Ajout du séparateur des milliers;
 ```{r fg8_2, echo=T,eval=F}
   scale_y_continuous(labels=function(x) format(x,big.mark=" ",scientific = FALSE))
 ```
