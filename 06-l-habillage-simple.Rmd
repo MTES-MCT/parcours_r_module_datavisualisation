@@ -5,7 +5,7 @@
 Chaque nouvel élément graphique est à rajouter sous forme de layer. Ici, nous utilisons la fonction **labs** qui permet de labelliser tous les éléments possibles de l'aesthétic, ainsi que le titre (*title*), le sous titre (*subtitle*) et le bas de page (*caption*)
 
 ```{r fg6_1, echo=T,eval=T,fig.height=5,fig.width=10}
-ggplot(graphique1) +
+ggplot(ODD_graphique1) +
   geom_point(aes(x=log(Gross_Domestic_Product_GDP),
                  y=log(Maternal_mortality_ratio),
                  color=Continent))+
@@ -24,7 +24,7 @@ Les fonctions `guide()` et `guides` permettent de modifier finement la légende.
 Les guides peuvent être spécifiés dans chaque scale_* ou dans une instruction `guides`.
 
 ```{r fg6_2, echo=T,eval=T,fig.height=5,fig.width=10}
-ggplot(graphique1) +
+ggplot(ODD_graphique1) +
   geom_point(aes(x=log(Gross_Domestic_Product_GDP),
                  y=log(Maternal_mortality_ratio),
                  color=Continent))+
@@ -47,7 +47,7 @@ ggplot(graphique1) +
 Il est aussi possible de rajouter des annotations de type texte, par exemple, "à la volée".
 
 ```{r fg6_3, echo=T,eval=T,fig.height=5,fig.width=10}
-ggplot(graphique1) +
+ggplot(ODD_graphique1) +
   geom_point(aes(x=log(Gross_Domestic_Product_GDP),
                  y=log(Maternal_mortality_ratio),
                  color=Continent))+
@@ -62,7 +62,7 @@ ggplot(graphique1) +
 La fonction **annotate** permet aussi d'ajouter d'autres types d'annotation comme par exemple des rectangles :
 
 ```{r fg6_4, echo=T,eval=T,fig.height=5,fig.width=10}
-ggplot(graphique1) +
+ggplot(ODD_graphique1) +
   geom_point(aes(x=log(Gross_Domestic_Product_GDP),
                  y=log(Maternal_mortality_ratio),
                  color=Continent))+

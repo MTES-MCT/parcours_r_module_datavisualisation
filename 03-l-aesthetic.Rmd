@@ -9,7 +9,7 @@ L'aesthetic sert à identifier les variables que l'on souhaite représenter.
 Par exemple, si l'on souhaite représenter le taux de mortalité maternelle (Maternal_mortality_ratio) en fonction du produit intérieur brut (Gross_Domestic_Product_GDP) :
 
 ```{r, fig.height=3.5}
-ggplot(data = graphique1) + 
+ggplot(data = ODD_graphique1) + 
   geom_point(aes(x=Gross_Domestic_Product_GDP,y=Maternal_mortality_ratio))
 ```
 
@@ -21,7 +21,7 @@ De plus, la fonction **aes** admet d'autres arguments qui permettent de modifier
 **fill** : le remplissage ;
 
 ```{r, fig.height=3.5}
-ggplot(data = graphique1) + 
+ggplot(data = ODD_graphique1) + 
   geom_point(aes(x=Gross_Domestic_Product_GDP,y=Maternal_mortality_ratio,colour=Continent))
 ```
 
@@ -33,7 +33,7 @@ On retrouve entre autre les mêmes paramètres proposés dans l'aes, mais il fau
 Par exemple, si l'on souhaite modifier la transparance et la taille de l'ensemble des points du graphique précédent:
 
 ```{r, fig.height=3.5}
-ggplot(data = graphique1) + 
+ggplot(data = ODD_graphique1) + 
   geom_point(aes(x=Gross_Domestic_Product_GDP,y=Maternal_mortality_ratio,colour=Continent),
              alpha=0.5,size=1.9)
 ```
@@ -41,7 +41,7 @@ ggplot(data = graphique1) +
 De même si l'on souhaite modifier la couleur générale :
 
 ```{r, fig.height=3.5}
-ggplot(data = graphique1) + 
+ggplot(data = ODD_graphique1) + 
   geom_point(aes(x=Gross_Domestic_Product_GDP,y=Maternal_mortality_ratio),
              color="red")
 ```

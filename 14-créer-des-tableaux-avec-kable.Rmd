@@ -6,7 +6,7 @@ Une très bonne documentation en anglais peut se trouver [ici](https://cran.r-pr
 Ci-dessous un exemple. On reprend les données utilisées pour le diagramme barre.
 
 ```{r kabble_1}
-indicateur311 %>%
+ODD_indicateur311 %>%
   filter(Type_Zone != "Pays",
          Age_group=="All age ranges or no breakdown by age",
          Sex=="Both sexes or no breakdown by sex",
@@ -43,7 +43,7 @@ Le tableau ainsi produit peut être sauvegardé sous plusieurs formats (html, pn
 Cette fonction nécessite le chargement du package ***magick***
 
 ```{r kabble_2}
-indicateur311 %>%
+ODD_indicateur311 %>%
   filter(Type_Zone != "Pays",
          Age_group=="All age ranges or no breakdown by age",
          Sex=="Both sexes or no breakdown by sex",
