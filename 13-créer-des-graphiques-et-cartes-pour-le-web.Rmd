@@ -2,135 +2,156 @@
 
 # Créer des graphiques et cartes pour le web
 
-## Highcharter
+## Ggiraph
 
-Highcharter(http://jksunk.com.highcharter) est un module qui permet d'exploiter la librairie [Highcharts](http://highcharts.com) en R.
+[Ggiraph](https://davidgohel.github.io/ggiraph/) est un package qui permet de rendre interactif des graphiques `ggplot`. Il permet notamment d'y ajouter des infobulles, 
 
-La syntaxe obéi en partie à la même logique que ggplot :
+Ce package rajoute des fonctionnalités à `ggplot2` comme par exemple [geom_bar_interactive](https://davidgohel.github.io/ggiraph/reference/geom_bar_interactive.html),geom_line_interactive, geom_point_interactive, ... 
 
-- Définition d'un géom;
+Il existe 3 types d'ajout:
 
-- Définition d'une aesthétique.
+- `tooltip`: l'information à afficher dans les infobulles au survol de la souris
+- `data_id`: l'identifiant à associer à l'élément (utilisé pour les actions de survol et de clic)
+- `onclick`: fonction JavaScript à exéctuer lorsque des éléments sont cliqués 
 
-La différence avec ggplot2 : 
+Le graphique est ensuite produit à l'aide de la fonction `girafe()` sur un objet ggplot.
 
-- tout se fait dans une seule fonction (**hchart()**)
 
-- le *%>%* remplace le *+*
-
-La syntaxe de hchart est la suivante : 
-
-```{r eval=F}
-hchart(MA_TABLE,"MON_TYPE_DE_GRAPHIQUE",hcaes(MON_AESTHETIC))
-```
-
-Quelques graphiques possibles :
-
-Type de graphique|Nom
------------------|---
-Nuage de point|scatter
-Diagramme barre|column ou bar
-Ligne|line
-Aire|area
-Camenbert|pie
-Treemap|treemap
-Radar|polarline
-
-### Exemple type de graphique
+### Exemple de graphique avec infobulle
 
 Voici un exemple de diagramme barre sur les données de mortalités.
 
 ```{r}
-highchart<-indicateur311 %>%
-  filter(Type_Zone != "Pays",
-         Age_group=="All age ranges or no breakdown by age",
-         Sex=="Both sexes or no breakdown by sex",
-         Location=="Total (national level)"
-         ) %>%
-  group_by(Country_or_Area_Code) %>%
-  filter(Year==max(Year)) %>%
-  ungroup
 
-
-hchart(highchart,"bar",hcaes(x=Country_or_Area_Name,y=Value,color=Country_or_Area_Name)) %>% 
-  hc_colors(plasma(n=5)) %>%
-  hc_plotOptions(series=list(shadow='true')) %>% 
-  hc_title(text="Mortalité maternelle sur quelques zones du globe",
-           align = "left",style=list(color = "#2b908f", fontWeight = "bold",fontFamily = 'Courier New')) %>%
-  hc_subtitle(text="En 2015",align="left",style=list(color = "#2b908f")) %>%
-  hc_xAxis(title=list(text="Zone")) %>%
-  hc_yAxis(title=list(text="Taux de mortalité de la mère \n(pour 100 000 naissances)")) %>%
-  hc_tooltip(
-    pointFormat = '<b>{point.name}</b><br/>{point.y} décès pour 100 000 naissances'
-  )
-```
-
-Quelques définitions des options utilisées ici :
-
-- ***hc_colors()*** permet de définir les couleurs utlisées. elle prend en paramètre un vecteur de couleur de longueur égal à celui des modalités différentes de la variable utilisée dans l'aesthétique pour la couleur.
-
-- ***hc_plotOptions()*** permet de définir les options globales du graphique.
-2 niveaux d'options peuvent être définies avec hcchart :
-
-  - celles s'appliquant à toute les séries de données, doivent être définies dans le paramètre *series*
-
-  - celles s'appliquant aux séries de données d'un type particulier, doivent être définies dans le paramètre correspondant au nom de ce type, exemple, pour un graphique barre *bar=*.
-
-- ***hc_title()*** et ***hc_subtitle()*** permettent de définir le titre et le sous-titre: texte, alignement, marge, style (couleur,police...)
-
-- ***hc_xAxis()*** ***hc_yAxis()*** permet de définir les options de mise en forme des axes : titre des axes, bornes, formats d'affichage, ...
-
-- ***hc_tooltip()*** permet de définir l'infobulle qui s'affiche : activation/désactivation,apparence, contenu. Ici l'option pointFormat nous permet de mieux définir le libellé.
-
-Voici un exemple de graphique en ligne
-
-```{r}
-hchart(graphique2,"line",hcaes(x=Year,y=Value,color=Country_or_Area_Name)) %>%
-  hc_title(text="Evolution de la mortalité maternelle dans le monde",align = "left") %>%
-  hc_subtitle(text="Entre 2000 et 2015",align="left") %>%
-  hc_yAxis(title=list(text="Taux de mortalité de la mère \n(pour 100 000 naissances)"),min=0,alternateGridColor='#FDFFD5') %>%
-  hc_xAxis(title=list(text="Année")) %>%
-  hc_tooltip(
-    pointFormat = '<b>{point.name}</b><br/>{point.y} décès pour 100 000 naissances'
-  ) %>% 
-  hc_colors(plasma(n=5))
-```
-
-Les options de highcharter sont extrèmements nombreuses, highcharter étant basée sur highcharts, mais peu documentées. 
-
-Le plus simple est de se référer à la documentation de l'[API Highcharts](https://api.highcharts.com/highcharts/) pour prendre connaissance des options possible et de voir ensuite comment adapter ce code dans highcharter.
-
-### Les facettes
-
-Highcharter permet de réaliser des graphiques à facette à partir d'une liste de graphiques réalisés avec Highcharter.
-La fonction permettant cela est la fonction ***hw_grid()***
-
-```{r FacetteHighchart}
-#définition de la table de donnée
-highchart_liste<-indicateur311 %>%
+gg<-ODD_indicateur311 %>%
   filter(Type_Zone != "Pays",
          Age_group=="All age ranges or no breakdown by age",
          Sex=="Both sexes or no breakdown by sex",
          Location=="Total (national level)",
-         Year>=2000
-  ) 
-#Création de la liste des graphiques highcharts
-map(unique(highchart_liste$Country_or_Area_Name), function(x){
-  highchart_liste %>% 
-    filter(Country_or_Area_Name==x) %>% 
-    hchart("scatter",hcaes(x=Year,y=Value,color=Country_or_Area_Name),
-           showInLegend = FALSE) %>%
-    hc_title(text=glue("Evolution de la mortalité maternelle - {x}"),align = "left") %>%
-    hc_subtitle(text="Entre 2000 et 2015",align="left") %>%
-    hc_yAxis(title=list(text="Taux de mortalité de la mère \n(pour 100 000 naissances)"),min=0,
-             max=400) %>%
-    hc_xAxis(title=list(text="Année")) %>%
-    hc_tooltip(
-      pointFormat = '<b>{point.name}</b><br/>{point.y} décès pour 100 000 naissances'
-    ) 
-}) %>% 
-  hw_grid(ncol = 3,rowheight=250)
+         is.na(Value_type)
+         ) %>%
+  filter(Year %in% c(2015)) %>%
+  ggplot()+geom_bar_interactive(aes(x=Country_or_Area_Name,
+                              weight=Value,
+                              fill=Country_or_Area_Name,
+                              tooltip=Value))+
+  theme(legend.position="none",
+        title=element_text(size=8),
+        axis.text = element_text(size=7))+
+  scale_fill_ipsum()+
+  coord_flip()+
+  labs(title="Mortalité maternelle sur quelques zones du globe",
+       subtitle="En 2015",
+       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
+       x="Zone",
+       fill="Zone"
+  )
+
+girafe(ggobj=gg,height_svg = 3)
+
 ```
+
+L'infobulle peut contenir plusieurs informations. Il est aussi possible d'en changer l'apparence, grâce à différentes options à spécifier dans `opts_tooltip`:
+
+- offx/offy : pour la position de l'info-bulle par rapport à l'élément
+- css: pour modifier l'aspect de l'info-bulle.
+- use_fill=TRUE : pour adapter le fond de l'info-bulle à la couleur de l'élément. 
+
+```{r, fig.width = 3}
+gg<-ggplot(data=ODD_graphique2)+
+geom_line(aes(x=Year,y=Value))+
+geom_point(aes(x=Year,y=Value))+
+geom_point_interactive(aes(x=Year,y=Value,
+tooltip = paste(Year, "\n",Value,"décès pour 100 000 naissances")))+
+  labs(title="Mortalité maternelle sur quelques zones du globe",
+       subtitle="En 2015",
+       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
+       x="Zone",
+       fill="Zone"
+  )+
+  theme_minimal()
+
+girafe(ggobj=gg,height_svg = 3,
+        options=list(
+          opts_tooltip(css="background-color:gray;font-style:italic;border-radius:5px;padding:5px;")))
+
+```
+
+Les éléments associés à `data_id` sont animés au survol de la souris. Ces animations sont configurées par les options suivantes:
+
+- opts_hover: animation des éléments du graphique
+- opts_hover_inv: animation sur le reste des éléments du graphique (estomper les autres éléments)
+- opts_hover_key: animation des éléments de la légende
+- opts_hover_theme: animation des éléments du thème
+
+
+```{r}
+gg<-ODD_indicateur311 %>%
+  filter(Type_Zone != "Pays",
+         Age_group=="All age ranges or no breakdown by age",
+         Sex=="Both sexes or no breakdown by sex",
+         Location=="Total (national level)",
+         is.na(Value_type)
+         ) %>%
+  filter(Year %in% c(2015)) %>%
+  ggplot()+geom_bar_interactive(aes(x=Country_or_Area_Name,
+                              weight=Value,fill=Country_or_Area_Name,
+                              tooltip=Value,
+                              data_id=Value))+
+  theme(legend.position="none",
+        title=element_text(size=8),
+        axis.text = element_text(size=7))+
+  scale_fill_ipsum()+
+  coord_flip()+
+  labs(title="Mortalité maternelle sur quelques zones du globe",
+       subtitle="En 2015",
+       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
+       x="Zone",
+       fill="Zone"
+  )
+
+girafe(ggobj=gg,height_svg = 3,
+        options=list(opts_hover(css="cursor:grab;fill:red;stroke:blue;")))
+
+```
+
+
+Il existe d'autres options tel que `opts_zoom`, `opts_sizing`, ... 
+
+
+### Les facettes
+
+`Ggiraph` est compatible avec la réalisation des graphiques à facette 
+
+```{r Facetteggiraph}
+gg<-ODD_indicateur311 %>%
+  filter(Type_Zone != "Pays",
+         Age_group=="All age ranges or no breakdown by age",
+         Sex=="Both sexes or no breakdown by sex",
+         Location=="Total (national level)",
+         is.na(Value_type)
+         ) %>%
+  filter(Year %in% c(2000,2005,2010,2015)) %>%
+  ggplot()+
+  geom_bar_interactive(aes(x=Country_or_Area_Name,weight=Value,fill=Country_or_Area_Name,tooltip=Value))+
+  theme(legend.position="none",
+        title=element_text(size=8),
+        axis.text = element_text(size=7))+
+  scale_fill_ipsum()+
+  coord_flip()+
+  labs(title="Mortalité maternelle sur quelques zones du globe",
+       subtitle="En 2015",
+       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
+       x="Zone",
+       fill="Zone"
+  )+
+  theme(legend.position = "none")+
+  facet_wrap(~Year)
+
+girafe(ggobj=gg)
+```
+
+
 
 ## Les cartes Leaflet
 
@@ -142,7 +163,7 @@ Ci-dessous un exemple avancé de carte choroplète avec leaflet.
 
 tt<-World %>%
   rename(Country_or_Area_Code=iso_a3) %>%
-  left_join(indicateur311 %>%
+  left_join(ODD_indicateur311 %>%
               filter(Age_group=="All age ranges or no breakdown by age",
                      Sex=="Both sexes or no breakdown by sex",
                      Type_Zone=="Pays",
@@ -185,7 +206,7 @@ leaflet(tt) %>%
 
 ```
 
-Pour réaliser des ronds proportionnel, il va falloir la aussi créer un centroide de nos polygones
+Pour réaliser des ronds proportionnels, il va falloir là aussi créer un centroide de nos polygones
 
 ```{r}
 ttc<-st_centroid(tt)
@@ -227,7 +248,7 @@ carte_rond_proportionnel<-leaflet(ttc) %>%
 
 ## Exporter une sortie html
 
-La foncion `saveWidget` permet d'exporter une sotie d'un html Widget en html.
+La fonction `saveWidget` permet d'exporter une sortie d'un html Widget en html.
 
 ```{r, eval=F}
 saveWidget(widget=carte_rond_proportionnel,file="Taux de décès des mères à la naissance.html")
@@ -238,20 +259,26 @@ saveWidget(widget=carte_rond_proportionnel,file="Taux de décès des mères à l
 ## Exercice 7
 
 
-Reprendre le nuage de point obtenu à partir des données ODD :taux de mortalité maternelle (Maternal_mortality_ratio) en 
-fonction du produit intérieur brut (Gross_Domestic_Product_GDP) (Chapitre 4.1)
+Reprendre le nuage de point obtenu à partir des données ODD :taux de mortalité maternelle (Maternal_mortality_ratio) en fonction du produit intérieur brut (Gross_Domestic_Product_GDP) (Chapitre 9)
 
-Obtenir ce graphique pour le web avec des infos bulles regroupant le nom du continent, de la zone et les données associées
+Obtenir ce graphique pour le web avec des infos bulles regroupant le nom du continent, de la zone, le PIB et le taux de mortalité maternelle.
+Paramètrer la surbrillance du continent au survol d'élément.
 
 Le résultat attendu : 
 
 ```{r eval=T,message=F,warning=F,echo=FALSE}
-hchart(graphique1,"scatter",hcaes(x=Gross_Domestic_Product_GDP,
-                              y=Maternal_mortality_ratio,
-                              color=Continent)) %>%
-  hc_plotOptions(series=list(shadow='false')) %>% 
-  hc_tooltip(
-    pointFormat = '<b>{point.Continent}</b><br/><b>{point.Parent_Zone_libelle}</b><br/>PIB de {point.x} un taux de mortalié maternelle de {point.y} (pour 100 000 naissances)'
-  )
+
+gg<-ggplot(ODD_graphique1) +
+  geom_point_interactive(aes(x=log(Gross_Domestic_Product_GDP),
+                 y=log(Maternal_mortality_ratio),
+                 color=Continent,
+                 data_id=Continent,
+                 tooltip=paste(Continent,"\n",Parent_Zone_libelle,
+                               "\nPIB de",round(Gross_Domestic_Product_GDP,1),
+                               "\nun taux de mortalié maternelle de",Maternal_mortality_ratio,
+                               "(pour 100 000 naissances)")))+
+  scale_color_brewer(type="qual")
+
+girafe(ggobj=gg,height_svg = 3,options=list(opts_hover(css="fill:darkblue;")))
 ```
 
