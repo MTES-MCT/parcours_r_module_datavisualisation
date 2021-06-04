@@ -2,11 +2,11 @@
 
 # Créer des graphiques et cartes pour le web
 
-## Ggiraph
+## ggiraph
 
-[Ggiraph](https://davidgohel.github.io/ggiraph/) est un package qui permet de rendre interactif des graphiques `ggplot`. Il permet notamment d'y ajouter des infobulles, 
+[{ggiraph}](https://davidgohel.github.io/ggiraph/) est un package qui permet de rendre interactif des graphiques `ggplot`. Il permet notamment d'y ajouter des infobulles, 
 
-Ce package rajoute des fonctionnalités à `ggplot2` comme par exemple [geom_bar_interactive](https://davidgohel.github.io/ggiraph/reference/geom_bar_interactive.html),geom_line_interactive, geom_point_interactive, ... 
+Ce package rajoute des fonctionnalités à `ggplot2` comme par exemple [geom_bar_interactive()](https://davidgohel.github.io/ggiraph/reference/geom_bar_interactive.html),`geom_line_interactive()`, `geom_point_interactive()`, ... 
 
 Il existe 3 types d'ajout:
 
@@ -31,10 +31,11 @@ gg<-ODD_indicateur311 %>%
          is.na(Value_type)
          ) %>%
   filter(Year %in% c(2015)) %>%
-  ggplot()+geom_bar_interactive(aes(x=Country_or_Area_Name,
+  ggplot()+
+  geom_bar_interactive(aes(x=Country_or_Area_Name,
                               weight=Value,
                               fill=Country_or_Area_Name,
-                              tooltip=Value))+
+                              tooltip=paste(Value,"décès pour 100 000 naissances")))+
   theme(legend.position="none",
         title=element_text(size=8),
         axis.text = element_text(size=7))+
@@ -53,9 +54,9 @@ girafe(ggobj=gg,height_svg = 3)
 
 L'infobulle peut contenir plusieurs informations. Il est aussi possible d'en changer l'apparence, grâce à différentes options à spécifier dans `opts_tooltip`:
 
-- offx/offy : pour la position de l'info-bulle par rapport à l'élément
-- css: pour modifier l'aspect de l'info-bulle.
-- use_fill=TRUE : pour adapter le fond de l'info-bulle à la couleur de l'élément. 
+- `offx` / `offy` : pour la position de l'info-bulle par rapport à l'élément
+- `css` : pour modifier l'aspect de l'info-bulle.
+- `use_fill=TRUE` : pour adapter le fond de l'info-bulle à la couleur de l'élément. 
 
 ```{r, fig.width = 3}
 gg<-ggplot(data=ODD_graphique2)+
@@ -79,10 +80,10 @@ girafe(ggobj=gg,height_svg = 3,
 
 Les éléments associés à `data_id` sont animés au survol de la souris. Ces animations sont configurées par les options suivantes:
 
-- opts_hover: animation des éléments du graphique
-- opts_hover_inv: animation sur le reste des éléments du graphique (estomper les autres éléments)
-- opts_hover_key: animation des éléments de la légende
-- opts_hover_theme: animation des éléments du thème
+- `opts_hover` : animation des éléments du graphique
+- `opts_hover_inv` : animation sur le reste des éléments du graphique (estomper les autres éléments)
+- `opts_hover_key` : animation des éléments de la légende
+- `opts_hover_theme` : animation des éléments du thème
 
 
 ```{r}
@@ -121,7 +122,7 @@ Il existe d'autres options tel que `opts_zoom`, `opts_sizing`, ...
 
 ### Les facettes
 
-`Ggiraph` est compatible avec la réalisation des graphiques à facette 
+`{ggiraph}` est compatible avec la réalisation des graphiques à facette 
 
 ```{r Facetteggiraph}
 gg<-ODD_indicateur311 %>%
@@ -206,7 +207,7 @@ leaflet(tt) %>%
 
 ```
 
-Pour réaliser des ronds proportionnels, il va falloir là aussi créer un centroide de nos polygones
+Pour réaliser des ronds proportionnels, il va falloir là aussi créer un centroide de nos polygones.
 
 ```{r}
 ttc<-st_centroid(tt)
@@ -248,7 +249,7 @@ carte_rond_proportionnel<-leaflet(ttc) %>%
 
 ## Exporter une sortie html
 
-La fonction `saveWidget` permet d'exporter une sortie d'un html Widget en html.
+La fonction `saveWidget()` permet d'exporter une sortie d'un html Widget en html.
 
 ```{r, eval=F}
 saveWidget(widget=carte_rond_proportionnel,file="Taux de décès des mères à la naissance.html")
