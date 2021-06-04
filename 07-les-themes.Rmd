@@ -19,7 +19,7 @@ Ce schéma de [Heny Wang](https://henrywang.nl/ggplot2-theme-elements-demonstrat
 ]
 
 ```{r, echo = FALSE, out.height='450px',out.width='600px',}
-knitr::include_graphics("images/theme_elements.png")
+knitr::include_graphics("images/theme.png")
 ```
 
 Et nous allons ci dessous le détailler.
