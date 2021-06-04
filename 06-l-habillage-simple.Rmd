@@ -42,11 +42,12 @@ ggplot(ODD_graphique1) +
   theme(legend.position = "bottom")
 ```
 
-## Annotation
+## Annotations
 
-Il est aussi possible de rajouter des annotations de type texte, par exemple, "à la volée".
+Il est aussi possible de rajouter des annotations de type texte ou autre, par exemple, "à la volée". La fonctions `annonate()` va nous permettre de rajouter nos annotations. Ici nous rajoutons une fonction pour rajoute un texte, une autre pour rajouter une flèche.
 
 ```{r fg6_3, echo=T,eval=T,fig.height=5,fig.width=10}
+
 ggplot(ODD_graphique1) +
   geom_point(aes(x=log(Gross_Domestic_Product_GDP),
                  y=log(Maternal_mortality_ratio),
@@ -55,22 +56,25 @@ ggplot(ODD_graphique1) +
        subtitle="En 2015",
        x="PIB",
        y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
-       caption="Source : ODD / ONU")+
-  annotate("text", x = 6, y = 2, label = "je rajoute mon texte",color="blue")
+       caption="Source : ODD / ONU") +
+  annotate("label", 
+           x = 11, 
+           y = 6.5, 
+           size = 3,
+           label = "882 décès \npour 100 000 naissances \nen République centrafricaine",
+           color="white",
+           fill = "red") + 
+  annotate("curve",
+           xend = log(333.1885),yend = log(882),
+           x = 10.2,y = 6.5,
+           curvature = -0.1,
+           color = "red",
+           arrow = arrow(length = unit(2, "mm"))
+  )+
+  theme(legend.position = "bottom")
+
 ```
 
-La fonction **annotate** permet aussi d'ajouter d'autres types d'annotation comme par exemple des rectangles :
 
-```{r fg6_4, echo=T,eval=T,fig.height=5,fig.width=10}
-ggplot(ODD_graphique1) +
-  geom_point(aes(x=log(Gross_Domestic_Product_GDP),
-                 y=log(Maternal_mortality_ratio),
-                 color=Continent))+
-  labs(title="Mortalité maternelle en fonction du PIB par habitant",
-       subtitle="En 2015",
-       x="PIB",
-       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
-       caption="Source : ODD / ONU")+
-   annotate("rect", xmin = 10, xmax = Inf, ymin = -Inf, ymax = Inf,fill="red",alpha=0.2)+
-   annotate("rect", xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = 2,fill="green",alpha=0.2)
-```
+Cette fonction ajoute des *geom* à un graphique, mais contrairement à une fonction *geom* typique, les propriétés des *geom* ne sont pas mappées à partir des variables d'un dataframe, mais depuis des vecteurs que nous lui renseignons. Ceci est utile pour ajouter de petites annotations.
+Leurs définitions est donc assez proche des fonctions *geom*.
