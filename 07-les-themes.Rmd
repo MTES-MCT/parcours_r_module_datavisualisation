@@ -1,11 +1,11 @@
 # Les thèmes
 
-La fonction [theme()](http://ggplot2.tidyverse.org/reference/theme.html) permet de modifier l'apparence d'un graphique, c'est-à-dire de définir tout ce qui n'est pas lié directement aux données sur un graphique, notamment: 
+Les thèmes ggplot2 vous permettent de modifier l'apparence de vos graphiques. Derrière l'apparence, on désigne tout ce qui n'est pas relatif aux données, comme les polices de caractère, les grilles, l'arrière plan : 
 
-- la position, taille, couleur, police des éléments textuels
-
-- la couleur et le type des grilles primaires et secondaires du graphique
-
+- Quelle police de caractère pour le titre du graphique ? Pour le titre de l'axe des x ? 
+- Quelle taille de police ? 
+- Quelle couleur pour l'arrière plan ? 
+- Quel type de ligne pour les grilles ?
 
 Il existe des [thèmes prédéfinis](http://ggplot2.tidyverse.org/reference/index.html#section-themes) dans `ggplot` que l'on peut déjà utiliser.
 Par exemple : `theme_classic()`, `theme_bw()`, `theme_dark()`, ...
@@ -13,7 +13,16 @@ Par exemple : `theme_classic()`, `theme_bw()`, `theme_dark()`, ...
 Des packages externes permettent d'enrichir cette collection de thèmes, par exemple `ggthemes` ou `hrbrthemes`.
 
 Lorsque l'on souhaite garder une cohérence entre plusieurs graphiques, le mieux est d'en définir un à part pour l'appeler ensuite.
+La fonction de `{ggplot2}` qui vous permet de modifier le thème par défaut est la fonction `[theme()](http://ggplot2.tidyverse.org/reference/theme.html)`. Chaque élément va ensuite pouvoir être modifié finement. 
 
+Ce schéma de [Heny Wang](https://henrywang.nl/ggplot2-theme-elements-demonstration/) permet de bien synthétiser l'ensemble des éléments thémables.
+]
+
+```{r, echo = FALSE, out.height='450px',out.width='600px',}
+knitr::include_graphics("images/theme_elements.png")
+```
+
+Et nous allons ci dessous le détailler.
 
 ## Les fonctions "element"
 
@@ -68,10 +77,6 @@ legend.background, legend.key, legend.text, legend.title,...
 panel.background, panel.border, panel.grid.major, panel.grid.minor,...
 
 - etc
-
-Le schéma de [Heny Wang](https://henrywang.nl/ggplot2-theme-elements-demonstration/) synthétise l'ensemble de ces élements et composantes.
-
-![](images/theme.PNG){#id .class width=500}
 
 
 ## Quelques exemples 
@@ -176,7 +181,7 @@ ggplot(ODD_graphique1) +
 
 ## Thème - package gouvdown
 
-`Gouvdown` est un package créé par la communauté [Spyrales](https://www.spyrales.fr/).
+`{gouvdown}` est un package créé par la communauté [Spyrales](https://www.spyrales.fr/).
 
 ![](images/spyrales.PNG){#id .class width=500}
 
