@@ -18,9 +18,11 @@ Quelques ressources de références
 ## tmap
 - La vignette du package Tmap  : https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html
 
-## highcharter
-- Le site web du  module : http://jkunst.com/highcharter/ 
-- L'api Highcharts : https://api.highcharts.com/highcharts/
+## ggiraph
+- La documentation du module : https://davidgohel.github.io/ggiraph/index.html
+
+## apexcharter
+- Le site web du  module : https://dreamrs.github.io/apexcharter/index.html
 
 ## kable et kableExtra
 

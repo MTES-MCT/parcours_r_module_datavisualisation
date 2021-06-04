@@ -9,7 +9,7 @@
 Nous verrons par la suite les différentes formes de représentations graphiques suivant la typologie suivante des principales variables utilisées :
 
 - Représentation d'une variable continue
-- Représentation d'une variable disrète
+- Représentation d'une variable discrète
 - Représentation de deux variables continues
 - Représentation d'une variable continue et d'une variable discrète
 - Représentation de deux variables discrètes

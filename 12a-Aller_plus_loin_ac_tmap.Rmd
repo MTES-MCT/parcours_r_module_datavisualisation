@@ -32,7 +32,7 @@ data("World")
 
 tt<-World %>%
 rename(Country_or_Area_Code=iso_a3) %>%
-  inner_join(indicateur311 %>%
+  inner_join(ODD_indicateur311 %>%
               filter(Age_group=="All age ranges or no breakdown by age",
                      Sex=="Both sexes or no breakdown by sex",
                      Type_Zone=="Pays",
