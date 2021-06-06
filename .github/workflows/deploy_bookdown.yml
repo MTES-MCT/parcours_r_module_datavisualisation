@@ -44,7 +44,7 @@ jobs:
 
       - name: Install gouvdown fonts to mac os
         run: |
-          Rscript -e 'install.packages(remotes);remotes::install_github("spyrales/gouvdown.fonts")'
+          Rscript -e 'install.packages("remotes");remotes::install_github("spyrales/gouvdown.fonts")'
           cp /Users/runner/work/_temp/Library/gouvdown.fonts/resources/fonts/spectral/desktop/truetype/*.ttf /Library/Fonts/
           cp /Users/runner/work/_temp/Library/gouvdown.fonts/resources/fonts/marianne/truetype/*.ttf /Library/Fonts/
 
