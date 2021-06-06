@@ -51,10 +51,8 @@ jobs:
 
       - name: Install gouvdown fonts to mac os
         run: |
-          cp $HOME/.local/share/renv/library/gouvdown.fonts/resources/fonts/spectral/desktop/truetype/*.ttf /Library/Fonts/
-          cp $HOME/.local/share/renv/library/gouvdown.fonts/resources/fonts/marianne/truetype/*.ttf /Library/Fonts/
-          cp /Library/gouvdown.fonts/resources/fonts/spectral/desktop/truetype/*.ttf /Library/Fonts/
-          cp /Users/runner/work/_temp/Library/gouvdown.fonts/resources/fonts/marianne/truetype/*.ttf /Library/Fonts/
+          cp ~/.local/share/renv/library/gouvdown.fonts/resources/fonts/spectral/desktop/truetype/*.ttf /Library/Fonts/
+          cp ~/.local/share/renv/library/gouvdown.fonts/resources/fonts/marianne/truetype/*.ttf /Library/Fonts/
 
       - name: Build site
         run: Rscript -e 'bookdown::render_book("index.Rmd", quiet = TRUE)'
