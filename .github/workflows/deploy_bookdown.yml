@@ -42,17 +42,17 @@ jobs:
           key: bookdown-${{ hashFiles('**/*Rmd') }}
           restore-keys: bookdown-
 
+      - name: Install gouvdown fonts to mac os
+        run: |
+          Rscript -e 'remotes::install_github("spyrales/gouvdown.fonts")'
+          cp /Users/runner/work/_temp/Library/gouvdown.fonts/resources/fonts/spectral/desktop/truetype/*.ttf /Library/Fonts/
+          cp /Users/runner/work/_temp/Library/gouvdown.fonts/resources/fonts/marianne/truetype/*.ttf /Library/Fonts/
+
       - name: Install packages
         run: |
           install.packages("renv")
           renv::restore()
-          remotes::install_github("spyrales/gouvdown.fonts")
         shell: Rscript {0}
-
-      - name: Install gouvdown fonts to mac os
-        run: |
-          cp ~/.local/share/renv/library/gouvdown.fonts/resources/fonts/spectral/desktop/truetype/*.ttf /Library/Fonts/
-          cp ~/.local/share/renv/library/gouvdown.fonts/resources/fonts/marianne/truetype/*.ttf /Library/Fonts/
 
       - name: Build site
         run: Rscript -e 'bookdown::render_book("index.Rmd", quiet = TRUE)'
