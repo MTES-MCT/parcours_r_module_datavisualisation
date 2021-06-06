@@ -44,8 +44,10 @@ jobs:
 
       - name: Install packages
         run: |
-          R -e 'install.packages("renv")'
-          R -e 'renv::restore()'
+          install.packages("renv")
+          renv::restore()
+          remotes::install_github("spyrales/gouvdown.fonts")
+        shell: Rscript {0}
 
       - name: Install gouvdown fonts to mac os
         run: |
