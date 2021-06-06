@@ -47,6 +47,11 @@ jobs:
           R -e 'install.packages("renv")'
           R -e 'renv::restore()'
 
+      - name: Install gouvdown fonts to mac os
+        run: |
+          cp /Users/runner/work/_temp/Library/gouvdown.fonts/resources/fonts/spectral/desktop/truetype/*.ttf /Library/Fonts/
+          cp /Users/runner/work/_temp/Library/gouvdown.fonts/resources/fonts/marianne/truetype/*.ttf /Library/Fonts/
+
       - name: Build site
         run: Rscript -e 'bookdown::render_book("index.Rmd", quiet = TRUE)'
         
