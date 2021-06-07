@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapitre 12 Exporter un graphique | Valoriser ses données avec R</title>
   <meta name="description" content="Valorisation des données sous R (module 5)" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapitre 12 Exporter un graphique | Valoriser ses données avec R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Maël Theulière &amp; Murielle Lethrosne" />
 
 
-<meta name="date" content="2020-02-28" />
+<meta name="date" content="2021-06-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="les-facettes.html"/>
 <link rel="next" href="créer-des-cartes-avec-ggplot2.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,77 +51,47 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
-<script src="libs/proj4js-2.3.15/proj4.js"></script>
-<link href="libs/highcharts-7.0.1/css/motion.css" rel="stylesheet" />
-<link href="libs/highcharts-7.0.1/css/htmlwdgtgrid.css" rel="stylesheet" />
-<script src="libs/highcharts-7.0.1/highcharts.js"></script>
-<script src="libs/highcharts-7.0.1/highcharts-3d.js"></script>
-<script src="libs/highcharts-7.0.1/highcharts-more.js"></script>
-<script src="libs/highcharts-7.0.1/modules/stock.js"></script>
-<script src="libs/highcharts-7.0.1/modules/map.js"></script>
-<script src="libs/highcharts-7.0.1/modules/annotations.js"></script>
-<script src="libs/highcharts-7.0.1/modules/boost.js"></script>
-<script src="libs/highcharts-7.0.1/modules/data.js"></script>
-<script src="libs/highcharts-7.0.1/modules/drag-panes.js"></script>
-<script src="libs/highcharts-7.0.1/modules/drilldown.js"></script>
-<script src="libs/highcharts-7.0.1/modules/item-series.js"></script>
-<script src="libs/highcharts-7.0.1/modules/offline-exporting.js"></script>
-<script src="libs/highcharts-7.0.1/modules/overlapping-datalabels.js"></script>
-<script src="libs/highcharts-7.0.1/modules/exporting.js"></script>
-<script src="libs/highcharts-7.0.1/modules/export-data.js"></script>
-<script src="libs/highcharts-7.0.1/modules/funnel.js"></script>
-<script src="libs/highcharts-7.0.1/modules/heatmap.js"></script>
-<script src="libs/highcharts-7.0.1/modules/treemap.js"></script>
-<script src="libs/highcharts-7.0.1/modules/sankey.js"></script>
-<script src="libs/highcharts-7.0.1/modules/solid-gauge.js"></script>
-<script src="libs/highcharts-7.0.1/modules/streamgraph.js"></script>
-<script src="libs/highcharts-7.0.1/modules/sunburst.js"></script>
-<script src="libs/highcharts-7.0.1/modules/vector.js"></script>
-<script src="libs/highcharts-7.0.1/modules/wordcloud.js"></script>
-<script src="libs/highcharts-7.0.1/modules/xrange.js"></script>
-<script src="libs/highcharts-7.0.1/modules/tilemap.js"></script>
-<script src="libs/highcharts-7.0.1/modules/venn.js"></script>
-<script src="libs/highcharts-7.0.1/modules/gantt.js"></script>
-<script src="libs/highcharts-7.0.1/modules/timeline.js"></script>
-<script src="libs/highcharts-7.0.1/modules/parallel-coordinates.js"></script>
-<script src="libs/highcharts-7.0.1/plugins/grouped-categories.js"></script>
-<script src="libs/highcharts-7.0.1/plugins/motion.js"></script>
-<script src="libs/highcharts-7.0.1/plugins/multicolor_series.js"></script>
-<script src="libs/highcharts-7.0.1/custom/reset.js"></script>
-<script src="libs/highcharts-7.0.1/custom/symbols-extra.js"></script>
-<script src="libs/highcharts-7.0.1/custom/text-symbols.js"></script>
-<script src="libs/highchart-binding-0.7.0/highchart.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/d3-5.7.0/d3.min.js"></script>
+<script src="libs/d3-lasso-0.0.5/d3-lasso.min.js"></script>
+<link href="libs/ggiraphjs-0.3.0/ggiraphjs.min.css" rel="stylesheet" />
+<script src="libs/ggiraphjs-0.3.0/ggiraphjs.min.js"></script>
+<script src="libs/girafe-binding-0.7.8/girafe.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -129,9 +100,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -164,6 +135,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -183,49 +155,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="une-typologie-des-représentations-graphiques.html"><a href="une-typologie-des-représentations-graphiques.html"><i class="fa fa-check"></i><b>2</b> Une typologie des représentations graphiques</a></li>
-<li class="chapter" data-level="3" data-path="bien-commencer.html"><a href="bien-commencer.html"><i class="fa fa-check"></i><b>3</b> Bien commencer</a><ul>
+<li class="chapter" data-level="3" data-path="bien-commencer.html"><a href="bien-commencer.html"><i class="fa fa-check"></i><b>3</b> Bien commencer</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="bien-commencer.html"><a href="bien-commencer.html#créer-un-projet-sous-rstudio-pour-vous-permettre-de-recencer-vos-travaux."><i class="fa fa-check"></i><b>3.1</b> Créer un projet sous Rstudio pour vous permettre de recencer vos travaux.</a></li>
 <li class="chapter" data-level="3.2" data-path="bien-commencer.html"><a href="bien-commencer.html#intégrer-vos-données"><i class="fa fa-check"></i><b>3.2</b> Intégrer vos données</a></li>
 <li class="chapter" data-level="3.3" data-path="bien-commencer.html"><a href="bien-commencer.html#créer-votre-arborescence-de-projet"><i class="fa fa-check"></i><b>3.3</b> Créer votre arborescence de projet</a></li>
-<li class="chapter" data-level="3.4" data-path="bien-commencer.html"><a href="bien-commencer.html#activer-les-packages-nécessaires"><i class="fa fa-check"></i><b>3.4</b> Activer les packages nécessaires</a></li>
-<li class="chapter" data-level="3.5" data-path="bien-commencer.html"><a href="bien-commencer.html#bien-structurer-ses-projets-data"><i class="fa fa-check"></i><b>3.5</b> Bien structurer ses projets data</a></li>
+<li class="chapter" data-level="3.4" data-path="bien-commencer.html"><a href="bien-commencer.html#utilisation-du-package-savoirfr"><i class="fa fa-check"></i><b>3.4</b> Utilisation du package savoirfR</a></li>
+<li class="chapter" data-level="3.5" data-path="bien-commencer.html"><a href="bien-commencer.html#activer-les-packages-nécessaires"><i class="fa fa-check"></i><b>3.5</b> Activer les packages nécessaires</a></li>
+<li class="chapter" data-level="3.6" data-path="bien-commencer.html"><a href="bien-commencer.html#bien-structurer-ses-projets-data"><i class="fa fa-check"></i><b>3.6</b> Bien structurer ses projets data</a></li>
 </ul></li>
 <li class="part"><span><b>I Créer des graphiques sous R avec ggplot 2</b></span></li>
-<li class="chapter" data-level="4" data-path="package-ggplot2.html"><a href="package-ggplot2.html"><i class="fa fa-check"></i><b>4</b> Package ggplot2</a><ul>
+<li class="chapter" data-level="4" data-path="package-ggplot2.html"><a href="package-ggplot2.html"><i class="fa fa-check"></i><b>4</b> Package ggplot2</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="package-ggplot2.html"><a href="package-ggplot2.html#présentation-de-ggplot2"><i class="fa fa-check"></i><b>4.1</b> Présentation de ggplot2</a></li>
 <li class="chapter" data-level="4.2" data-path="package-ggplot2.html"><a href="package-ggplot2.html#le-tidyverse"><i class="fa fa-check"></i><b>4.2</b> Le Tidyverse</a></li>
 <li class="chapter" data-level="4.3" data-path="package-ggplot2.html"><a href="package-ggplot2.html#les-concepts-clefs"><i class="fa fa-check"></i><b>4.3</b> Les concepts clefs</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="le-mapping.html"><a href="le-mapping.html"><i class="fa fa-check"></i><b>5</b> Le mapping</a><ul>
+<li class="chapter" data-level="5" data-path="le-mapping.html"><a href="le-mapping.html"><i class="fa fa-check"></i><b>5</b> Le mapping</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="le-mapping.html"><a href="le-mapping.html#les-paramètres-du-mapping"><i class="fa fa-check"></i><b>5.1</b> Les paramètres du mapping</a></li>
 <li class="chapter" data-level="5.2" data-path="le-mapping.html"><a href="le-mapping.html#les-autres-paramètres"><i class="fa fa-check"></i><b>5.2</b> Les “autres” paramètres</a></li>
 <li class="chapter" data-level="5.3" data-path="le-mapping.html"><a href="le-mapping.html#exercice-1"><i class="fa fa-check"></i><b>5.3</b> Exercice 1</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="les-formes-géométriques.html"><a href="les-formes-géométriques.html"><i class="fa fa-check"></i><b>6</b> Les formes géométriques</a></li>
-<li class="chapter" data-level="7" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html"><i class="fa fa-check"></i><b>7</b> L’habillage simple</a><ul>
+<li class="chapter" data-level="7" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html"><i class="fa fa-check"></i><b>7</b> L’habillage simple</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html#titre-et-libellé-des-axes"><i class="fa fa-check"></i><b>7.1</b> Titre et libellé des axes</a></li>
 <li class="chapter" data-level="7.2" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html#légende"><i class="fa fa-check"></i><b>7.2</b> Légende</a></li>
-<li class="chapter" data-level="7.3" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html#annotation"><i class="fa fa-check"></i><b>7.3</b> Annotation</a></li>
+<li class="chapter" data-level="7.3" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html#annotations"><i class="fa fa-check"></i><b>7.3</b> Annotations</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="les-thèmes.html"><a href="les-thèmes.html"><i class="fa fa-check"></i><b>8</b> Les thèmes</a><ul>
-<li class="chapter" data-level="8.1" data-path="les-thèmes.html"><a href="les-thèmes.html#les-fonctions-élément"><i class="fa fa-check"></i><b>8.1</b> Les fonctions “élément”</a></li>
+<li class="chapter" data-level="8" data-path="les-thèmes.html"><a href="les-thèmes.html"><i class="fa fa-check"></i><b>8</b> Les thèmes</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="les-thèmes.html"><a href="les-thèmes.html#les-fonctions-element"><i class="fa fa-check"></i><b>8.1</b> Les fonctions “element”</a></li>
 <li class="chapter" data-level="8.2" data-path="les-thèmes.html"><a href="les-thèmes.html#les-composantes"><i class="fa fa-check"></i><b>8.2</b> Les composantes</a></li>
 <li class="chapter" data-level="8.3" data-path="les-thèmes.html"><a href="les-thèmes.html#quelques-exemples"><i class="fa fa-check"></i><b>8.3</b> Quelques exemples</a></li>
 <li class="chapter" data-level="8.4" data-path="les-thèmes.html"><a href="les-thèmes.html#modifier-le-thème-par-défaut"><i class="fa fa-check"></i><b>8.4</b> Modifier le thème par défaut</a></li>
 <li class="chapter" data-level="8.5" data-path="les-thèmes.html"><a href="les-thèmes.html#créer-son-propre-thème"><i class="fa fa-check"></i><b>8.5</b> Créer son propre thème</a></li>
-<li class="chapter" data-level="8.6" data-path="les-thèmes.html"><a href="les-thèmes.html#exercice-2"><i class="fa fa-check"></i><b>8.6</b> Exercice 2</a></li>
+<li class="chapter" data-level="8.6" data-path="les-thèmes.html"><a href="les-thèmes.html#thème---package-gouvdown"><i class="fa fa-check"></i><b>8.6</b> Thème - package gouvdown</a></li>
+<li class="chapter" data-level="8.7" data-path="les-thèmes.html"><a href="les-thèmes.html#exercice-2"><i class="fa fa-check"></i><b>8.7</b> Exercice 2</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="les-scales.html"><a href="les-scales.html"><i class="fa fa-check"></i><b>9</b> Les scales</a><ul>
-<li class="chapter" data-level="9.1" data-path="les-scales.html"><a href="les-scales.html#formatage-spécifique"><i class="fa fa-check"></i><b>9.1</b> Formatage spécifique</a></li>
-<li class="chapter" data-level="9.2" data-path="les-scales.html"><a href="les-scales.html#exercice-3"><i class="fa fa-check"></i><b>9.2</b> Exercice 3</a></li>
+<li class="chapter" data-level="9" data-path="les-scales.html"><a href="les-scales.html"><i class="fa fa-check"></i><b>9</b> Les scales</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="les-scales.html"><a href="les-scales.html#les-fonctions"><i class="fa fa-check"></i><b>9.1</b> Les fonctions</a></li>
+<li class="chapter" data-level="9.2" data-path="les-scales.html"><a href="les-scales.html#scales---package-gouvdown"><i class="fa fa-check"></i><b>9.2</b> Scales - package gouvdown</a></li>
+<li class="chapter" data-level="9.3" data-path="les-scales.html"><a href="les-scales.html#formatage-spécifique"><i class="fa fa-check"></i><b>9.3</b> Formatage spécifique</a></li>
+<li class="chapter" data-level="9.4" data-path="les-scales.html"><a href="les-scales.html#exercice-3"><i class="fa fa-check"></i><b>9.4</b> Exercice 3</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="la-mise-en-page-de-plusieurs-graphiques.html"><a href="la-mise-en-page-de-plusieurs-graphiques.html"><i class="fa fa-check"></i><b>10</b> La mise en page de plusieurs graphiques</a></li>
-<li class="chapter" data-level="11" data-path="les-facettes.html"><a href="les-facettes.html"><i class="fa fa-check"></i><b>11</b> Les facettes</a><ul>
+<li class="chapter" data-level="11" data-path="les-facettes.html"><a href="les-facettes.html"><i class="fa fa-check"></i><b>11</b> Les facettes</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="les-facettes.html"><a href="les-facettes.html#exercice-4"><i class="fa fa-check"></i><b>11.1</b> Exercice 4</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="exporter-un-graphique.html"><a href="exporter-un-graphique.html"><i class="fa fa-check"></i><b>12</b> Exporter un graphique</a></li>
 <li class="part"><span><b>II Créer des cartes sous R</b></span></li>
-<li class="chapter" data-level="13" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html"><i class="fa fa-check"></i><b>13</b> Créer des cartes avec ggplot2</a><ul>
+<li class="chapter" data-level="13" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html"><i class="fa fa-check"></i><b>13</b> Créer des cartes avec ggplot2</a>
+<ul>
 <li class="chapter" data-level="13.1" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#les-cartes-choroplèthes"><i class="fa fa-check"></i><b>13.1</b> Les cartes choroplèthes</a></li>
 <li class="chapter" data-level="13.2" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#les-cartes-à-ronds-proportionnels"><i class="fa fa-check"></i><b>13.2</b> Les cartes à ronds proportionnels</a></li>
 <li class="chapter" data-level="13.3" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#les-facettes-1"><i class="fa fa-check"></i><b>13.3</b> Les facettes</a></li>
@@ -233,8 +217,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.5" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#ajouter-des-étiquettes-et-du-texte"><i class="fa fa-check"></i><b>13.5</b> Ajouter des étiquettes et du texte</a></li>
 <li class="chapter" data-level="13.6" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#exercice-5"><i class="fa fa-check"></i><b>13.6</b> Exercice 5</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="cartographie-avec-tmap.html"><a href="cartographie-avec-tmap.html"><i class="fa fa-check"></i><b>14</b> Cartographie avec tmap</a><ul>
-<li class="chapter" data-level="14.1" data-path="cartographie-avec-tmap.html"><a href="cartographie-avec-tmap.html#les-cartes-avec-tmap"><i class="fa fa-check"></i><b>14.1</b> Les cartes avec Tmap</a><ul>
+<li class="chapter" data-level="14" data-path="cartographie-avec-tmap.html"><a href="cartographie-avec-tmap.html"><i class="fa fa-check"></i><b>14</b> Cartographie avec tmap</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="cartographie-avec-tmap.html"><a href="cartographie-avec-tmap.html#les-cartes-avec-tmap"><i class="fa fa-check"></i><b>14.1</b> Les cartes avec Tmap</a>
+<ul>
 <li class="chapter" data-level="14.1.1" data-path="cartographie-avec-tmap.html"><a href="cartographie-avec-tmap.html#exemple-de-carte-choroplèthe"><i class="fa fa-check"></i><b>14.1.1</b> Exemple de carte choroplèthe</a></li>
 <li class="chapter" data-level="14.1.2" data-path="cartographie-avec-tmap.html"><a href="cartographie-avec-tmap.html#exemple-de-carte-à-ronds-proportionnels"><i class="fa fa-check"></i><b>14.1.2</b> Exemple de carte à ronds proportionnels</a></li>
 <li class="chapter" data-level="14.1.3" data-path="cartographie-avec-tmap.html"><a href="cartographie-avec-tmap.html#exemples-de-cartes-avec-facet"><i class="fa fa-check"></i><b>14.1.3</b> Exemples de cartes avec facet</a></li>
@@ -244,35 +230,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="part"><span><b>III Graphiques animés</b></span></li>
-<li class="chapter" data-level="15" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html"><i class="fa fa-check"></i><b>15</b> Animer ses graphiques ggplot avec gganimate</a><ul>
+<li class="chapter" data-level="15" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html"><i class="fa fa-check"></i><b>15</b> Animer ses graphiques ggplot avec gganimate</a>
+<ul>
 <li class="chapter" data-level="15.1" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#produire-une-animation"><i class="fa fa-check"></i><b>15.1</b> Produire une animation</a></li>
 <li class="chapter" data-level="15.2" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#paramétrer-lanimation"><i class="fa fa-check"></i><b>15.2</b> Paramétrer l’animation</a></li>
 <li class="chapter" data-level="15.3" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#exporter-une-animation"><i class="fa fa-check"></i><b>15.3</b> Exporter une animation</a></li>
 <li class="chapter" data-level="15.4" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#exercice-6"><i class="fa fa-check"></i><b>15.4</b> Exercice 6</a></li>
 </ul></li>
 <li class="part"><span><b>IV Dataviz pour le web</b></span></li>
-<li class="chapter" data-level="16" data-path="créer-des-graphiques-et-cartes-pour-le-web.html"><a href="créer-des-graphiques-et-cartes-pour-le-web.html"><i class="fa fa-check"></i><b>16</b> Créer des graphiques et cartes pour le web</a><ul>
-<li class="chapter" data-level="16.1" data-path="créer-des-graphiques-et-cartes-pour-le-web.html"><a href="créer-des-graphiques-et-cartes-pour-le-web.html#highcharter"><i class="fa fa-check"></i><b>16.1</b> Highcharter</a><ul>
-<li class="chapter" data-level="16.1.1" data-path="créer-des-graphiques-et-cartes-pour-le-web.html"><a href="créer-des-graphiques-et-cartes-pour-le-web.html#exemple-type-de-graphique"><i class="fa fa-check"></i><b>16.1.1</b> Exemple type de graphique</a></li>
+<li class="chapter" data-level="16" data-path="créer-des-graphiques-et-cartes-pour-le-web.html"><a href="créer-des-graphiques-et-cartes-pour-le-web.html"><i class="fa fa-check"></i><b>16</b> Créer des graphiques et cartes pour le web</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="créer-des-graphiques-et-cartes-pour-le-web.html"><a href="créer-des-graphiques-et-cartes-pour-le-web.html#ggiraph"><i class="fa fa-check"></i><b>16.1</b> ggiraph</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="créer-des-graphiques-et-cartes-pour-le-web.html"><a href="créer-des-graphiques-et-cartes-pour-le-web.html#exemple-de-graphique-avec-infobulle"><i class="fa fa-check"></i><b>16.1.1</b> Exemple de graphique avec infobulle</a></li>
 <li class="chapter" data-level="16.1.2" data-path="créer-des-graphiques-et-cartes-pour-le-web.html"><a href="créer-des-graphiques-et-cartes-pour-le-web.html#les-facettes-2"><i class="fa fa-check"></i><b>16.1.2</b> Les facettes</a></li>
 </ul></li>
 <li class="chapter" data-level="16.2" data-path="créer-des-graphiques-et-cartes-pour-le-web.html"><a href="créer-des-graphiques-et-cartes-pour-le-web.html#les-cartes-leaflet"><i class="fa fa-check"></i><b>16.2</b> Les cartes Leaflet</a></li>
 <li class="chapter" data-level="16.3" data-path="créer-des-graphiques-et-cartes-pour-le-web.html"><a href="créer-des-graphiques-et-cartes-pour-le-web.html#exporter-une-sortie-html"><i class="fa fa-check"></i><b>16.3</b> Exporter une sortie html</a></li>
 <li class="chapter" data-level="16.4" data-path="créer-des-graphiques-et-cartes-pour-le-web.html"><a href="créer-des-graphiques-et-cartes-pour-le-web.html#exercice-7"><i class="fa fa-check"></i><b>16.4</b> Exercice 7</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="créer-des-tableaux-avec-kable-et-kable-extra.html"><a href="créer-des-tableaux-avec-kable-et-kable-extra.html"><i class="fa fa-check"></i><b>17</b> Créer des tableaux avec kable et kable extra</a><ul>
+<li class="chapter" data-level="17" data-path="créer-des-tableaux-avec-kable-et-kable-extra.html"><a href="créer-des-tableaux-avec-kable-et-kable-extra.html"><i class="fa fa-check"></i><b>17</b> Créer des tableaux avec kable et kable extra</a>
+<ul>
 <li class="chapter" data-level="17.1" data-path="créer-des-tableaux-avec-kable-et-kable-extra.html"><a href="créer-des-tableaux-avec-kable-et-kable-extra.html#sauvegarde"><i class="fa fa-check"></i><b>17.1</b> Sauvegarde</a></li>
 <li class="chapter" data-level="17.2" data-path="créer-des-tableaux-avec-kable-et-kable-extra.html"><a href="créer-des-tableaux-avec-kable-et-kable-extra.html#exercice-8"><i class="fa fa-check"></i><b>17.2</b> Exercice 8</a></li>
 </ul></li>
 <li class="part"><span><b>V Ressources et correction</b></span></li>
-<li class="chapter" data-level="18" data-path="ressources.html"><a href="ressources.html"><i class="fa fa-check"></i><b>18</b> Ressources</a><ul>
+<li class="chapter" data-level="18" data-path="ressources.html"><a href="ressources.html"><i class="fa fa-check"></i><b>18</b> Ressources</a>
+<ul>
 <li class="chapter" data-level="18.1" data-path="ressources.html"><a href="ressources.html#dataviz"><i class="fa fa-check"></i><b>18.1</b> dataviz</a></li>
 <li class="chapter" data-level="18.2" data-path="ressources.html"><a href="ressources.html#ggplot2"><i class="fa fa-check"></i><b>18.2</b> ggplot2</a></li>
 <li class="chapter" data-level="18.3" data-path="ressources.html"><a href="ressources.html#tmap"><i class="fa fa-check"></i><b>18.3</b> tmap</a></li>
-<li class="chapter" data-level="18.4" data-path="ressources.html"><a href="ressources.html#highcharter-1"><i class="fa fa-check"></i><b>18.4</b> highcharter</a></li>
-<li class="chapter" data-level="18.5" data-path="ressources.html"><a href="ressources.html#kable-et-kableextra"><i class="fa fa-check"></i><b>18.5</b> kable et kableExtra</a></li>
+<li class="chapter" data-level="18.4" data-path="ressources.html"><a href="ressources.html#ggiraph-1"><i class="fa fa-check"></i><b>18.4</b> ggiraph</a></li>
+<li class="chapter" data-level="18.5" data-path="ressources.html"><a href="ressources.html#apexcharter"><i class="fa fa-check"></i><b>18.5</b> apexcharter</a></li>
+<li class="chapter" data-level="18.6" data-path="ressources.html"><a href="ressources.html#kable-et-kableextra"><i class="fa fa-check"></i><b>18.6</b> kable et kableExtra</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="exercices-et-corrections.html"><a href="exercices-et-corrections.html"><i class="fa fa-check"></i><b>19</b> Exercices et corrections</a><ul>
+<li class="chapter" data-level="19" data-path="exercices-et-corrections.html"><a href="exercices-et-corrections.html"><i class="fa fa-check"></i><b>19</b> Exercices et corrections</a>
+<ul>
 <li class="chapter" data-level="19.1" data-path="exercices-et-corrections.html"><a href="exercices-et-corrections.html#exercice-1-1"><i class="fa fa-check"></i><b>19.1</b> Exercice 1</a></li>
 <li class="chapter" data-level="19.2" data-path="exercices-et-corrections.html"><a href="exercices-et-corrections.html#exercice-2-1"><i class="fa fa-check"></i><b>19.2</b> Exercice 2</a></li>
 <li class="chapter" data-level="19.3" data-path="exercices-et-corrections.html"><a href="exercices-et-corrections.html#exercice-3-1"><i class="fa fa-check"></i><b>19.3</b> Exercice 3</a></li>
@@ -302,31 +295,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="exporter-un-graphique" class="section level1">
+<div id="exporter-un-graphique" class="section level1" number="12">
 <h1><span class="header-section-number">Chapitre 12</span> Exporter un graphique</h1>
 <p>La fonction <code>ggsave()</code> de ggplot2 permet d’exporter des graphiques au format image. Les formats suivants sont supportés : eps, ps, tex (pictex), pdf, jpeg, tiff, png, bmp, svg et wmf.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">p&lt;-indicateur311 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Type_Zone <span class="op">!=</span><span class="st"> &quot;Pays&quot;</span>,</a>
-<a class="sourceLine" id="cb34-3" data-line-number="3">         Age_group<span class="op">==</span><span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</a>
-<a class="sourceLine" id="cb34-4" data-line-number="4">         Sex<span class="op">==</span><span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</a>
-<a class="sourceLine" id="cb34-5" data-line-number="5">         Location<span class="op">==</span><span class="st">&quot;Total (national level)&quot;</span>,</a>
-<a class="sourceLine" id="cb34-6" data-line-number="6">         <span class="kw">is.na</span>(Value_type)</a>
-<a class="sourceLine" id="cb34-7" data-line-number="7">         ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb34-8" data-line-number="8"><span class="st">  </span><span class="kw">filter</span>(Year <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2000</span>,<span class="dv">2005</span>,<span class="dv">2010</span>,<span class="dv">2015</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb34-9" data-line-number="9"><span class="st">  </span><span class="kw">ggplot</span>()<span class="op">+</span></a>
-<a class="sourceLine" id="cb34-10" data-line-number="10"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Country_or_Area_Name,<span class="dt">weight=</span>Value,<span class="dt">fill=</span>Country_or_Area_Name))<span class="op">+</span></a>
-<a class="sourceLine" id="cb34-11" data-line-number="11"><span class="st">  </span><span class="kw">theme_minimal</span>()<span class="op">+</span></a>
-<a class="sourceLine" id="cb34-12" data-line-number="12"><span class="st">  </span><span class="kw">scale_fill_ipsum</span>()<span class="op">+</span></a>
-<a class="sourceLine" id="cb34-13" data-line-number="13"><span class="st">  </span><span class="kw">coord_flip</span>()<span class="op">+</span></a>
-<a class="sourceLine" id="cb34-14" data-line-number="14"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Mortalité maternelle sur quelques zones du globe&quot;</span>,</a>
-<a class="sourceLine" id="cb34-15" data-line-number="15">       <span class="dt">subtitle=</span><span class="st">&quot;En 2015&quot;</span>,</a>
-<a class="sourceLine" id="cb34-16" data-line-number="16">       <span class="dt">y=</span><span class="st">&quot;Taux de mortalité de la mère </span><span class="ch">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>,</a>
-<a class="sourceLine" id="cb34-17" data-line-number="17">       <span class="dt">x=</span><span class="st">&quot;Zone&quot;</span>,</a>
-<a class="sourceLine" id="cb34-18" data-line-number="18">       <span class="dt">fill=</span><span class="st">&quot;Zone&quot;</span></a>
-<a class="sourceLine" id="cb34-19" data-line-number="19">  )<span class="op">+</span></a>
-<a class="sourceLine" id="cb34-20" data-line-number="20"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb34-21" data-line-number="21"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Year,<span class="dt">ncol=</span><span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb34-22" data-line-number="22"><span class="kw">ggsave</span>(<span class="st">&quot;figures/Mortalité maternelle sur quelques zones du globe.svg&quot;</span>,p,<span class="dt">width=</span><span class="dv">12</span>,<span class="dt">height =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="exporter-un-graphique.html#cb41-1" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span>ODD_indicateur311 <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a href="exporter-un-graphique.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Type_Zone <span class="sc">!=</span> <span class="st">&quot;Pays&quot;</span>,</span>
+<span id="cb41-3"><a href="exporter-un-graphique.html#cb41-3" aria-hidden="true" tabindex="-1"></a>         Age_group<span class="sc">==</span><span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</span>
+<span id="cb41-4"><a href="exporter-un-graphique.html#cb41-4" aria-hidden="true" tabindex="-1"></a>         Sex<span class="sc">==</span><span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</span>
+<span id="cb41-5"><a href="exporter-un-graphique.html#cb41-5" aria-hidden="true" tabindex="-1"></a>         Location<span class="sc">==</span><span class="st">&quot;Total (national level)&quot;</span>,</span>
+<span id="cb41-6"><a href="exporter-un-graphique.html#cb41-6" aria-hidden="true" tabindex="-1"></a>         <span class="fu">is.na</span>(Value_type)</span>
+<span id="cb41-7"><a href="exporter-un-graphique.html#cb41-7" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">%&gt;%</span></span>
+<span id="cb41-8"><a href="exporter-un-graphique.html#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2000</span>,<span class="dv">2005</span>,<span class="dv">2010</span>,<span class="dv">2015</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-9"><a href="exporter-un-graphique.html#cb41-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb41-10"><a href="exporter-un-graphique.html#cb41-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>Country_or_Area_Name,<span class="at">weight=</span>Value,<span class="at">fill=</span>Country_or_Area_Name))<span class="sc">+</span></span>
+<span id="cb41-11"><a href="exporter-un-graphique.html#cb41-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb41-12"><a href="exporter-un-graphique.html#cb41-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_ipsum</span>()<span class="sc">+</span></span>
+<span id="cb41-13"><a href="exporter-un-graphique.html#cb41-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
+<span id="cb41-14"><a href="exporter-un-graphique.html#cb41-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Mortalité maternelle sur quelques zones du globe&quot;</span>,</span>
+<span id="cb41-15"><a href="exporter-un-graphique.html#cb41-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;En 2015&quot;</span>,</span>
+<span id="cb41-16"><a href="exporter-un-graphique.html#cb41-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>,</span>
+<span id="cb41-17"><a href="exporter-un-graphique.html#cb41-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">&quot;Zone&quot;</span>,</span>
+<span id="cb41-18"><a href="exporter-un-graphique.html#cb41-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">&quot;Zone&quot;</span></span>
+<span id="cb41-19"><a href="exporter-un-graphique.html#cb41-19" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span></span>
+<span id="cb41-20"><a href="exporter-un-graphique.html#cb41-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="sc">+</span></span>
+<span id="cb41-21"><a href="exporter-un-graphique.html#cb41-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Year,<span class="at">ncol=</span><span class="dv">4</span>)</span>
+<span id="cb41-22"><a href="exporter-un-graphique.html#cb41-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;figures/Mortalité maternelle sur quelques zones du globe.svg&quot;</span>,p,<span class="at">width=</span><span class="dv">12</span>,<span class="at">height =</span> <span class="dv">5</span>)</span></code></pre></div>
 
 </div>
 
@@ -361,6 +354,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
