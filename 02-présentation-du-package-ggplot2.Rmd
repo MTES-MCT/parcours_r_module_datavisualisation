@@ -19,7 +19,7 @@ Pour construire un graphique avec ggplot2, il faut définir plusieurs éléments
 
 - **la donnée** : ggplot2 permet de travailler sur des vecteurs, des dataframes, des tibbles, ou des données spatiales ;
 
-- le **mapping** : on définit dans l'aesthetic (ou aes) le **mapping**, c'est à dire ce que l'on veut représenter qui **dépend des variables** (quelle variable sur l'axe x, sur l'axe y, quelle variable pour définir une graduation de couleurs...) ;
+- le **mapping** : on définit dans l'aesthetic (ou aes) le **mapping**, c'est à dire la correspondance entre éléments visuels et les variables. C'est dans l'aesthetic (ou aes) qu'est déclaré que l’on veut représenter qui **dépend des variables** (quelle variable sur l'axe x, sur l'axe y, quelle variable pour définir une graduation de couleurs...) ;
 
 - les **paramètres** : on définit les autres paramètres qui dépendent de constantes (par exemple : je veux que toutes mes lignes soient rouge ou de taille 2 pixels) ;
 

@@ -16,7 +16,7 @@ ggplot(ODD_graphique1) +
        caption="Source : ODD / ONU")
 ```
 
-À noter qu'il existe plusieurs autres façons de spécifier ces élèments par des couches spécifiques: `ggtitle`, `xlab`, `ylab`,...
+À noter qu'il existe plusieurs autres façons de spécifier ces éléments par des couches spécifiques: `ggtitle`, `xlab`, `ylab`,...
 
 ## Légende
 
@@ -66,7 +66,7 @@ ggplot(ODD_graphique1) +
            fill = "red") + 
   annotate("curve",
            xend = log(333.1885),yend = log(882),
-           x = 10.2,y = 6.5,
+           x = 10.2, y = 6.5,
            curvature = -0.1,
            color = "red",
            arrow = arrow(length = unit(2, "mm"))

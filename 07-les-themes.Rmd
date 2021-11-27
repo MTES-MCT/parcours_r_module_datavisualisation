@@ -181,7 +181,7 @@ ggplot(ODD_graphique1) +
 
 ## Thème - package gouvdown
 
-`{gouvdown}` est un package créé par la communauté [Spyrales](https://www.spyrales.fr/).
+`{gouvdown}` est un package créé par la communauté d'agents de l'Etat [Spyrales](https://www.spyrales.fr/).
 
 ![](images/spyrales.PNG){#id .class width=500}
 
@@ -214,7 +214,7 @@ NB: Pour les cartes, [theme_gouv_map()](https://spyrales.github.io/gouvdown/refe
 
 ## Exercice 2
 
-> A partir des données de la table graphique 1, reprendre le nuage de point obtenu à partir des données ODD : taux de mortalité maternelle (Maternal_mortality_ratio) en fonction du produit intérieur brut (Gross_Domestic_Product_GDP) (Chapitre 4.1)
+> A partir des données de la table graphique 1 ('ODD_graphique1'), reprendre le nuage de point obtenu à partir des données ODD : taux de mortalité maternelle (Maternal_mortality_ratio) en fonction du produit intérieur brut (Gross_Domestic_Product_GDP) (Chapitre 7.1)
 > 
 > En modifier le thème:
 > 
