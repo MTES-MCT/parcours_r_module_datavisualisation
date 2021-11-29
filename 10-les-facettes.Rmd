@@ -3,7 +3,7 @@
 Lorsque l'on veut pouvoir réaliser un graphique pour plusieurs sous ensemble, les facettes sont alors très utiles. On va ici l'illustrer avec la réalisation du même graphique ci-dessus, mais pour plusieurs années différentes.
 
 ```{r f7_1, echo=T,eval=T,fig.height=5,fig.width=8}
-indicateur311 %>%
+ODD_indicateur311 %>%
   filter(Type_Zone != "Pays",
          Age_group=="All age ranges or no breakdown by age",
          Sex=="Both sexes or no breakdown by sex",
@@ -33,7 +33,7 @@ On peut choisir avec facet_wrap :
 - si on veut fixer l'échelle de l'un ou l'autre des axes ou les deux
 
 ```{r f7_2, echo=T,eval=T,fig.height=5,fig.width=12}
-indicateur311 %>%
+ODD_indicateur311 %>%
   filter(Type_Zone != "Pays",
          Age_group=="All age ranges or no breakdown by age",
          Sex=="Both sexes or no breakdown by sex",

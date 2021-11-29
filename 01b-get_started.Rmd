@@ -8,16 +8,20 @@ Pourquoi travailler avec les projets Rstudio plutôt que les scripts R ?
 
 > **Fini les `setwd("chemin/qui/marche/uniquement/sur/mon/poste")` !** 
 
-- Toujours sur la portabilité, un projet peut être utilisé avec un outil comme packrat qui va internaliser dans le projet l'ensemble des packages dont vous aurez besoin pour celui-ci. Cela permet donc à votre collègue, à qui vous passez votre projet, de ne pas avoir à les installer et surtout si vous mettez à jour votre environnement R, votre projet restera toujours avec les versions des packages avec lesquelles vous avez fait tourné votre projet à l'époque. Cela évite d'avoir à surbir les effets d'une mise à jour important d'un package qui casserait votre code.
 
-Pour activer packrat sur un projet, aller dans `Tools/Project Options->Packrat`
+- Toujours sur la portabilité, un projet peut être utilisé avec un outil comme `renv` qui va vous intégrer en interne au projet l'ensemble des packages nécessaires au projet. Cela permet donc à votre collègue à qui vous passez votre projet de ne pas avoir à les installer et, surtout, si vous mettez à jour votre environnement R, votre projet restera toujours avec les versions des packages avec lesquelles vous avez fait tourner votre projet à l'époque. Cela évite d'avoir à subir les effets d'une mise à jour importante d'un package qui casserait votre code.
 
-[En savoir plus sur Packrat](https://www.rstudio.com/resources/webinars/managing-package-dependencies-in-r-with-packrat/)
+Pour activer `renv` sur un projet, il faut l'installer avec `install.packages("renv")`.
+Pour intialiser la sauvegarde des packages employés dans le projet, il faut utiliser
+`renv::init()`
+Les packages chargés dans le projet sont enregistrés dans un sous-dossier dédié.
+En cours de travail sur le projet, la commande `renv::snapshot()` permet de faire une sauvegarde, la commande `renv::restore()` permet de charger la dernière sauvegarde.
 
-![](images/creerprojet4.png){#id .class width=500}
+[En savoir plus sur renv](https://blog.rstudio.com/2019/11/06/renv-project-environments-for-r/)
 
 
-- Cela permet de se forcer à travailler en mode projet : on intègre à un seul endroit tout ce qui est lié à un projet : données brutes, données retravaillées, scripts, illustrations, documentations, publications... et donc y compris package avec packrat.
+
+- Cela permet de se forcer à travailler en mode projet : on intègre à un seul endroit tout ce qui est lié à un projet : données brutes, données retravaillées, scripts, illustrations, documentations, publications... et donc y compris les packages avec `renv`.
 
 - On peut travailler sur plusieurs projets en même temps, Rstudio ouvre autant de sessions que de projet dans ce cas.
 
@@ -49,6 +53,22 @@ Cela marche bien quand on a un seul type de données, mais en général on va av
 - Créer un répertoire `/src` ou vous mettrez vos scripts R.
 - Créer un répertoire `/figures` ou vous mettrez vos illustrations issues de R.
 
+## Utilisation du package savoirfR
+
+Pour faciliter le déroulé de ce module, l'ensemble des exercices (énoncés, corrigés et données) ont été intégrés à un package réalisé par le groupe de référent R: savoirfR
+
+```{r , eval=F}
+remotes::install_github("MTES-MCT/savoirfR")
+```
+
+Pour l'utiliser, il suffit de créer un nouveau projet dans un nouveau répertoire, en sélectionnant le "Project Type" **Exercice Parcours R MTES-MCT**.
+
+![](images/projetsavoirfR1.PNG){#id .class width=500}
+
+Remplissez et sélectionnez le module suivi.
+
+![](images/projetsavoirfR2.PNG){#id .class width=500}
+
 ## Activer les packages nécessaires
 
 Commencer par rajouter un script dans le répertoire `/src` à votre projet qui commencera par : 
@@ -62,7 +82,9 @@ Commencer par rajouter un script dans le répertoire `/src` à votre projet qui 
 library(knitr)
 library(kableExtra)
 library(ggplot2)
-library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(forcats)
 library(hrbrthemes)
 library(stringr)
 library(purrr)
@@ -79,8 +101,17 @@ library(glue)
 library(gganimate)
 library(htmlwidgets)
 library(ggspatial)
-load("data/data_exercices_formation.RData")
-load("data/ODD.RData")
+library(ggiraph)
+#remotes::install_github("spyrales/gouvdown.fonts")
+library(gouvdown.fonts)
+#remotes::install_github("spyrales/gouvdown")
+library(gouvdown)
+#remotes::install_github("dreamRs/apexcharter")
+library(apexcharter)
+load("extdata/ODD.RData")
+load("extdata/rpls_aggrege_large.RData")
+load("extdata/rpls_aggrege.RData")
+load("extdata/Carte_EPCI_France.RData")
 ```
 
 

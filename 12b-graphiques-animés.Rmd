@@ -11,7 +11,7 @@ Nous allons voir comment animer notre premier graphique sur la répartition des 
 Pour cela, nous partons des même données mais définies pour l'ensemble des années depuis 1990.
 
 ```{r gganim_1}
-ggplot(data = graphique_anime) + 
+ggplot(data = ODD_graphique_anime) + 
   geom_point(aes(x=log(Gross_Domestic_Product_GDP),
                  y=log(Maternal_mortality_ratio),
                  color=Continent))+
@@ -28,7 +28,7 @@ Nous allons utiliser la fonction ***transition_states()*** du package `gganimate
 
 
 ```{r gganim_2,,warning = FALSE,message = FALSE,error=FALSE, cache=TRUE}
-anim <- ggplot(data = graphique_anime) + 
+anim <- ggplot(data = ODD_graphique_anime) + 
   geom_point(aes(x=log(Gross_Domestic_Product_GDP),
                  y=log(Maternal_mortality_ratio),
                  color=Continent)) +
@@ -61,7 +61,7 @@ gganimate possède encore bien d'autres fonctionnalités pour définir son anima
 On peut utiliser gganimate avec des facettes.
 
 ```{r gganim_3,warning = FALSE,message = FALSE,error=FALSE,cache=TRUE}
-anim_facet <- ggplot(data = graphique_anime) + 
+anim_facet <- ggplot(data = ODD_graphique_anime) + 
   geom_point(aes(x=log(Gross_Domestic_Product_GDP),
                  y=log(Maternal_mortality_ratio),
                  color=Continent)) +

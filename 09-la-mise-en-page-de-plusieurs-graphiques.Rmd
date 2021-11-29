@@ -6,7 +6,7 @@ Le package `cowplot` permet la combinaison de plusieurs graphiques. Il est compo
 
 
 ```{r fg9_1, echo=T,eval=T,fig.height=3.5}
-gg1<-ggplot(graphique1) +
+gg1<-ggplot(ODD_graphique1) +
   geom_point(aes(x=Gross_Domestic_Product_GDP,
                  y=Maternal_mortality_ratio))+
   scale_x_log10()+
@@ -18,7 +18,7 @@ gg1<-ggplot(graphique1) +
        caption="Source : ODD / ONU") +
   theme(axis.title= element_text(size=9))
 
-gg2<-ggplot(graphique1) +
+gg2<-ggplot(ODD_graphique1) +
   geom_density(aes(x=log(Gross_Domestic_Product_GDP))
   )
 
@@ -31,7 +31,7 @@ plot_grid(gg1,gg2, ncol = 1, nrow = 2)
 
 ```{r fg9_2, echo=T,eval=T,fig.height=3.5}
 
-gg1<-ggplot(graphique1) +
+gg1<-ggplot(ODD_graphique1) +
   geom_point(aes(x=Gross_Domestic_Product_GDP,
                  y=Maternal_mortality_ratio))+
   scale_x_log10()+
@@ -43,12 +43,12 @@ gg1<-ggplot(graphique1) +
        caption="Source : ODD / ONU") +
   theme(axis.title= element_text(size=9))
 
-gg2<-ggplot(graphique1) +
+gg2<-ggplot(ODD_graphique1) +
   geom_density(aes(x=log(Gross_Domestic_Product_GDP)) )+
   labs(x="Log(PIB)",
        y="Densité")
 
-gg3<-ggplot(data = graphique1) + 
+gg3<-ggplot(data = ODD_graphique1) + 
   geom_bar(aes(x=Continent,fill=Continent))+ 
   theme(axis.title.x = element_blank(),
         axis.text.x = element_blank())
