@@ -27,7 +27,7 @@ Pour construire un graphique avec ggplot2, il faut définir plusieurs éléments
 
 L'écriture type d'un graphique est donc: 
 
-```{r, echo=T,eval=F}
+```
 ggplot(data = <DATA>) + 
   <FORME_GEO>(mapping = aes(<MAPPINGS>),...=<PARAMS>)
 ```
@@ -35,7 +35,7 @@ ggplot(data = <DATA>) +
 On va ensuite pouvoir enrichir avec des fonctions supplémentaires.
 Chaque fonction s'enchaine avec des `+` comme les pipe.
 
-```{r, echo=T,eval=F}
+```
 ggplot(data = <DATA>) + 
   <FORME_GEO>(mapping = aes(<MAPPINGS>),...=<PARAMS>)+
   <FONCTION1>+

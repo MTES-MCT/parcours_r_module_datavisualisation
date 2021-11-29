@@ -55,7 +55,7 @@ Pour plus d'informations: https://github.com/daattali/colourpicker.
 
 > A partir des données de la table rpls_aggrege_large (dans extdata/rpls_aggrege_large.RData), 
 >
-> créer un nuage de point entre :
+> créer un nuage de point (un point par EPCI) entre :
 >
 > - le % de parc social de moins de 5 ans ('Parc_de_moins_de_5_ans_pourcent'); 
 >

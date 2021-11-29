@@ -156,15 +156,12 @@ girafe(ggobj=gg)
 
 ## Les cartes Leaflet
 
-Leaflet est au départ un package de cartographique réalisé en javascript. R permet de produire des cartes en exploitant cette librairie.
+Leaflet est au départ un package de cartographie réalisé en javascript. R permet de produire des cartes en exploitant cette librairie.
 
 Ci-dessous un exemple avancé de carte choroplète avec leaflet.
 
 ```{r}
 data("World") 
-
-#transformation de la projection nécessaire pour certaines cartes car Leaflet ne connait que le WGS 84
-World <- st_transform(World, "+proj=longlat +datum=WGS84 +no_defs")
 
 tt <- World %>%
   rename(Country_or_Area_Code=iso_a3) %>%
@@ -209,16 +206,15 @@ leaflet(tt) %>%
 
 ```
 
-Pour réaliser des ronds proportionnels, il va falloir là aussi créer un centroide de nos polygones.
+Pour réaliser des ronds proportionnels, il va falloir là aussi créer un centroïde de nos polygones.
 
 ```{r ronds_prop leaflet, eval = TRUE}
-ttc <- st_make_valid(tt) %>% # sans quoi erreur : 'Found 3 features with invalid spherical geometry.'
-  st_centroid()
+ttc <- st_centroid(tt)
 
 bins <-quantile(ttc$Value,na.rm=T)
 pal <- colorBin("YlOrRd", domain = ttc$Value, bins = bins)
 
-carte_rond_proportionnel<-leaflet(ttc) %>%
+carte_rond_proportionnel <- leaflet(ttc) %>%
   addPolygons(data=tt,
               fillColor = "#ffffff",
                 opacity=.2,
@@ -248,13 +244,16 @@ carte_rond_proportionnel<-leaflet(ttc) %>%
   addLegend("bottomright", pal = pal, values = ~Value,
             title = "Taux de décès des mères à la naissance",
             opacity = 1)
+
+carte_rond_proportionnel
+
 ```
 
 ## Exporter une sortie html
 
 La fonction `saveWidget()` permet d'exporter une sortie d'un html Widget en html.
 
-```{r, eval=F}
+```{r, eval = F}
 saveWidget(widget = carte_rond_proportionnel, file = "Taux de décès des mères à la naissance.html")
 ```
 

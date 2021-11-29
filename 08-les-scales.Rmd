@@ -42,7 +42,7 @@ brewer|utiliser une palette de couleur brewer (variable discrète)
 distiller|utiliser une palette de couleur brewer (variable continue)
 gradient|utiliser un gradient de 2 couleurs
 gradient2|utiliser un gradient divergent de 3 couleurs
-manuel|utiliser une palette de couleur via un vecteur défini par l'utilisateur
+manual|utiliser une palette de couleur via un vecteur défini par l'utilisateur
 
 
 ```{r, echo=T,eval=T,fig.height=3.5}
@@ -85,11 +85,11 @@ Il en est de même pour `scale_color_gouv_continuous`, `scale_fill_gouv_discrete
 
 ```{r, echo=T,eval=T,fig.height=3.5}
 library(gouvdown)
-gg<-ggplot(ODD_graphique1) +
+gg <- ggplot(ODD_graphique1) +
   geom_point(aes(x=log(Gross_Domestic_Product_GDP),
                  y=log(Maternal_mortality_ratio),
                  color=Continent))
-gg+ scale_color_gouv_discrete(name = "", palette = "pal_gouv_qual1") +
+gg + scale_color_gouv_discrete(name = "", palette = "pal_gouv_qual1") +
  theme_gouv()
   
 ```
@@ -120,7 +120,14 @@ scale_x_date(date_breaks = "3 months",
                date_labels = "%b %Y")
 ```
 
+- Formatage du point de départ des axes : x = 0, y = 0
 
+```{r scale expand, echo=TRUE, eval=FALSE}
+scale_x_continuous(expand = c(0, 0))
+scale_y_continuous(expand = c(0, 0))
+```
+         
+         
 ## Exercice 3
 
 > En réutilisant le graphe obtenu à l'exercice 1 (table rpls_aggrege_large), y rajouter:

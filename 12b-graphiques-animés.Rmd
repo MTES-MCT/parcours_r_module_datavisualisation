@@ -106,26 +106,45 @@ anim_save("figures/ma_super_animation.gif")
 
 ## Exercice 6
 
-Produire le nuage de points du croisement de la part communale des logements ayant une étiquette A,B,C en fonction de la part communale du parc récent.
-Créer une animation par département uniquement pour ceux de la région Centre-Val de Loire.
+A partir du fichier `rpls_aggrege_large.RData`, réaliser un graphique en barre représentant la répartition des DPE par classe (en %).  
+Le graphique sera animé par département, uniquement pour ceux de la région Centre-Val de Loire.
 
 Le résultat attendu : 
 
 ```{r  gganim_6, eval=T,message=F,warning=F,echo=FALSE, cache=TRUE}
-rpls <- rpls_aggrege_large %>% 
-  filter(nReg_2017=="Centre-Val de Loire" & TypeZone=="Communes") %>% 
-  mutate(nDep_2017=fct_drop(nDep_2017))
+library(dplyr)
+library(ggplot2)
+library(gganimate)
 
-anim <- ggplot(data =rpls ) + 
-  geom_point(aes(x=Parc_de_moins_de_5_ans_pourcent,
-                 y=DPE_GES_classe_ABC_pourcent))+
-  labs(title="Croisement de la part des logements ayant une étiquette A,B,C \n en fonction de la part du parc récent",
+rpls <- rpls_aggrege_large %>%   
+  #Filtre sur la zone de travail souhaitée
+  filter(TypeZone=="Départements" & nReg_2017=="Centre-Val de Loire")%>% 
+  #Suppression des levels non présents dans la table, 
+  #ce qui évite de générer des graphes vident pour les départements hors Centre-Val de Loire
+  mutate(nDep_2017=fct_drop(nDep_2017)) %>% 
+  #Selection des variables nécessaires
+  select(nDep_2017,DPE_energie_classe_ABC_pourcent,DPE_energie_classe_D_pourcent,
+         DPE_energie_classe_EFG_pourcent,DPE_energie_classe_NA_pourcent) %>% 
+  #Passage de la table au format long (cf module 2, chapitre 7)
+  pivot_longer(-c(nDep_2017),names_to ="variable",values_to ="valeur" ) %>% 
+  #Retravail des intitulés pour ne conserver que la classe d'energie ABC/D/EGF/NA
+  mutate(variable=str_remove(pattern = "DPE_energie_classe_",variable),
+         variable=str_remove(pattern = "_pourcent",variable))
+
+ggplot(data=rpls, aes(x=variable, y=valeur,fill=variable)) +
+  geom_bar(stat="identity")+
+  #definition des couleurs
+  scale_fill_manual(values=c("#66CD00", "#FFFF00", "#FF7F00", "#A8A8A8"))+
+  #suppression de la legende
+  theme(legend.position="none")+
+  #habillage: titre, libellé des axes, Source
+  labs(title="Les DPE dans le parc locatif social",
        subtitle="En {closest_state}",
-       x="Part du parc de moins de 5 ans",
-       y="Part des logements ayant une étiquette A,B,C",
-       color="")+
+       x="Classe d'énergie",
+       y="%",
+       caption="Source : Répertoire Locatif Social")+
+  #création de l'animation
   transition_states(states=nDep_2017,
                     transition_length = 1,
-                    state_length = 2)
-anim
+                    state_length = 5)
 ```
