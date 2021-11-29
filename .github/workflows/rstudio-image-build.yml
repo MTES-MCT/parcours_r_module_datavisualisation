@@ -11,11 +11,8 @@ on:
       - renv.lock
       
   pull_request:
-    types:
-      - created
-    branches:
-      - main
-      - master
+    types: [opened, synchronize]
+    branches: [main, master, dev]
     paths:
       - .github/workflows/rstudio-image-build.yml
       - Dockerfile
