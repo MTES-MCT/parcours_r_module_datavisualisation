@@ -3,6 +3,9 @@ name: Test compilation de parcours_r_module_datavisualisation
 on:
   pull_request:
     branches: [main, master, dev]
+    types: [opened, synchronize]
+
+  workflow_dispatch:
 
 jobs:
   build-bookdown:
