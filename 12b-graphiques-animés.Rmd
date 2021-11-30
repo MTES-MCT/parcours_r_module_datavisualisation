@@ -50,7 +50,7 @@ anim
 - state_length : la durée relative de la pause entre les transitions
 - wrap : booléen qui défini si l'animation tourne en boucle ou non.
 
-La variable *closest state" nous permet d'utiliser ici l'état pour l'afficher en sous-titre.
+La variable *closest_state* nous permet d'utiliser ici l'état pour l'afficher en sous-titre.
 
 gganimate possède encore bien d'autres fonctionnalités pour définir son animation, notamment :
 

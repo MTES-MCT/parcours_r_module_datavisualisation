@@ -2,7 +2,7 @@
 
 Le package `cowplot` permet la combinaison de plusieurs graphiques. Il est composé de plusieurs fonctions.
 
-- le fonction **plot_grid** qui permet de disposer ***n*** graphes sur ***i*** colonnes et ***j*** lignes
+- la fonction **plot_grid** qui permet de disposer ***n*** graphes sur ***i*** colonnes et ***j*** lignes
 
 
 ```{r fg9_1, echo=T,eval=T,fig.height=3.5}
@@ -28,7 +28,7 @@ gg2 <- ggplot(ODD_graphique1) +
 plot_grid(gg1, gg2, ncol = 1, nrow = 2)
 ```
 
-- le fonction **draw_plot** associée à **ggdraw** qui permet de disposer les graphiques à des places spécifiques
+- la fonction **draw_plot** associée à **ggdraw** qui permet de disposer les graphiques à des places spécifiques
 
 `ggdraw` initialise le graphique
 
