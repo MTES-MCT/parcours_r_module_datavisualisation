@@ -6,6 +6,8 @@ on:
       - main
       - master
 
+  workflow_dispatch:
+
 jobs:
   build-and-deploy-bookdown:
     name: Build and bookdown
