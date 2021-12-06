@@ -1,0 +1,15 @@
+name: Test compilation de parcours_r_module_datavisualisation
+
+on:
+  pull_request:
+    branches: [main, master, dev]
+    types: [opened, synchronize]
+
+  workflow_dispatch:
+
+jobs:
+  build-bookdown:
+    name: Build bookdown
+    uses: MTES-MCT/parcours-r/.github/workflows/bookdown-build.yml@master
+    with:
+      r_version: '4.0.4'

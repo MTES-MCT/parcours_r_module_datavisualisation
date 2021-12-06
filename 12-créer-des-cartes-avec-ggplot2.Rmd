@@ -9,18 +9,18 @@ Une fonction géométrique de ggplot2 permet l'utilisation de données géomatiq
 L'exemple suivant est une carte choroplèthe.
 
 ```{r cart_1, echo=T,eval=T,fig.height=5,fig.width=12, cache=TRUE}
-data("World")
+data("World") 
 
-tt<-World %>%
-rename(Country_or_Area_Code=iso_a3) %>%
+tt <- World %>% 
+  rename(Country_or_Area_Code=iso_a3) %>%
   inner_join(ODD_indicateur311 %>%
-              filter(Age_group=="All age ranges or no breakdown by age",
-                     Sex=="Both sexes or no breakdown by sex",
-                     Type_Zone=="Pays",
-                   is.na(Value_type)) %>%
-              group_by(Country_or_Area_Code) %>%
-              filter(!is.na(Value)) %>%
-              filter(Year==max(Year)))
+               filter(Age_group=="All age ranges or no breakdown by age",
+                      Sex=="Both sexes or no breakdown by sex",
+                      Type_Zone=="Pays",
+                      is.na(Value_type)) %>%
+               group_by(Country_or_Area_Code) %>%
+               filter(!is.na(Value)) %>%
+               filter(Year==max(Year)))
 
 ggplot(data=tt)+
   geom_sf(aes(fill=Value))
@@ -32,9 +32,9 @@ La fonction ***stat_sf_coordinates()*** permet d'extraire les coordonnées d'un 
 Ainsi un rond proportionnel peut être attribuer à un polygone.
 
 ```{r cart_3, echo=T,eval=T,fig.height=5,fig.width=12, cache=TRUE}
-data("World")
+data("World") 
 
-tt<-World %>%
+tt <- World %>%
 rename(Country_or_Area_Code=iso_a3) %>%
   inner_join(ODD_indicateur311 %>%
               filter(Age_group=="All age ranges or no breakdown by age",
@@ -55,25 +55,25 @@ ggplot(data=tt)+
 
 ## Les facettes
 
-On peut exploiter de la même façon les différentes fonctions vues précédement. Par exemple : avec un peu de thème et de facet.
+On peut exploiter de la même façon les différentes fonctions vues précédemment. Par exemple : avec un peu de thème et de facet.
 
 ```{r cart_4, echo=T,eval=T,fig.height=12,fig.width=12,warning=F, cache=TRUE}
-data("World")
-World<-st_as_sf(World)
+data("World") 
 
-tt<-World %>%
-rename(Country_or_Area_Code=iso_a3) %>%
-inner_join(ODD_indicateur311 %>%
-            filter(Age_group=="All age ranges or no breakdown by age",
-                   Sex=="Both sexes or no breakdown by sex",
-                   Type_Zone=="Pays",
-                   is.na(Value_type)) %>%
-            group_by(Country_or_Area_Code) %>%
-            filter(!is.na(Value)) %>% 
-            filter(Year %in% c(1990,2000,2010,2015)) %>% 
-            ungroup() %>% 
-  complete(Year)
-          )
+tt <- World %>%
+  st_transform(4326) %>% 
+  rename(Country_or_Area_Code=iso_a3) %>%
+  inner_join(ODD_indicateur311 %>%
+               filter(Age_group=="All age ranges or no breakdown by age",
+                      Sex=="Both sexes or no breakdown by sex",
+                      Type_Zone=="Pays",
+                      is.na(Value_type)) %>%
+               group_by(Country_or_Area_Code) %>%
+               filter(!is.na(Value)) %>% 
+               filter(Year %in% c(1990,2000,2010,2015)) %>% 
+               ungroup() %>% 
+               complete(Year)
+  )
 
 ggplot(data=tt)+
   geom_sf(aes(fill=log(Value)))+
@@ -81,20 +81,19 @@ ggplot(data=tt)+
   scale_fill_viridis(option = "magma",
                    direction=1,
                    breaks=c(0,1,2,3,4,5,6,7))+
-  guides(colour=F,
-         order=0,
-         fill=guide_legend(direction="horizontal",
-                           keyheight=unit(2,units="mm"),
-                           keywidth=unit(20,units="mm"),
-                           order=1,
-                           title.position="top",
-                           title.hjust=0.5,
-                           nrow=1,
-                           label.position="bottom",
-                           label.hjust=1))+
-  theme(legend.position = "bottom")+
-  labs(fill="Log du taux de mortalité infantile")+
-  facet_wrap(~Year,drop=T)
+  guides(
+    fill=guide_legend(direction="horizontal",
+                      keyheight=unit(2, units="mm"),
+                      keywidth=unit(20, units="mm"),
+                      order=1,
+                      title.position = "top",
+                      title.hjust = 0.5,
+                      nrow=1,
+                      label.position = "bottom",
+                      label.hjust=1)) +
+  theme(legend.position = "bottom") +
+  labs(fill="Log du taux de mortalité infantile") +
+  facet_wrap(~Year, drop = TRUE)
 ```
 
 ## Ajouter une barre d'échelle et la flèche du nord
@@ -106,9 +105,9 @@ Les deux fonctions qui permettent cela sont `annotation_scale()` et `annotation_
 L'utilisation de ces fonctions nécessitent un système de coordonnées géographiques.
 
 ```{r cart_5, echo=T,eval=T,fig.height=12,fig.width=12,warning=F, cache=TRUE}
-data("World")
+data("World") 
 
-tt<-World %>%
+tt <- World %>%
 rename(Country_or_Area_Code=iso_a3) %>%
   inner_join(ODD_indicateur311 %>%
               filter(Age_group=="All age ranges or no breakdown by age",
@@ -131,7 +130,7 @@ Les 2 fonctions **geom_sf_text()** et **geom_sf_label()** permettent respectivem
 
 
 ```{r cart_6, echo=T,eval=T,fig.height=12,fig.width=12,warning=F, cache=TRUE}
-data("World")
+data("World") 
 
 tt<-World %>%
 rename(Country_or_Area_Code=iso_a3) %>%

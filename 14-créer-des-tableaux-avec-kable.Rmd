@@ -30,11 +30,11 @@ Description des fonctions utilisées :
 
 - ***kable("html")*** permet de produire une sortie html du tableau, l'option caption définit le titre ;
 
-- ***kable_styling()*** permet de mettre un thème à notre tableau, ici on lui dit qu'on veut un tableau avec des lignes dont les couleurs alterne entre blanc et gris et un effet de surbrillance au passage de la souris ;
+- ***kable_styling()*** permet de mettre un thème à notre tableau, ici on lui dit qu'on veut un tableau avec des lignes dont les couleurs alternent entre blanc et gris et un effet de surbrillance au passage de la souris ;
 
 - ***row_spec()*** permet de définir des attributs particuliers pour des lignes. Ici, on lui dit qu'on veut une ligne 1 avec du gras, un fond gris et une police de couleur blanche. L'équivalent pour les colonnes est ***column_spec()***;
 
-- ***add_indent()*** permet de définir sur un vecteur de lignes (ici les lignes 2 à 5) une identation.
+- ***add_indent()*** permet de définir sur un vecteur de lignes (ici les lignes 2 à 5) une indentation.
 
 
 ## Sauvegarde

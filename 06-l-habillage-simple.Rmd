@@ -13,10 +13,11 @@ ggplot(ODD_graphique1) +
        subtitle="En 2015",
        x="PIB",
        y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
+       color="Les continents",
        caption="Source : ODD / ONU")
 ```
 
-À noter qu'il existe plusieurs autres façons de spécifier ces élèments par des couches spécifiques: `ggtitle`, `xlab`, `ylab`,...
+À noter qu'il existe plusieurs autres façons de spécifier ces éléments par des couches spécifiques: `ggtitle`, `xlab`, `ylab`,...
 
 ## Légende
 
@@ -44,7 +45,7 @@ ggplot(ODD_graphique1) +
 
 ## Annotations
 
-Il est aussi possible de rajouter des annotations de type texte ou autre, par exemple, "à la volée". La fonctions `annonate()` va nous permettre de rajouter nos annotations. Ici nous rajoutons une fonction pour rajoute un texte, une autre pour rajouter une flèche.
+Il est aussi possible de rajouter des annotations de type texte ou autre, par exemple, "à la volée". La fonction `annotate()` va nous permettre de rajouter nos annotations. Ici nous rajoutons une fonction pour rajouter un texte, une autre pour rajouter une flèche.
 
 ```{r fg6_3, echo=T,eval=T,fig.height=5,fig.width=10}
 
@@ -66,7 +67,7 @@ ggplot(ODD_graphique1) +
            fill = "red") + 
   annotate("curve",
            xend = log(333.1885),yend = log(882),
-           x = 10.2,y = 6.5,
+           x = 10.2, y = 6.5,
            curvature = -0.1,
            color = "red",
            arrow = arrow(length = unit(2, "mm"))
@@ -77,4 +78,4 @@ ggplot(ODD_graphique1) +
 
 
 Cette fonction ajoute des *geom* à un graphique, mais contrairement à une fonction *geom* typique, les propriétés des *geom* ne sont pas mappées à partir des variables d'un dataframe, mais depuis des vecteurs que nous lui renseignons. Ceci est utile pour ajouter de petites annotations.
-Leurs définitions est donc assez proche des fonctions *geom*.
+Leur définition est donc assez proche des fonctions *geom*.

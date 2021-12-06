@@ -25,7 +25,7 @@ En cours de travail sur le projet, la commande `renv::snapshot()` permet de fair
 
 - On peut travailler sur plusieurs projets en même temps, Rstudio ouvre autant de sessions que de projet dans ce cas.
 
-- Les projets Rstudio intègrent une interface avec les outils de gestion de version git et svn. Cela veut dire que vous pouvez versionniser votre projet et l'héberger simplement comme répertoire sur des plateformes de gestion de code telle que github ou gitlab.
+- Les projets Rstudio intègrent une interface avec les outils de gestion de version git et svn. Cela veut dire que vous pouvez versionner votre projet et l'héberger simplement comme répertoire sur des plateformes de gestion de code telle que github ou gitlab.
 
 **Pour créer un projet : **
 
@@ -93,15 +93,14 @@ library(tmap)
 library(viridis)
 library(scales)
 library(tmaptools)
-library(highcharter)
 library(leaflet)
 library(cowplot)
-library(waffle)
 library(glue)
 library(gganimate)
 library(htmlwidgets)
 library(ggspatial)
 library(ggiraph)
+library(gifski)
 #remotes::install_github("spyrales/gouvdown.fonts")
 library(gouvdown.fonts)
 #remotes::install_github("spyrales/gouvdown")
