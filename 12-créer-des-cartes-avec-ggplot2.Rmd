@@ -148,7 +148,7 @@ ggplot(data = tt %>% filter(continent == "Africa"))+
   geom_sf_text(aes(label = name),vjust=-0.5,check_overlap=TRUE,fontface="italic",colour="white")
 ```
 
-`geom_sf_lable`
+`geom_sf_label`
 ```{r cart_6b, echo=T, eval=T, fig.height=12, fig.width=12, warning=F, cache=TRUE}
 
 ggplot(data = tt %>% filter(continent == "Africa")) +

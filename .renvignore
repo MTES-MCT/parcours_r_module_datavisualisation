@@ -1,0 +1,23 @@
+# ignore all files with extension :
+*.html
+*.yml
+*.bib
+*.md
+*.tex
+*.css
+
+# ignore list of folders and files
+data/
+.git/
+.github/
+.Rproj.user
+_book/
+_bookdown_files
+autres/
+data-raw/
+DESCRIPTION
+Dockerfile
+extdata/
+figures/
+images/
+
