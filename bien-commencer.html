@@ -24,7 +24,7 @@
 <meta name="author" content="Maël Theulière &amp; Murielle Lethrosne" />
 
 
-<meta name="date" content="2021-11-30" />
+<meta name="date" content="2021-12-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -365,25 +365,24 @@ En cours de travail sur le projet, la commande <code>renv::snapshot()</code> per
 <span id="cb2-12"><a href="bien-commencer.html#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
 <span id="cb2-13"><a href="bien-commencer.html#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
 <span id="cb2-14"><a href="bien-commencer.html#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmaptools)</span>
-<span id="cb2-15"><a href="bien-commencer.html#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(highcharter)</span>
-<span id="cb2-16"><a href="bien-commencer.html#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
-<span id="cb2-17"><a href="bien-commencer.html#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
-<span id="cb2-18"><a href="bien-commencer.html#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
-<span id="cb2-19"><a href="bien-commencer.html#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span>
-<span id="cb2-20"><a href="bien-commencer.html#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(htmlwidgets)</span>
-<span id="cb2-21"><a href="bien-commencer.html#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspatial)</span>
-<span id="cb2-22"><a href="bien-commencer.html#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggiraph)</span>
-<span id="cb2-23"><a href="bien-commencer.html#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gifski)</span>
-<span id="cb2-24"><a href="bien-commencer.html#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#remotes::install_github(&quot;spyrales/gouvdown.fonts&quot;)</span></span>
-<span id="cb2-25"><a href="bien-commencer.html#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gouvdown.fonts)</span>
-<span id="cb2-26"><a href="bien-commencer.html#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co">#remotes::install_github(&quot;spyrales/gouvdown&quot;)</span></span>
-<span id="cb2-27"><a href="bien-commencer.html#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gouvdown)</span>
-<span id="cb2-28"><a href="bien-commencer.html#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co">#remotes::install_github(&quot;dreamRs/apexcharter&quot;)</span></span>
-<span id="cb2-29"><a href="bien-commencer.html#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(apexcharter)</span>
-<span id="cb2-30"><a href="bien-commencer.html#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;extdata/ODD.RData&quot;</span>)</span>
-<span id="cb2-31"><a href="bien-commencer.html#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;extdata/rpls_aggrege_large.RData&quot;</span>)</span>
-<span id="cb2-32"><a href="bien-commencer.html#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;extdata/rpls_aggrege.RData&quot;</span>)</span>
-<span id="cb2-33"><a href="bien-commencer.html#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;extdata/Carte_EPCI_France.RData&quot;</span>)</span></code></pre></div>
+<span id="cb2-15"><a href="bien-commencer.html#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb2-16"><a href="bien-commencer.html#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb2-17"><a href="bien-commencer.html#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb2-18"><a href="bien-commencer.html#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span>
+<span id="cb2-19"><a href="bien-commencer.html#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(htmlwidgets)</span>
+<span id="cb2-20"><a href="bien-commencer.html#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspatial)</span>
+<span id="cb2-21"><a href="bien-commencer.html#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggiraph)</span>
+<span id="cb2-22"><a href="bien-commencer.html#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gifski)</span>
+<span id="cb2-23"><a href="bien-commencer.html#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">#remotes::install_github(&quot;spyrales/gouvdown.fonts&quot;)</span></span>
+<span id="cb2-24"><a href="bien-commencer.html#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gouvdown.fonts)</span>
+<span id="cb2-25"><a href="bien-commencer.html#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">#remotes::install_github(&quot;spyrales/gouvdown&quot;)</span></span>
+<span id="cb2-26"><a href="bien-commencer.html#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gouvdown)</span>
+<span id="cb2-27"><a href="bien-commencer.html#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co">#remotes::install_github(&quot;dreamRs/apexcharter&quot;)</span></span>
+<span id="cb2-28"><a href="bien-commencer.html#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(apexcharter)</span>
+<span id="cb2-29"><a href="bien-commencer.html#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;extdata/ODD.RData&quot;</span>)</span>
+<span id="cb2-30"><a href="bien-commencer.html#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;extdata/rpls_aggrege_large.RData&quot;</span>)</span>
+<span id="cb2-31"><a href="bien-commencer.html#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;extdata/rpls_aggrege.RData&quot;</span>)</span>
+<span id="cb2-32"><a href="bien-commencer.html#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;extdata/Carte_EPCI_France.RData&quot;</span>)</span></code></pre></div>
 </div>
 <div id="bien-structurer-ses-projets-data" class="section level2" number="3.6">
 <h2><span class="header-section-number">3.6</span> Bien structurer ses projets data</h2>
