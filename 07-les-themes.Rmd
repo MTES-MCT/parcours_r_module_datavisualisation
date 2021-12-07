@@ -22,6 +22,8 @@ Ce schéma de [Heny Wang](https://henrywang.nl/ggplot2-theme-elements-demonstrat
 knitr::include_graphics("images/theme.png")
 ```
 
+Voir l'aide de la fonction `theme()` et ses nombreux arguments sur le [site de présentation du package ggplot2](https://ggplot2.tidyverse.org/reference/theme.html).
+
 Et nous allons ci dessous le détailler.
 
 ## Les fonctions "element"
