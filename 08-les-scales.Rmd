@@ -1,5 +1,6 @@
 # Les scales
 
+
 ## Les fonctions
 
 Les fonctions **scale** permettent globalement de paramétrer les éléments rentrés dans l'aesthétic : 
@@ -35,7 +36,7 @@ continuous|gérer les variables continue
 discrete|gérer les variables discrètes
 date|gérer une variable au format date
 reverse|inverser l'axe
-log|convertire l'échelle d'une variable continue en échelle logarithmique
+log|convertir l'échelle d'une variable continue en échelle logarithmique
 log10|convertir l'échelle d'une variable continue en échelle logarithmique décimale
 viridis|utiliser une palette de couleur viridis
 brewer|utiliser une palette de couleur brewer (variable discrète)
@@ -43,6 +44,7 @@ distiller|utiliser une palette de couleur brewer (variable continue)
 gradient|utiliser un gradient de 2 couleurs
 gradient2|utiliser un gradient divergent de 3 couleurs
 manual|utiliser une palette de couleur via un vecteur défini par l'utilisateur
+identity|utiliser telle quelle une variable du dataframe pour élaborer l'échelle (variable comprise entre 0 et 1 pour la transparence, variable de nom de couleurs...)
 
 
 ```{r, echo=T,eval=T,fig.height=3.5}
@@ -78,6 +80,19 @@ gg+
 
 En mettant la borne minimum/maximum à NA permet de conserver la valeur minimum/maximum par défaut.
 
+Les fonctions scale_xx_identity permettent d'utiliser telle quelle une variable créée spécifiquement pour la visualisation.
+
+```{r identity}
+
+ODD_graphique2 %>% 
+  mutate(couleur = if_else(Year != 2015, "black", "red")) %>%
+  ggplot(mapping = aes(x = Year, y = Value, color = couleur)) +
+  geom_point() + 
+  scale_color_identity()
+
+```
+
+
 ## Scales - package gouvdown
 
 La fonction [scale_color_gouv_discrete()](https://spyrales.github.io/gouvdown/reference/scale_color_gouv_discrete.html) du package `gouvdown` permet d'utiliser les palettes de couleurs de ce package.
@@ -102,7 +117,7 @@ gg + scale_color_gouv_discrete(name = "", palette = "pal_gouv_qual1") +
 ```
 - Ajout du séparateur des milliers;
 ```{r fg8_2, echo=T,eval=F}
-  scale_y_continuous(labels=function(x) format(x,big.mark=" ",scientific = FALSE))
+  scale_y_continuous(labels=function(x) format(x, big.mark=" ", scientific = FALSE))
 ```
 - Ajout du symbole €;
 
@@ -126,6 +141,7 @@ scale_x_date(date_breaks = "3 months",
 scale_x_continuous(expand = c(0, 0))
 scale_y_continuous(expand = c(0, 0))
 ```
+         
          
          
 ## Exercice 3
