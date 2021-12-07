@@ -48,6 +48,10 @@ ggplot(data = ODD_graphique1) +
 
 Pour choisir et modifier facilement les couleurs d'un graphe, il existe un addin développé par Dean Attali: **Colour Picker**
 Il est installable comme n'importe quel package.  
+```
+install.packages("colourpicker")
+```
+
 Pour plus d'informations: https://github.com/daattali/colourpicker.
 
 
@@ -55,7 +59,7 @@ Pour plus d'informations: https://github.com/daattali/colourpicker.
 
 > A partir des données de la table rpls_aggrege_large (dans extdata/rpls_aggrege_large.RData), 
 >
-> créer un nuage de point (un point par EPCI) entre :
+> créer un nuage de point (un point par EPCI, filtre sur la variable TypeZone) entre :
 >
 > - le % de parc social de moins de 5 ans ('Parc_de_moins_de_5_ans_pourcent'); 
 >

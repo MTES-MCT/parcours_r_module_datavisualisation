@@ -2,13 +2,15 @@
 
 ## Exercice 1  
 
-> À partir des données de la table rpls_aggrege_large (dans le data_exercices_formation.RData), créer un nuage de points (un point par EPCI) entre :
+> A partir des données de la table rpls_aggrege_large (dans extdata/rpls_aggrege_large.RData), 
 >
-> - le % de parc social de moins de 5 ans; 
-> 
-> - et le pourcentage de logement avec un DPE GES de classe A, B ou C; 
-> 
-> - et une couleur différente pour distinguer les EPCI de la région PDL.
+> créer un nuage de point (un point par EPCI, filtre sur la variable TypeZone) entre :
+>
+> - le % de parc social de moins de 5 ans ('Parc_de_moins_de_5_ans_pourcent'); 
+>
+> - et le pourcentage de logement avec un DPE ges de classe A, B ou C ('DPE_GES_classe_ABC_pourcent'); 
+>
+> - et une couleur différente pour distinguer les epci de la région PDL (booléen 'epci_2017_52').
 
 ```{r exo_1, eval=T, message=F,warning=F}
 ggplot(data = rpls_aggrege_large  %>% 
@@ -37,7 +39,8 @@ ggplot(ODD_graphique1) +
   geom_point(aes(x=log(Gross_Domestic_Product_GDP),
                  y=log(Maternal_mortality_ratio),
                  color=Continent))+ 
-  labs(title="Croisement du PIB avec le taux de mortalité maternelle", y="Taux de mortalité maternelle", x="Produit Intérieur Brut", caption="Source: ODD")+
+  labs(title="Croisement du PIB avec le taux de mortalité maternelle", 
+       y="Taux de mortalité maternelle", x="Produit Intérieur Brut", caption="Source: ODD")+
   theme(plot.title=element_text(size=15, 
                                 face="bold", 
                                 color="blue",
@@ -69,7 +72,7 @@ ggplot(data = rpls_aggrege_large  %>%
                  color=epci_2017_52),
              size=.7
   )+
-  scale_color_brewer(type=qual,palette="Paired",
+  scale_color_brewer(type="qual", palette="Paired",
                      labels=c("Autres Epci","Epci de la région Pays de la Loire"))+
   scale_x_continuous(limits = c(0,40))+
   scale_y_continuous(limits = c(0,80))+
@@ -82,15 +85,16 @@ ggplot(data = rpls_aggrege_large  %>%
 
 ## Exercice 4
 
-> Facette sur un diagramme barre avec :
-> 
+> A partir de la table rpls_aggrege, réaliser une facette sur un diagramme barre avec :
+>
 > * en variable discrète les régions
 > * en variables continues les indicateurs suivants :
 >     - % de logements de 3 et 4 pièces
 >     - % DPE énergie A,B,C 
 >     - % DPE GES A,B,C
 >     - % de parc de moins de 5 ans
-> * une façon d'identifier la région Pays de la Loire
+> * une façon d'identifier la région Pays de la Loire (code region '52')
+
 
 Pour avoir la liste des modalités dune variable : 
 
@@ -121,7 +125,7 @@ gg <- rpls_aggrege  %>%
          r52=ifelse(Reg_2017=="52", 1, 0.65)) %>% 
   ggplot()+
   #On utilise l'indicatrice de la région Pays de la Loire pour mapper la transparence
-  geom_bar(aes(x=nReg_2017, weight=Valeur, fill=Indicateur,alpha=r52))+
+  geom_col(aes(x=nReg_2017, y=Valeur, fill=Indicateur, alpha=r52))+
   coord_flip()+
   theme_minimal()+
   scale_fill_ipsum() +
