@@ -25,31 +25,30 @@ Voici un exemple de diagramme barre sur les données de mortalités.
 
 gg <- ODD_indicateur311 %>%
   filter(Type_Zone != "Pays",
-         Age_group=="All age ranges or no breakdown by age",
-         Sex=="Both sexes or no breakdown by sex",
-         Location=="Total (national level)",
-         is.na(Value_type)
-         ) %>%
+    Age_group == "All age ranges or no breakdown by age",
+    Sex == "Both sexes or no breakdown by sex",
+    Location == "Total (national level)",
+    is.na(Value_type)
+  ) %>%
   filter(Year %in% c(2015)) %>%
-  ggplot()+
-  geom_bar_interactive(aes(x=Country_or_Area_Name,
-                              weight=Value,
-                              fill=Country_or_Area_Name,
-                              tooltip=paste(Value,"décès pour 100 000 naissances")))+
-  theme(legend.position="none",
-        title=element_text(size=8),
-        axis.text = element_text(size=7))+
-  scale_fill_ipsum()+
-  coord_flip()+
-  labs(title="Mortalité maternelle sur quelques zones du globe",
-       subtitle="En 2015",
-       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
-       x="Zone",
-       fill="Zone"
+  ggplot() +
+  geom_col_interactive(aes(x = Country_or_Area_Name,
+    y = Value,
+    fill = Country_or_Area_Name,
+    tooltip = paste(Value, "décès pour 100 000 naissances"))) +
+  theme(legend.position = "none",
+    title = element_text(size = 8),
+    axis.text = element_text(size = 7)) +
+  scale_fill_ipsum() +
+  coord_flip() +
+  labs(title = "Mortalité maternelle sur quelques zones du globe",
+    subtitle = "En 2015",
+    y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
+    x = "Zone",
+    fill = "Zone"
   )
 
-girafe(ggobj=gg,height_svg = 3)
-
+girafe(ggobj = gg, height_svg = 3)
 ```
 
 L'infobulle peut contenir plusieurs informations. Il est aussi possible d'en changer l'apparence, grâce à différentes options à spécifier dans `opts_tooltip`:
@@ -59,23 +58,22 @@ L'infobulle peut contenir plusieurs informations. Il est aussi possible d'en cha
 - `use_fill=TRUE` : pour adapter le fond de l'info-bulle à la couleur de l'élément. 
 
 ```{r, fig.width = 3}
-gg <- ggplot(data=ODD_graphique2)+
-  geom_line(aes(x=Year,y=Value))+
-  geom_point(aes(x=Year,y=Value))+
-  geom_point_interactive(aes(x=Year,y=Value,
-                             tooltip = paste(Year, "\n",Value,"décès pour 100 000 naissances")))+
-  labs(title="Mortalité maternelle sur quelques zones du globe",
-       subtitle="En 2015",
-       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
-       x="Zone",
-       fill="Zone"
-  )+
+gg <- ggplot(data = ODD_graphique2) +
+  geom_line(aes(x = Year, y = Value)) +
+  geom_point(aes(x = Year, y = Value)) +
+  geom_point_interactive(aes(x = Year, y = Value,
+    tooltip = paste(Year, "\n", Value, "décès pour 100 000 naissances"))) +
+  labs(title = "Mortalité maternelle sur quelques zones du globe",
+    subtitle = "En 2015",
+    y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
+    x = "Zone",
+    fill = "Zone"
+  ) +
   theme_minimal()
 
-girafe(ggobj=gg,height_svg = 3,
-       options=list(
-         opts_tooltip(css="background-color:gray;font-style:italic;border-radius:5px;padding:5px;")))
-
+girafe(ggobj = gg, height_svg = 3,
+  options = list(
+    opts_tooltip(css = "background-color:gray;font-style:italic;border-radius:5px;padding:5px;")))
 ```
 
 Les éléments associés à `data_id` sont animés au survol de la souris. Ces animations sont configurées par les options suivantes:
@@ -89,31 +87,30 @@ Les éléments associés à `data_id` sont animés au survol de la souris. Ces a
 ```{r}
 gg <- ODD_indicateur311 %>%
   filter(Type_Zone != "Pays",
-         Age_group=="All age ranges or no breakdown by age",
-         Sex=="Both sexes or no breakdown by sex",
-         Location=="Total (national level)",
-         is.na(Value_type)
-         ) %>%
+    Age_group == "All age ranges or no breakdown by age",
+    Sex == "Both sexes or no breakdown by sex",
+    Location == "Total (national level)",
+    is.na(Value_type)
+  ) %>%
   filter(Year %in% c(2015)) %>%
-  ggplot()+geom_bar_interactive(aes(x=Country_or_Area_Name,
-                              weight=Value,fill=Country_or_Area_Name,
-                              tooltip=Value,
-                              data_id=Value))+
-  theme(legend.position="none",
-        title=element_text(size=8),
-        axis.text = element_text(size=7))+
-  scale_fill_ipsum()+
-  coord_flip()+
-  labs(title="Mortalité maternelle sur quelques zones du globe",
-       subtitle="En 2015",
-       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
-       x="Zone",
-       fill="Zone"
+  ggplot() + geom_col_interactive(aes(x = Country_or_Area_Name,
+    y = Value, fill = Country_or_Area_Name,
+    tooltip = Value,
+    data_id = Value)) +
+  theme(legend.position = "none",
+    title = element_text(size = 8),
+    axis.text = element_text(size = 7)) +
+  scale_fill_ipsum() +
+  coord_flip() +
+  labs(title = "Mortalité maternelle sur quelques zones du globe",
+    subtitle = "En 2015",
+    y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
+    x = "Zone",
+    fill = "Zone"
   )
 
-girafe(ggobj=gg, height_svg = 3,
-        options=list(opts_hover(css="cursor:grab;fill:red;stroke:blue;")))
-
+girafe(ggobj = gg, height_svg = 3,
+  options = list(opts_hover(css = "cursor:grab;fill:red;stroke:blue;")))
 ```
 
 
@@ -125,31 +122,31 @@ Il existe d'autres options tel que `opts_zoom`, `opts_sizing`, ...
 `{ggiraph}` est compatible avec la réalisation des graphiques à facette 
 
 ```{r Facetteggiraph}
-gg<-ODD_indicateur311 %>%
+gg <- ODD_indicateur311 %>%
   filter(Type_Zone != "Pays",
-         Age_group=="All age ranges or no breakdown by age",
-         Sex=="Both sexes or no breakdown by sex",
-         Location=="Total (national level)",
-         is.na(Value_type)
-         ) %>%
-  filter(Year %in% c(2000,2005,2010,2015)) %>%
-  ggplot()+
-  geom_bar_interactive(aes(x=Country_or_Area_Name,weight=Value,fill=Country_or_Area_Name,tooltip=Value))+
-  theme(legend.position="none",
-        title=element_text(size=8),
-        axis.text = element_text(size=7))+
-  scale_fill_ipsum()+
-  coord_flip()+
-  labs(title="Mortalité maternelle sur quelques zones du globe",
-       subtitle="En 2015",
-       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
-       x="Zone",
-       fill="Zone"
-  )+
-  theme(legend.position = "none")+
-  facet_wrap(~Year)
+    Age_group == "All age ranges or no breakdown by age",
+    Sex == "Both sexes or no breakdown by sex",
+    Location == "Total (national level)",
+    is.na(Value_type)
+  ) %>%
+  filter(Year %in% c(2000, 2005, 2010, 2015)) %>%
+  ggplot() +
+  geom_col_interactive(aes(x = Country_or_Area_Name, y = Value, fill = Country_or_Area_Name, tooltip = Value)) +
+  theme(legend.position = "none",
+    title = element_text(size = 8),
+    axis.text = element_text(size = 7)) +
+  scale_fill_ipsum() +
+  coord_flip() +
+  labs(title = "Mortalité maternelle sur quelques zones du globe",
+    subtitle = "En 2015",
+    y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
+    x = "Zone",
+    fill = "Zone"
+  ) +
+  theme(legend.position = "none") +
+  facet_wrap("Year")
 
-girafe(ggobj=gg)
+girafe(ggobj = gg)
 ```
 
 
@@ -161,49 +158,47 @@ Leaflet est au départ un package de cartographie réalisé en javascript. R per
 Ci-dessous un exemple avancé de carte choroplète avec leaflet.
 
 ```{r}
-data("World") 
+data("World")
 
 tt <- World %>%
-  rename(Country_or_Area_Code=iso_a3) %>%
+  rename(Country_or_Area_Code = iso_a3) %>%
   left_join(ODD_indicateur311 %>%
-              filter(Age_group=="All age ranges or no breakdown by age",
-                     Sex=="Both sexes or no breakdown by sex",
-                     Type_Zone=="Pays",
-                     is.na(Value_type)) %>%
-              group_by(Country_or_Area_Code) %>%
-              filter(!is.na(Value)) %>%
-              filter(Year==max(Year)))
+    filter(Age_group == "All age ranges or no breakdown by age",
+      Sex == "Both sexes or no breakdown by sex",
+      Type_Zone == "Pays",
+      is.na(Value_type)) %>%
+    group_by(Country_or_Area_Code) %>%
+    filter(!is.na(Value)) %>%
+    filter(Year == max(Year)))
 # création des quantiles de la variable d'intérêt
-bins <-quantile(tt$Value,na.rm=T)
+bins <- quantile(tt$Value, na.rm = T)
 # création d'une palette de couleurs associée
 pal <- colorBin("YlOrRd", domain = tt$Value, bins = bins)
-#création d'un label ad hoc à afficher en surbrillance au passage de la souris sur la carte.
+# création d'un label ad hoc à afficher en surbrillance au passage de la souris sur la carte.
 labels <- sprintf(
   "<strong>%s</strong><br/>%g décès pour 100 000 naissance en 2015",
   tt$name, tt$Value
 ) %>% lapply(htmltools::HTML)
 
 leaflet(tt) %>%
-  addPolygons(data=tt,
-              fillColor=~pal(Value),
-              weight = 2,
-              opacity = 1,
-              color = "white",
-              dashArray = "3",
-              fillOpacity = 0.7,
-              highlight = highlightOptions(
-                weight = 5,
-                color = "#666",
-                dashArray = "",
-                fillOpacity = 0.7,
-                bringToFront = TRUE),
-              label = labels,
-              labelOptions = labelOptions(
-                style = list("font-weight" = "normal", padding = "3px 8px"),
-                textsize = "15px",
-                direction = "auto"))
-
-
+  addPolygons(data = tt,
+    fillColor = ~ pal(Value),
+    weight = 2,
+    opacity = 1,
+    color = "white",
+    dashArray = "3",
+    fillOpacity = 0.7,
+    highlight = highlightOptions(
+      weight = 5,
+      color = "#666",
+      dashArray = "",
+      fillOpacity = 0.7,
+      bringToFront = TRUE),
+    label = labels,
+    labelOptions = labelOptions(
+      style = list("font-weight" = "normal", padding = "3px 8px"),
+      textsize = "15px",
+      direction = "auto"))
 ```
 
 Pour réaliser des ronds proportionnels, il va falloir là aussi créer un centroïde de nos polygones.
@@ -211,42 +206,41 @@ Pour réaliser des ronds proportionnels, il va falloir là aussi créer un centr
 ```{r ronds_prop leaflet, eval = TRUE}
 ttc <- st_centroid(tt)
 
-bins <-quantile(ttc$Value,na.rm=T)
+bins <- quantile(ttc$Value, na.rm = T)
 pal <- colorBin("YlOrRd", domain = ttc$Value, bins = bins)
 
 carte_rond_proportionnel <- leaflet(ttc) %>%
-  addPolygons(data=tt,
-              fillColor = "#ffffff",
-                opacity=.2,
-              color = "white",
-              dashArray = "3",
-              fillOpacity = 0.7
-  ) %>% 
-  addCircles(data=ttc,
-              fillColor=~pal(Value),
-             radius=~100000*log2(Value),
-              weight = 2,
-              opacity = 1,
-              color = "white",
-              dashArray = "3",
-              fillOpacity = 0.7,
-              highlight = highlightOptions(
-                weight = 5,
-                color = "#666",
-                dashArray = "",
-                fillOpacity = 0.7,
-                bringToFront = TRUE),
-              label = labels,
-              labelOptions = labelOptions(
-                style = list("font-weight" = "normal", padding = "3px 8px"),
-                textsize = "15px",
-                direction = "auto")) %>% 
+  addPolygons(data = tt,
+    fillColor = "#ffffff",
+    opacity = .2,
+    color = "white",
+    dashArray = "3",
+    fillOpacity = 0.7
+  ) %>%
+  addCircles(data = ttc,
+    fillColor = ~ pal(Value),
+    radius = ~ 100000 * log2(Value),
+    weight = 2,
+    opacity = 1,
+    color = "white",
+    dashArray = "3",
+    fillOpacity = 0.7,
+    highlight = highlightOptions(
+      weight = 5,
+      color = "#666",
+      dashArray = "",
+      fillOpacity = 0.7,
+      bringToFront = TRUE),
+    label = labels,
+    labelOptions = labelOptions(
+      style = list("font-weight" = "normal", padding = "3px 8px"),
+      textsize = "15px",
+      direction = "auto")) %>%
   addLegend("bottomright", pal = pal, values = ~Value,
-            title = "Taux de décès des mères à la naissance",
-            opacity = 1)
+    title = "Taux de décès des mères à la naissance",
+    opacity = 1)
 
 carte_rond_proportionnel
-
 ```
 
 ## Exporter une sortie html
@@ -271,17 +265,17 @@ Le résultat attendu :
 
 ```{r eval=T,message=F,warning=F,echo=FALSE}
 
-gg<-ggplot(ODD_graphique1) +
-  geom_point_interactive(aes(x=log(Gross_Domestic_Product_GDP),
-                 y=log(Maternal_mortality_ratio),
-                 color=Continent,
-                 data_id=Continent,
-                 tooltip=paste(Continent, "\n", Parent_Zone_libelle,
-                               "\nPIB de", round(Gross_Domestic_Product_GDP, 1),
-                               "\nun taux de mortalié maternelle de", Maternal_mortality_ratio,
-                               "(pour 100 000 naissances)")))+
+gg <- ggplot(ODD_graphique1) +
+  geom_point_interactive(aes(x = log(Gross_Domestic_Product_GDP),
+    y = log(Maternal_mortality_ratio),
+    color = Continent,
+    data_id = Continent,
+    tooltip = paste(Continent, "\n", Parent_Zone_libelle,
+      "\nPIB de", round(Gross_Domestic_Product_GDP, 1),
+      "\nun taux de mortalié maternelle de", Maternal_mortality_ratio,
+      "(pour 100 000 naissances)"))) +
   scale_color_brewer(type = "qual")
 
-girafe(ggobj=gg, height_svg = 3, options = list(opts_hover(css="fill:darkblue;")))
+girafe(ggobj = gg, height_svg = 3, options = list(opts_hover(css = "fill:darkblue;")))
 ```
 

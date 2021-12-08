@@ -84,29 +84,29 @@ panel.background, panel.border, panel.grid.major, panel.grid.minor,...
 ## Quelques exemples 
 
 ```{r fg7_0, echo=T,eval=T,fig.height=5,fig.width=10}
-gg<-ggplot(ODD_graphique1) +
-  geom_point(aes(x=log(Gross_Domestic_Product_GDP),
-                 y=log(Maternal_mortality_ratio),
-                 color=Continent))+
-  labs(title="Mortalité maternelle en fonction du PIB par habitant",
-       subtitle="En 2015",
-       x="PIB",
-       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
-       caption="Source : ODD / ONU")
+gg <- ggplot(ODD_graphique1) +
+  geom_point(aes(x = log(Gross_Domestic_Product_GDP),
+    y = log(Maternal_mortality_ratio),
+    color = Continent)) +
+  labs(title = "Mortalité maternelle en fonction du PIB par habitant",
+    subtitle = "En 2015",
+    x = "PIB",
+    y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
+    caption = "Source : ODD / ONU")
 ```
 
 - Changer le fond du graphique ***panel_background***
 
 ```{r fg7_1, echo=T,eval=T,fig.height=5,fig.width=10}
 gg +
-  theme(panel.background = element_rect(fill="Lavender",colour="black"))
+  theme(panel.background = element_rect(fill = "Lavender", colour = "black"))
 ```
 
 - Changer l'apparence du quadrillage ***panel_background***
 
 ```{r fg7_2, echo=T,eval=T,fig.height=5,fig.width=10}
 gg +
-  theme(panel.grid.major = element_line(colour="gray",size=0.5,linetype="dashed"))
+  theme(panel.grid.major = element_line(colour = "gray", size = 0.5, linetype = "dashed"))
 ```
 
 - Changer l'apparence des étiquettes des axes ***axis_xxx()***
@@ -114,7 +114,7 @@ gg +
 ```{r fg7_3, echo=T,eval=T,fig.height=5,fig.width=10}
 gg +
   theme(axis.text.x = element_text(colour = "blue", angle = 45),
-        axis.title = element_text(face = "bold", colour = "orange"))
+    axis.title = element_text(face = "bold", colour = "orange"))
 ```
 
 Certains changements de paramètres ne nécessitent pas l'utilisation de fonction ***element_()*** .
@@ -122,7 +122,7 @@ Par exemple, pour changer la position de la légende ***legend.xxx()***
 
 ```{r fg7_4, echo=T,eval=T,fig.height=5,fig.width=10}
 gg +
-  theme(legend.position="left",legend.title=element_blank())
+  theme(legend.position = "left", legend.title = element_blank())
 ```
 
 ## Modifier le thème par défaut
@@ -131,23 +131,22 @@ La fonction `theme_set()` vous permet de définir un thème par défaut pour l'e
 
 ```{r fg7_5, echo=T,eval=T,fig.height=5,fig.width=10}
 theme_set(theme_dark())
-#Le theme_dark() sera appliqué à tous les graphiques à partir de maintenant
+# Le theme_dark() sera appliqué à tous les graphiques à partir de maintenant
 
 ggplot(ODD_graphique1) +
-  geom_point(aes(x=log(Gross_Domestic_Product_GDP),
-                 y=log(Maternal_mortality_ratio),
-                 color=Continent))+
-  labs(title="Mortalité maternelle en fonction du PIB par habitant",
-       subtitle="En 2015",
-       x="PIB",
-       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
-       caption="Source : ODD / ONU")
+  geom_point(aes(x = log(Gross_Domestic_Product_GDP),
+    y = log(Maternal_mortality_ratio),
+    color = Continent)) +
+  labs(title = "Mortalité maternelle en fonction du PIB par habitant",
+    subtitle = "En 2015",
+    x = "PIB",
+    y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
+    caption = "Source : ODD / ONU")
 ```
 
 ```{r , echo=T,eval=T}
-#Réinitialisation d'un thème par défaut, car le noir c'est triste!
+# Réinitialisation d'un thème par défaut, car le noir c'est triste!
 theme_set(theme_grey())
-
 ```
 
 ## Créer son propre thème
@@ -157,27 +156,27 @@ Créons un thème avec un fond vert pour le ministère de la transition écologi
 
 ```{r fg7_6}
 library(hrbrthemes)
-mon_theme<-function(taille_police=14){
-  theme_bw()+
-  theme(plot.title = element_text(color = "white",size=taille_police,face="bold"),
-        text = element_text(color="white"),
-        axis.text = element_text(color="white"),
-        panel.background = element_rect(fill="lightgreen",colour="lightgreen"),
-        plot.background= element_rect(fill="#006400",colour="lightgreen"),
-        legend.background =  element_rect(fill="lightgreen",colour="lightgreen"),
-        legend.key = element_blank())
+mon_theme <- function(taille_police = 14) {
+  theme_bw() +
+    theme(plot.title = element_text(color = "white", size = taille_police, face = "bold"),
+      text = element_text(color = "white"),
+      axis.text = element_text(color = "white"),
+      panel.background = element_rect(fill = "lightgreen", colour = "lightgreen"),
+      plot.background = element_rect(fill = "#006400", colour = "lightgreen"),
+      legend.background = element_rect(fill = "lightgreen", colour = "lightgreen"),
+      legend.key = element_blank())
 
 }
 
 ggplot(ODD_graphique1) +
-  geom_point(aes(x=log(Gross_Domestic_Product_GDP),
-                 y=log(Maternal_mortality_ratio),
-                 color=Continent))+
-  labs(title="Mortalité maternelle en fonction du PIB par habitant",
-       subtitle="En 2015",
-       x="PIB",
-       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
-       caption="Source : ODD / ONU")+
+  geom_point(aes(x = log(Gross_Domestic_Product_GDP),
+    y = log(Maternal_mortality_ratio),
+    color = Continent)) +
+  labs(title = "Mortalité maternelle en fonction du PIB par habitant",
+    subtitle = "En 2015",
+    x = "PIB",
+    y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
+    caption = "Source : ODD / ONU") +
   mon_theme()
 ```
 
@@ -199,17 +198,17 @@ L’utilisation de [theme_gouv()](https://spyrales.github.io/gouvdown/reference/
 library(gouvdown)
 
 ggplot(ODD_graphique1) +
-  geom_point(aes(x=log(Gross_Domestic_Product_GDP),
-                 y=log(Maternal_mortality_ratio),
-                 color=Continent))+
-  labs(title="Mortalité maternelle en fonction du PIB par habitant",
-       subtitle="En 2015",
-       x="PIB",
-       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
-       caption="Source : ODD / ONU")+
+  geom_point(aes(x = log(Gross_Domestic_Product_GDP),
+    y = log(Maternal_mortality_ratio),
+    color = Continent)) +
+  labs(title = "Mortalité maternelle en fonction du PIB par habitant",
+    subtitle = "En 2015",
+    x = "PIB",
+    y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
+    caption = "Source : ODD / ONU") +
   theme_gouv(plot_title_size = 15,
-             subtitle_size = 11,
-             base_size = 10)
+    subtitle_size = 11,
+    base_size = 10)
 ```
 
 NB: Pour les cartes, [theme_gouv_map()](https://spyrales.github.io/gouvdown/reference/theme_gouv_map.html) sera privilégié.
@@ -230,19 +229,19 @@ Le résultat attendu
 
 ```{r  fg7_7, eval=T,echo=F,message=F,warning=F}
 ggplot(ODD_graphique1) +
-  geom_point(aes(x=log(Gross_Domestic_Product_GDP),
-                 y=log(Maternal_mortality_ratio),
-                 color=Continent))+ 
-  labs(title="Croisement du PIB avec le taux de mortalité maternelle", y="Taux de mortalité maternelle", x="Produit Intérieur Brut", caption="Source: ODD")+
-  theme(legend.position="bottom",
-        plot.title=element_text(size=15, 
-                                face="bold", 
-                                color="blue",
-                                hjust=0.5), 
-        plot.caption=element_text(size=15),
-        axis.title.x=element_text(size=15),  
-        axis.title.y=element_text(size=15),
-        panel.background = element_rect(fill = "lightblue",colour = "lightblue",size = 0.5),
-        panel.grid.major = element_line( size=0.5,linetype = "dotted"),
-        panel.grid.minor = element_line( size=0.5,linetype = "dotted"))
+  geom_point(aes(x = log(Gross_Domestic_Product_GDP),
+    y = log(Maternal_mortality_ratio),
+    color = Continent)) +
+  labs(title = "Croisement du PIB avec le taux de mortalité maternelle", y = "Taux de mortalité maternelle", x = "Produit Intérieur Brut", caption = "Source: ODD") +
+  theme(legend.position = "bottom",
+    plot.title = element_text(size = 15,
+      face = "bold",
+      color = "blue",
+      hjust = 0.5),
+    plot.caption = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    panel.background = element_rect(fill = "lightblue", colour = "lightblue", size = 0.5),
+    panel.grid.major = element_line(size = 0.5, linetype = "dotted"),
+    panel.grid.minor = element_line(size = 0.5, linetype = "dotted"))
 ```

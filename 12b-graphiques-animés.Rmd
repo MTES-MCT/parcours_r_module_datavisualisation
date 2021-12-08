@@ -11,16 +11,15 @@ Nous allons voir comment animer notre premier graphique sur la répartition des 
 Pour cela, nous partons des même données mais définies pour l'ensemble des années depuis 1990.
 
 ```{r gganim_1}
-ggplot(data = ODD_graphique_anime) + 
-  geom_point(aes(x=log(Gross_Domestic_Product_GDP),
-                 y=log(Maternal_mortality_ratio),
-                 color=Continent))+
-  labs(title="Mortalité maternelle en fonction du PIB par habitant",
-       subtitle="En 2015",
-       x="PIB",
-       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
-       caption="Source : ODD / ONU\n échelle logarithmique")
-
+ggplot(data = ODD_graphique_anime) +
+  geom_point(aes(x = log(Gross_Domestic_Product_GDP),
+    y = log(Maternal_mortality_ratio),
+    color = Continent)) +
+  labs(title = "Mortalité maternelle en fonction du PIB par habitant",
+    subtitle = "En 2015",
+    x = "PIB",
+    y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
+    caption = "Source : ODD / ONU\n échelle logarithmique")
 ```
 
 Le graphique précédent est bien sûr illisible, un même pays voit ces données affichées pour toutes les années.
@@ -28,18 +27,18 @@ Nous allons utiliser la fonction ***transition_states()*** du package `gganimate
 
 
 ```{r gganim_2,,warning = FALSE,message = FALSE,error=FALSE, cache=TRUE}
-anim <- ggplot(data = ODD_graphique_anime) + 
-  geom_point(aes(x=log(Gross_Domestic_Product_GDP),
-                 y=log(Maternal_mortality_ratio),
-                 color=Continent)) +
-  labs(title="Mortalité maternelle en fonction du PIB par habitant",
-       subtitle="En {closest_state}",
-       x="PIB",
-       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
-       caption="Source : ODD / ONU\n échelle logarithmique")+
-  transition_states(states=Year,
-                    transition_length = 1,
-                    state_length = 2)
+anim <- ggplot(data = ODD_graphique_anime) +
+  geom_point(aes(x = log(Gross_Domestic_Product_GDP),
+    y = log(Maternal_mortality_ratio),
+    color = Continent)) +
+  labs(title = "Mortalité maternelle en fonction du PIB par habitant",
+    subtitle = "En {closest_state}",
+    x = "PIB",
+    y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
+    caption = "Source : ODD / ONU\n échelle logarithmique") +
+  transition_states(states = Year,
+    transition_length = 1,
+    state_length = 2)
 anim
 ```
 
@@ -61,19 +60,19 @@ gganimate possède encore bien d'autres fonctionnalités pour définir son anima
 On peut utiliser gganimate avec des facettes.
 
 ```{r gganim_3,warning = FALSE,message = FALSE,error=FALSE,cache=TRUE}
-anim_facet <- ggplot(data = ODD_graphique_anime) + 
-  geom_point(aes(x=log(Gross_Domestic_Product_GDP),
-                 y=log(Maternal_mortality_ratio),
-                 color=Continent)) +
-  labs(title="Mortalité maternelle en fonction du PIB par habitant",
-       subtitle="En {closest_state}",
-       x="PIB",
-       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
-       caption="Source : ODD / ONU\n échelle logarithmique")+
-  facet_wrap(~Continent) +
-  transition_states(states=Year,
-                    transition_length = 1,
-                    state_length = 2)
+anim_facet <- ggplot(data = ODD_graphique_anime) +
+  geom_point(aes(x = log(Gross_Domestic_Product_GDP),
+    y = log(Maternal_mortality_ratio),
+    color = Continent)) +
+  labs(title = "Mortalité maternelle en fonction du PIB par habitant",
+    subtitle = "En {closest_state}",
+    x = "PIB",
+    y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
+    caption = "Source : ODD / ONU\n échelle logarithmique") +
+  facet_wrap("Continent") +
+  transition_states(states = Year,
+    transition_length = 1,
+    state_length = 2)
 anim_facet
 ```
 
@@ -88,11 +87,11 @@ La fonction `animate()` permet de paramétrer notre animation. Notamment:
 Ici par exemple, nous paramétrons le rendu pour supprimer la boucle d'animation (*loop=FALSE*)
 
 ```{r  gganim_4,warning = FALSE,message = FALSE,error=FALSE}
-animate(anim,renderer=gifski_renderer(file = tempfile(fileext = ".gif"), 
-                                      loop = FALSE,
-                                   width = NULL,
-                                   height = NULL)
-        )
+animate(anim, renderer = gifski_renderer(file = tempfile(fileext = ".gif"),
+  loop = FALSE,
+  width = NULL,
+  height = NULL)
+)
 ```
 
 ## Exporter une animation
@@ -113,38 +112,41 @@ Le résultat attendu :
 
 ```{r  gganim_6, eval=T,message=F,warning=F,echo=FALSE, cache=TRUE}
 library(dplyr)
+library(tidyr)
+library(forcats)
 library(ggplot2)
 library(gganimate)
+library(stringr)
 
-rpls <- rpls_aggrege_large %>%   
-  #Filtre sur la zone de travail souhaitée
-  filter(TypeZone=="Départements" & nReg_2017=="Centre-Val de Loire")%>% 
-  #Suppression des levels non présents dans la table, 
-  #ce qui évite de générer des graphes vident pour les départements hors Centre-Val de Loire
-  mutate(nDep_2017=fct_drop(nDep_2017)) %>% 
-  #Selection des variables nécessaires
-  select(nDep_2017,DPE_energie_classe_ABC_pourcent,DPE_energie_classe_D_pourcent,
-         DPE_energie_classe_EFG_pourcent,DPE_energie_classe_NA_pourcent) %>% 
-  #Passage de la table au format long (cf module 2, chapitre 7)
-  pivot_longer(-c(nDep_2017),names_to ="variable",values_to ="valeur" ) %>% 
-  #Retravail des intitulés pour ne conserver que la classe d'energie ABC/D/EGF/NA
-  mutate(variable=str_remove(pattern = "DPE_energie_classe_",variable),
-         variable=str_remove(pattern = "_pourcent",variable))
+rpls <- rpls_aggrege_large %>%
+  # Filtre sur la zone de travail souhaitée
+  filter(TypeZone == "Départements" & nReg_2017 == "Centre-Val de Loire") %>%
+  # Suppression des levels non présents dans la table,
+  # ce qui évite de générer des graphes vident pour les départements hors Centre-Val de Loire
+  mutate(nDep_2017 = fct_drop(nDep_2017)) %>%
+  # Selection des variables nécessaires
+  select(nDep_2017, DPE_energie_classe_ABC_pourcent, DPE_energie_classe_D_pourcent,
+    DPE_energie_classe_EFG_pourcent, DPE_energie_classe_NA_pourcent) %>%
+  # Passage de la table au format long (cf module 2, chapitre 7)
+  pivot_longer(-c(nDep_2017), names_to = "variable", values_to = "valeur") %>%
+  # Retravail des intitulés pour ne conserver que la classe d'energie ABC/D/EGF/NA
+  mutate(variable = str_remove(pattern = "DPE_energie_classe_", variable),
+    variable = str_remove(pattern = "_pourcent", variable))
 
-ggplot(data=rpls, aes(x=variable, y=valeur,fill=variable)) +
-  geom_bar(stat="identity")+
-  #definition des couleurs
-  scale_fill_manual(values=c("#66CD00", "#FFFF00", "#FF7F00", "#A8A8A8"))+
-  #suppression de la legende
-  theme(legend.position="none")+
-  #habillage: titre, libellé des axes, Source
-  labs(title="Les DPE dans le parc locatif social",
-       subtitle="En {closest_state}",
-       x="Classe d'énergie",
-       y="%",
-       caption="Source : Répertoire Locatif Social")+
-  #création de l'animation
-  transition_states(states=nDep_2017,
-                    transition_length = 1,
-                    state_length = 5)
+ggplot(data = rpls, aes(x = variable, y = valeur, fill = variable)) +
+  geom_col() +
+  # definition des couleurs
+  scale_fill_manual(values = c("#66CD00", "#FFFF00", "#FF7F00", "#A8A8A8")) +
+  # suppression de la legende
+  theme(legend.position = "none") +
+  # habillage: titre, libellé des axes, Source
+  labs(title = "Les DPE dans le parc locatif social",
+    subtitle = "En {closest_state}",
+    x = "Classe d'énergie",
+    y = "%",
+    caption = "Source : Répertoire Locatif Social") +
+  # création de l'animation
+  transition_states(states = nDep_2017,
+    transition_length = 1,
+    state_length = 5)
 ```

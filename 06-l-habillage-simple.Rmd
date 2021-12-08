@@ -6,15 +6,15 @@ Chaque nouvel élément graphique est à rajouter sous forme de layer. Ici, nous
 
 ```{r fg6_1, echo=T,eval=T,fig.height=5,fig.width=10}
 ggplot(ODD_graphique1) +
-  geom_point(aes(x=log(Gross_Domestic_Product_GDP),
-                 y=log(Maternal_mortality_ratio),
-                 color=Continent))+
-  labs(title="Mortalité maternelle en fonction du PIB par habitant",
-       subtitle="En 2015",
-       x="PIB",
-       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
-       color="Les continents",
-       caption="Source : ODD / ONU")
+  geom_point(aes(x = log(Gross_Domestic_Product_GDP),
+    y = log(Maternal_mortality_ratio),
+    color = Continent)) +
+  labs(title = "Mortalité maternelle en fonction du PIB par habitant",
+    subtitle = "En 2015",
+    x = "PIB",
+    y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
+    color = "Les continents",
+    caption = "Source : ODD / ONU")
 ```
 
 À noter qu'il existe plusieurs autres façons de spécifier ces éléments par des couches spécifiques: `ggtitle`, `xlab`, `ylab`,...
@@ -26,20 +26,20 @@ Les guides peuvent être spécifiés dans chaque scale_* ou dans une instruction
 
 ```{r fg6_2, echo=T,eval=T,fig.height=5,fig.width=10}
 ggplot(ODD_graphique1) +
-  geom_point(aes(x=log(Gross_Domestic_Product_GDP),
-                 y=log(Maternal_mortality_ratio),
-                 color=Continent))+
-  labs(title="Mortalité maternelle en fonction du PIB par habitant",
-       subtitle="En 2015",
-       x="PIB",
-       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
-       caption="Source : ODD / ONU")+
-  guides(color=guide_legend(direction="horizontal",
-                           order=1,
-                           title.position="top",
-                           title.hjust=0.5,
-                           nrow=1,
-                           label.position="bottom"))+
+  geom_point(aes(x = log(Gross_Domestic_Product_GDP),
+    y = log(Maternal_mortality_ratio),
+    color = Continent)) +
+  labs(title = "Mortalité maternelle en fonction du PIB par habitant",
+    subtitle = "En 2015",
+    x = "PIB",
+    y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
+    caption = "Source : ODD / ONU") +
+  guides(color = guide_legend(direction = "horizontal",
+    order = 1,
+    title.position = "top",
+    title.hjust = 0.5,
+    nrow = 1,
+    label.position = "bottom")) +
   theme(legend.position = "bottom")
 ```
 
@@ -50,30 +50,29 @@ Il est aussi possible de rajouter des annotations de type texte ou autre, par ex
 ```{r fg6_3, echo=T,eval=T,fig.height=5,fig.width=10}
 
 ggplot(ODD_graphique1) +
-  geom_point(aes(x=log(Gross_Domestic_Product_GDP),
-                 y=log(Maternal_mortality_ratio),
-                 color=Continent))+
-  labs(title="Mortalité maternelle en fonction du PIB par habitant",
-       subtitle="En 2015",
-       x="PIB",
-       y="Taux de mortalité de la mère \n(pour 100 000 naissances)",
-       caption="Source : ODD / ONU") +
-  annotate("label", 
-           x = 11, 
-           y = 6.5, 
-           size = 3,
-           label = "882 décès \npour 100 000 naissances \nen République centrafricaine",
-           color="white",
-           fill = "red") + 
+  geom_point(aes(x = log(Gross_Domestic_Product_GDP),
+    y = log(Maternal_mortality_ratio),
+    color = Continent)) +
+  labs(title = "Mortalité maternelle en fonction du PIB par habitant",
+    subtitle = "En 2015",
+    x = "PIB",
+    y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
+    caption = "Source : ODD / ONU") +
+  annotate("label",
+    x = 11,
+    y = 6.5,
+    size = 3,
+    label = "882 décès \npour 100 000 naissances \nen République centrafricaine",
+    color = "white",
+    fill = "red") +
   annotate("curve",
-           xend = log(333.1885),yend = log(882),
-           x = 10.2, y = 6.5,
-           curvature = -0.1,
-           color = "red",
-           arrow = arrow(length = unit(2, "mm"))
-  )+
+    xend = log(333.1885), yend = log(882),
+    x = 10.2, y = 6.5,
+    curvature = -0.1,
+    color = "red",
+    arrow = arrow(length = unit(2, "mm"))
+  ) +
   theme(legend.position = "bottom")
-
 ```
 
 

@@ -15,7 +15,7 @@ biblio-style: apalike
 # Introduction
 
 ```{r setup, echo=F,eval=T,include=FALSE}
-knitr::opts_chunk$set(echo=TRUE,eval=TRUE,warning = FALSE,message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE)
 library(ggplot2)
 theme_set(theme_gray())
 library(gifski)
@@ -52,6 +52,6 @@ Il vous permet également d'insérer ces valorisations dans un rapport ou une ap
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown','ggplot2'
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'ggplot2'
 ), 'packages.bib')
 ```
