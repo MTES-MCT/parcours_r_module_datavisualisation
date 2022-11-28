@@ -95,10 +95,9 @@
     },
     "RPostgreSQL": {
       "Package": "RPostgreSQL",
-      "Version": "0.7",
+      "Version": "0.7-4",
       "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "280a8205e4336ac83492b10e7f0d3962"
+      "Repository": "RSPM"
     },
     "Rcpp": {
       "Package": "Rcpp",
@@ -158,10 +157,9 @@
     },
     "XML": {
       "Package": "XML",
-      "Version": "3.99-0.6",
+      "Version": "3.99-0.12",
       "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "59b7d0a3d18303ae30ba1246e77faa83"
+      "Repository": "RSPM"
     },
     "abind": {
       "Package": "abind",
@@ -1044,10 +1042,9 @@
     },
     "lwgeom": {
       "Package": "lwgeom",
-      "Version": "0.2-5",
+      "Version": "0.2-10",
       "Source": "Repository",
-      "Repository": "RSPM",
-      "Hash": "cf96b08482dfbed1b7ab7d0ba4395077"
+      "Repository": "RSPM"
     },
     "magrittr": {
       "Package": "magrittr",
