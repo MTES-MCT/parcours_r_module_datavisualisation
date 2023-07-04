@@ -181,7 +181,7 @@ ggplot(ODD_graphique1) +
 
 ## Thème - package gouvdown
 
-`{gouvdown}` est un package créé par la communauté d'agents de l'Etat [Spyrales](https://www.spyrales.fr/).
+`{gouvdown}` est un package créé par la communauté d'agents de l'Etat (Spyrales).
 
 ![](images/spyrales.PNG){#id .class width=500}
 
