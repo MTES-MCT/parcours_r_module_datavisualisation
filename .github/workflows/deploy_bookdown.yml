@@ -22,7 +22,7 @@ jobs:
       - name: Setup R
         uses: r-lib/actions/setup-r@master
         with:
-          r-version: '4.0.4'
+          r-version: '4.2.2'
 
       - name: Install pandoc
         run: |
