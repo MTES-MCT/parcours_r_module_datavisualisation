@@ -9,47 +9,47 @@ Une fonction géométrique de ggplot2 permet l'utilisation de données géomatiq
 L'exemple suivant est une carte choroplèthe.
 
 ```{r cart_1, echo=T,eval=T,fig.height=5,fig.width=12, cache=TRUE}
-data("World") 
+data("World")
 
-tt <- World %>% 
-  rename(Country_or_Area_Code=iso_a3) %>%
+tt <- World %>%
+  rename(Country_or_Area_Code = iso_a3) %>%
   inner_join(ODD_indicateur311 %>%
-               filter(Age_group=="All age ranges or no breakdown by age",
-                      Sex=="Both sexes or no breakdown by sex",
-                      Type_Zone=="Pays",
-                      is.na(Value_type)) %>%
-               group_by(Country_or_Area_Code) %>%
-               filter(!is.na(Value)) %>%
-               filter(Year==max(Year)))
+    filter(Age_group == "All age ranges or no breakdown by age",
+      Sex == "Both sexes or no breakdown by sex",
+      Type_Zone == "Pays",
+      is.na(Value_type)) %>%
+    group_by(Country_or_Area_Code) %>%
+    filter(!is.na(Value)) %>%
+    filter(Year == max(Year)))
 
-ggplot(data=tt)+
-  geom_sf(aes(fill=Value))
+ggplot(data = tt) +
+  geom_sf(aes(fill = Value))
 ```
 
 ## Les cartes à ronds proportionnels
 
 La fonction ***stat_sf_coordinates()*** permet d'extraire les coordonnées d'un objet 'sf'.
-Ainsi un rond proportionnel peut être attribuer à un polygone.
+Ainsi un rond proportionnel peut être attribué à un polygone.
 
 ```{r cart_3, echo=T,eval=T,fig.height=5,fig.width=12, cache=TRUE}
-data("World") 
+data("World")
 
 tt <- World %>%
-rename(Country_or_Area_Code=iso_a3) %>%
+  rename(Country_or_Area_Code = iso_a3) %>%
   inner_join(ODD_indicateur311 %>%
-              filter(Age_group=="All age ranges or no breakdown by age",
-                     Sex=="Both sexes or no breakdown by sex",
-                     Type_Zone=="Pays",
-                   is.na(Value_type)) %>%
-              group_by(Country_or_Area_Code) %>%
-              filter(!is.na(Value)) %>%
-              filter(Year==max(Year)))
+    filter(Age_group == "All age ranges or no breakdown by age",
+      Sex == "Both sexes or no breakdown by sex",
+      Type_Zone == "Pays",
+      is.na(Value_type)) %>%
+    group_by(Country_or_Area_Code) %>%
+    filter(!is.na(Value)) %>%
+    filter(Year == max(Year)))
 
-ggplot(data=tt)+
-  geom_sf(fill="grey97")+
-  stat_sf_coordinates(aes(size=Value,fill=Value),color = "black",shape=21)+
+ggplot(data = tt) +
+  geom_sf(fill = "grey97") +
+  stat_sf_coordinates(aes(size = Value, fill = Value), color = "black", shape = 21) +
   scale_fill_gradient2(name = "Valeur",
-                       low = "darkblue", mid = "white", high = "darkred")+
+    low = "darkblue", mid = "white", high = "darkred") +
   scale_size_area(name = "Valeur", max_size = 10)
 ```
 
@@ -58,42 +58,42 @@ ggplot(data=tt)+
 On peut exploiter de la même façon les différentes fonctions vues précédemment. Par exemple : avec un peu de thème et de facet.
 
 ```{r cart_4, echo=T,eval=T,fig.height=12,fig.width=12,warning=F, cache=TRUE}
-data("World") 
+data("World")
 
 tt <- World %>%
-  st_transform(4326) %>% 
-  rename(Country_or_Area_Code=iso_a3) %>%
+  st_transform(4326) %>%
+  rename(Country_or_Area_Code = iso_a3) %>%
   inner_join(ODD_indicateur311 %>%
-               filter(Age_group=="All age ranges or no breakdown by age",
-                      Sex=="Both sexes or no breakdown by sex",
-                      Type_Zone=="Pays",
-                      is.na(Value_type)) %>%
-               group_by(Country_or_Area_Code) %>%
-               filter(!is.na(Value)) %>% 
-               filter(Year %in% c(1990,2000,2010,2015)) %>% 
-               ungroup() %>% 
-               complete(Year)
+    filter(Age_group == "All age ranges or no breakdown by age",
+      Sex == "Both sexes or no breakdown by sex",
+      Type_Zone == "Pays",
+      is.na(Value_type)) %>%
+    group_by(Country_or_Area_Code) %>%
+    filter(!is.na(Value)) %>%
+    filter(Year %in% c(1990, 2000, 2010, 2015)) %>%
+    ungroup() %>%
+    complete(Year)
   )
 
-ggplot(data=tt)+
-  geom_sf(aes(fill=log(Value)))+
-  theme_minimal()+
+ggplot(data = tt) +
+  geom_sf(aes(fill = log(Value))) +
+  theme_minimal() +
   scale_fill_viridis(option = "magma",
-                   direction=1,
-                   breaks=c(0,1,2,3,4,5,6,7))+
+    direction = 1,
+    breaks = c(0, 1, 2, 3, 4, 5, 6, 7)) +
   guides(
-    fill=guide_legend(direction="horizontal",
-                      keyheight=unit(2, units="mm"),
-                      keywidth=unit(20, units="mm"),
-                      order=1,
-                      title.position = "top",
-                      title.hjust = 0.5,
-                      nrow=1,
-                      label.position = "bottom",
-                      label.hjust=1)) +
+    fill = guide_legend(direction = "horizontal",
+      keyheight = unit(2, units = "mm"),
+      keywidth = unit(20, units = "mm"),
+      order = 1,
+      title.position = "top",
+      title.hjust = 0.5,
+      nrow = 1,
+      label.position = "bottom",
+      label.hjust = 1)) +
   theme(legend.position = "bottom") +
-  labs(fill="Log du taux de mortalité infantile") +
-  facet_wrap(~Year, drop = TRUE)
+  labs(fill = "Log du taux de mortalité infantile") +
+  facet_wrap("Year", drop = TRUE)
 ```
 
 ## Ajouter une barre d'échelle et la flèche du nord
@@ -105,22 +105,22 @@ Les deux fonctions qui permettent cela sont `annotation_scale()` et `annotation_
 L'utilisation de ces fonctions nécessitent un système de coordonnées géographiques.
 
 ```{r cart_5, echo=T,eval=T,fig.height=12,fig.width=12,warning=F, cache=TRUE}
-data("World") 
+data("World")
 
 tt <- World %>%
-rename(Country_or_Area_Code=iso_a3) %>%
+  rename(Country_or_Area_Code = iso_a3) %>%
   inner_join(ODD_indicateur311 %>%
-              filter(Age_group=="All age ranges or no breakdown by age",
-                     Sex=="Both sexes or no breakdown by sex",
-                     Type_Zone=="Pays",
-                   is.na(Value_type)) %>%
-              group_by(Country_or_Area_Code) %>%
-              filter(!is.na(Value)) %>%
-              filter(Year==max(Year)))
+    filter(Age_group == "All age ranges or no breakdown by age",
+      Sex == "Both sexes or no breakdown by sex",
+      Type_Zone == "Pays",
+      is.na(Value_type)) %>%
+    group_by(Country_or_Area_Code) %>%
+    filter(!is.na(Value)) %>%
+    filter(Year == max(Year)))
 
-ggplot(data=tt %>% filter(continent=="Africa"))+
-  geom_sf(aes(fill=Value))+
-annotation_scale(location = "br", line_width = .5) +
+ggplot(data = tt %>% filter(continent == "Africa")) +
+  geom_sf(aes(fill = Value)) +
+  annotation_scale(location = "br", line_width = .5) +
   annotation_north_arrow(location = "bl", height = unit(0.7, "cm"), width = unit(0.7, "cm"))
 ```
 
@@ -128,26 +128,33 @@ annotation_scale(location = "br", line_width = .5) +
 
 Les 2 fonctions **geom_sf_text()** et **geom_sf_label()** permettent respectivement d'afficher du texte et des étiquettes sur des objets de types **sf**
 
+`geom_sf_text` : 
+```{r cart_6, echo=T, eval=T, fig.height=12, fig.width=12, warning=F, cache=TRUE}
+data("World")
 
-```{r cart_6, echo=T,eval=T,fig.height=12,fig.width=12,warning=F, cache=TRUE}
-data("World") 
-
-tt<-World %>%
-rename(Country_or_Area_Code=iso_a3) %>%
+tt <- World %>%
+  rename(Country_or_Area_Code = iso_a3) %>%
   inner_join(ODD_indicateur311 %>%
-              filter(Age_group=="All age ranges or no breakdown by age",
-                     Sex=="Both sexes or no breakdown by sex",
-                     Type_Zone=="Pays",
-                   is.na(Value_type)) %>%
-              group_by(Country_or_Area_Code) %>%
-              filter(!is.na(Value)) %>%
-              filter(Year==max(Year)))
+    filter(Age_group == "All age ranges or no breakdown by age",
+      Sex == "Both sexes or no breakdown by sex",
+      Type_Zone == "Pays",
+      is.na(Value_type)) %>%
+    group_by(Country_or_Area_Code) %>%
+    filter(!is.na(Value)) %>%
+    filter(Year == max(Year)))
 
-ggplot(data=tt %>% filter(continent=="Africa"))+
-  geom_sf(aes(fill=Value))+
-  geom_sf_text(aes(label = name),vjust=-0.5,check_overlap=TRUE,fontface="italic",colour="white")
+ggplot(data = tt %>% filter(continent == "Africa")) +
+  geom_sf(aes(fill = Value)) +
+  geom_sf_text(aes(label = name), vjust = -0.5, check_overlap = TRUE, fontface = "italic", colour = "white")
 ```
 
+`geom_sf_label`
+```{r cart_6b, echo=T, eval=T, fig.height=12, fig.width=12, warning=F, cache=TRUE}
+
+ggplot(data = tt %>% filter(continent == "Africa")) +
+  geom_sf(aes(fill = Value)) +
+  geom_sf_label(aes(label = name))
+```
 
 ## Exercice 5 
 
@@ -156,13 +163,13 @@ ggplot(data=tt %>% filter(continent=="Africa"))+
 Résultat attendu
 
 ```{r cart_7,eval=T,echo=F,message=F,warning=F}
-tt <- Carte_EPCI_France %>% 
-  filter(CODE_DEPT=="45") %>% 
-  left_join(rpls_aggrege) %>% 
-  filter(Indicateur=="Logements collectifs_pourcent")
-ggplot(data=tt) +
-  geom_sf(aes(geometry=geometry, fill=Valeur)) +
-  labs(title="Taux de logements collectifs par EPCI",subtitle="Département du Loiret") +
+tt <- Carte_EPCI_France %>%
+  filter(CODE_DEPT == "45") %>%
+  left_join(rpls_aggrege) %>%
+  filter(Indicateur == "Logements collectifs_pourcent")
+ggplot(data = tt) +
+  geom_sf(aes(geometry = geometry, fill = Valeur)) +
+  labs(title = "Taux de logements collectifs par EPCI", subtitle = "Département du Loiret") +
   theme(
     axis.text.x = element_blank(),
     axis.text.y = element_blank(),

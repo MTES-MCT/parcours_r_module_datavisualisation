@@ -9,8 +9,8 @@ L'aesthetic sert à identifier les variables que l'on souhaite représenter.
 Par exemple, si l'on souhaite représenter le taux de mortalité maternelle (Maternal_mortality_ratio) en fonction du produit intérieur brut (Gross_Domestic_Product_GDP) :
 
 ```{r, fig.height=3.5}
-ggplot(data = ODD_graphique1) + 
-  geom_point(aes(x=Gross_Domestic_Product_GDP,y=Maternal_mortality_ratio))
+ggplot(data = ODD_graphique1) +
+  geom_point(aes(x = Gross_Domestic_Product_GDP, y = Maternal_mortality_ratio))
 ```
 
 De plus, la fonction **aes** admet d'autres arguments qui permettent de modifier l'apparence du graphique selon une 3ème variable du jeu de données.
@@ -21,8 +21,8 @@ De plus, la fonction **aes** admet d'autres arguments qui permettent de modifier
 **fill** : le remplissage ;
 
 ```{r, fig.height=3.5}
-ggplot(data = ODD_graphique1) + 
-  geom_point(aes(x=Gross_Domestic_Product_GDP,y=Maternal_mortality_ratio,colour=Continent))
+ggplot(data = ODD_graphique1) +
+  geom_point(aes(x = Gross_Domestic_Product_GDP, y = Maternal_mortality_ratio, colour = Continent))
 ```
 
 ## Les "autres" paramètres
@@ -33,21 +33,25 @@ On retrouve entre autre les mêmes paramètres proposés dans l'aes, mais il fau
 Par exemple, si l'on souhaite modifier la transparance et la taille de l'ensemble des points du graphique précédent:
 
 ```{r, fig.height=3.5}
-ggplot(data = ODD_graphique1) + 
-  geom_point(aes(x=Gross_Domestic_Product_GDP,y=Maternal_mortality_ratio,colour=Continent),
-             alpha=0.5,size=1.9)
+ggplot(data = ODD_graphique1) +
+  geom_point(aes(x = Gross_Domestic_Product_GDP, y = Maternal_mortality_ratio, colour = Continent),
+    alpha = 0.5, size = 1.9)
 ```
 
 De même si l'on souhaite modifier la couleur générale :
 
 ```{r, fig.height=3.5}
-ggplot(data = ODD_graphique1) + 
-  geom_point(aes(x=Gross_Domestic_Product_GDP,y=Maternal_mortality_ratio),
-             color="red")
+ggplot(data = ODD_graphique1) +
+  geom_point(aes(x = Gross_Domestic_Product_GDP, y = Maternal_mortality_ratio),
+    color = "red")
 ```
 
 Pour choisir et modifier facilement les couleurs d'un graphe, il existe un addin développé par Dean Attali: **Colour Picker**
 Il est installable comme n'importe quel package.  
+```
+install.packages("colourpicker")
+```
+
 Pour plus d'informations: https://github.com/daattali/colourpicker.
 
 
@@ -55,7 +59,7 @@ Pour plus d'informations: https://github.com/daattali/colourpicker.
 
 > A partir des données de la table rpls_aggrege_large (dans extdata/rpls_aggrege_large.RData), 
 >
-> créer un nuage de point (un point par EPCI) entre :
+> créer un nuage de point (un point par EPCI, filtre sur la variable TypeZone) entre :
 >
 > - le % de parc social de moins de 5 ans ('Parc_de_moins_de_5_ans_pourcent'); 
 >
@@ -66,12 +70,12 @@ Pour plus d'informations: https://github.com/daattali/colourpicker.
 Le résultat attendu : 
 
 ```{r eval=T,echo=F,warning=F}
-ggplot(data = rpls_aggrege_large  %>% 
-         filter(TypeZone=="Epci")) + 
-  geom_point(aes(x=Parc_de_moins_de_5_ans_pourcent,
-                 y=DPE_GES_classe_ABC_pourcent,
-                 color=epci_2017_52),
-             alpha=.5,
-             size=.5
-             )
+ggplot(data = rpls_aggrege_large %>%
+  filter(TypeZone == "Epci")) +
+  geom_point(aes(x = Parc_de_moins_de_5_ans_pourcent,
+    y = DPE_GES_classe_ABC_pourcent,
+    color = epci_2017_52),
+  alpha = .5,
+  size = .5
+  )
 ```

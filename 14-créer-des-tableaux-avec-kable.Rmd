@@ -8,19 +8,19 @@ Ci-dessous un exemple. On reprend les données utilisées pour le diagramme barr
 ```{r kabble_1}
 ODD_indicateur311 %>%
   filter(Type_Zone != "Pays",
-         Age_group=="All age ranges or no breakdown by age",
-         Sex=="Both sexes or no breakdown by sex",
-         Location=="Total (national level)",
-         is.na(Value_type)
+    Age_group == "All age ranges or no breakdown by age",
+    Sex == "Both sexes or no breakdown by sex",
+    Location == "Total (national level)",
+    is.na(Value_type)
   ) %>%
   group_by(Country_or_Area_Code) %>%
-  filter(Year==max(Year)) %>%
-  ungroup %>% 
-  select(Country_or_Area_Name,Year,Value) %>% 
-  setNames(c("Zone","Année","Nombre de décès pour 100 000 Naissance")) %>% 
-  kable("html",caption="Mortalité de la mère à la naissance pour quelques grandes zones du globe") %>%
-  kable_styling(bootstrap_options = c("striped", "hover")) %>% 
-  row_spec(1, bold = T, color = "white", background = "grey")%>%
+  filter(Year == max(Year)) %>%
+  ungroup %>%
+  select(Country_or_Area_Name, Year, Value) %>%
+  setNames(c("Zone", "Année", "Nombre de décès pour 100 000 Naissance")) %>%
+  kable("html", caption = "Mortalité de la mère à la naissance pour quelques grandes zones du globe") %>%
+  kable_styling(bootstrap_options = c("striped", "hover")) %>%
+  row_spec(1, bold = T, color = "white", background = "grey") %>%
   add_indent(c(2:5))
 ```
 
@@ -45,20 +45,20 @@ Cette fonction nécessite le chargement du package ***magick***
 ```{r kabble_2}
 ODD_indicateur311 %>%
   filter(Type_Zone != "Pays",
-         Age_group=="All age ranges or no breakdown by age",
-         Sex=="Both sexes or no breakdown by sex",
-         Location=="Total (national level)",
-         is.na(Value_type)
+    Age_group == "All age ranges or no breakdown by age",
+    Sex == "Both sexes or no breakdown by sex",
+    Location == "Total (national level)",
+    is.na(Value_type)
   ) %>%
   group_by(Country_or_Area_Code) %>%
-  filter(Year==max(Year)) %>%
-  ungroup %>% 
-  select(Country_or_Area_Name,Year,Value) %>% 
-  setNames(c("Zone","Année","Nombre de décès pour 100 000 Naissance")) %>% 
-  kable("html",caption="Mortalité de la mère à la naissance pour quelques grandes zones du globe") %>%
-  kable_styling(bootstrap_options = c("striped", "hover")) %>% 
-  row_spec(1, bold = T, color = "white", background = "grey")%>%
-  add_indent(c(2:5)) %>% 
+  filter(Year == max(Year)) %>%
+  ungroup %>%
+  select(Country_or_Area_Name, Year, Value) %>%
+  setNames(c("Zone", "Année", "Nombre de décès pour 100 000 Naissance")) %>%
+  kable("html", caption = "Mortalité de la mère à la naissance pour quelques grandes zones du globe") %>%
+  kable_styling(bootstrap_options = c("striped", "hover")) %>%
+  row_spec(1, bold = T, color = "white", background = "grey") %>%
+  add_indent(c(2:5)) %>%
   save_kable("montableau.png")
 ```
 
@@ -69,13 +69,13 @@ Produire un tableau du nombre de logements collectifs et individuels (RPLS) par 
 Le résultat attendu : 
 
 ```{r kabble_3, eval=T,message=F,warning=F,echo=FALSE}
-rpls_DEP_R24  <- rpls_aggrege_large %>% 
-  filter(TypeZone %in% c("Départements","Régions"),nReg_2017=="Centre-Val de Loire") %>% 
-  arrange(TypeZone,Zone) %>%
-  select(Zone,Logements_collectifs,Logements_individuels)%>% 
-  setNames(c("Zone","Nombre de logements collectifs","Nombre de logements individuels")) %>% 
-  kable("html",caption="Chiffres clés RPLS") %>%
-  kable_styling(bootstrap_options = c("striped", "hover")) %>% 
+rpls_DEP_R24 <- rpls_aggrege_large %>%
+  filter(TypeZone %in% c("Départements", "Régions"), nReg_2017 == "Centre-Val de Loire") %>%
+  arrange(TypeZone, Zone) %>%
+  select(Zone, Logements_collectifs, Logements_individuels) %>%
+  setNames(c("Zone", "Nombre de logements collectifs", "Nombre de logements individuels")) %>%
+  kable("html", caption = "Chiffres clés RPLS") %>%
+  kable_styling(bootstrap_options = c("striped", "hover")) %>%
   row_spec(7, bold = T, color = "white", background = "grey")
 rpls_DEP_R24
 ```
