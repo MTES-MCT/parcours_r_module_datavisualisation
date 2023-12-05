@@ -1,7 +1,14 @@
-Package: Parcours-R.M5
+Package: parcours_r_module_datavisualisation
 Type: Book
 Title: Formations R du MTES - Module 5 Datavisualisation
 Version: 0.1.0
+Authors@R: c(
+    person("Juliette", "Engelaere-Lefebvre", , "juliette.engelaere@developpement-durable.gouv.fr", role = c("aut", "cre")),
+    person("Murielle", "Delmotte", , "murielle@thinkr.fr", role = "aut", comment = c(ORCID = "0000-0002-1339-2424")),    
+    person("Mael", "Theuliere", , "mael.theuliere@gmail.com", role = "aut")
+  )
+Description: Valise pedagogique pour la formation a R au Ministere de la transition ecologique, 5e module sur la datavisualisation.
+License: LICENCE OUVERTE/ OPEN LICENCE Version 2.0
 URL: https://github.com/MTES-MCT/parcours_r_module_datavisualisation
 Imports: 
   apexcharter,
@@ -27,7 +34,12 @@ Imports:
   purrr,
   rmarkdown,
   scales,
+  savoirfR,
   sf
+Remotes: 
+    MTES-MCT/savoirfR,
+    spyrales/gouvdown,
+    spyrales/gouvdown.fonts,
+    git::https://gitlab-forge.din.developpement-durable.gouv.fr/dreal-pdl/csd/mapfactory.git@main
 
-License: MIT
-Description: Valise pédagogique pour la formation à R, module 5 dédié à la datavisualisation
+
