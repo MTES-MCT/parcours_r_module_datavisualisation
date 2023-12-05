@@ -40,7 +40,7 @@ Description des fonctions utilisées :
 ## Sauvegarde
 
 Le tableau ainsi produit peut être sauvegardé sous plusieurs formats (html, png, pdf, etc..) grâce à la fonction ***save_kable***.
-Cette fonction nécessite le chargement du package ***magick***
+Cette fonction nécessite le chargement du package ***kableExtra***.
 
 ```{r kabble_2}
 ODD_indicateur311 %>%

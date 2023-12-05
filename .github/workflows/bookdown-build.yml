@@ -10,6 +10,6 @@ on:
 jobs:
   build-bookdown:
     name: Build bookdown
-    uses: MTES-MCT/parcours-r/.github/workflows/bookdown-build.yml@master
+    uses: MTES-MCT/parcours-r/.github/workflows/bookdown-build-from-desc.yml@master
     with:
-      r_version: '4.0.4'
+      r_version: '4.2.2'

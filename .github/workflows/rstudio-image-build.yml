@@ -5,10 +5,11 @@ on:
     branches:
       - main
       - master
+      - dev
     paths:
       - .github/workflows/rstudio-image-build.yml
       - Dockerfile
-      - renv.lock
+      - DESCRIPTION
       
   pull_request:
     types: [opened, synchronize]
@@ -16,7 +17,7 @@ on:
     paths:
       - .github/workflows/rstudio-image-build.yml
       - Dockerfile
-      - renv.lock
+      - DESCRIPTION
       
   workflow_dispatch:
 
