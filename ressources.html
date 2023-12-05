@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapitre 17 Ressources | Valoriser ses données avec R</title>
   <meta name="description" content="Valorisation des données sous R (module 5)" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapitre 17 Ressources | Valoriser ses données avec R" />
   <meta property="og:type" content="book" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="créer-des-tableaux-avec-kable-et-kable-extra.html"/>
 <link rel="next" href="exercices-et-corrections.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,15 +51,15 @@
 
 
 
-
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="libs/d3-5.7.0/d3.min.js"></script>
+<script src="libs/d3-bundle-5.16.0/d3-bundle.min.js"></script>
 <script src="libs/d3-lasso-0.0.5/d3-lasso.min.js"></script>
-<link href="libs/ggiraphjs-0.3.0/ggiraphjs.min.css" rel="stylesheet" />
-<script src="libs/ggiraphjs-0.3.0/ggiraphjs.min.js"></script>
-<script src="libs/girafe-binding-0.7.8/girafe.js"></script>
+<script src="libs/save-svg-as-png-1.4.17/save-svg-as-png.min.js"></script>
+<link href="libs/ggiraphjs-0.4.1/ggiraphjs.min.css" rel="stylesheet" />
+<script src="libs/ggiraphjs-0.4.1/ggiraphjs.min.js"></script>
+<script src="libs/girafe-binding-0.7.10/girafe.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
@@ -336,53 +337,53 @@ Voici ce que proposait le support de formation de parcours-r à son sujet :</p>
 </div>
 <div id="exemple-de-carte-choroplèthe" class="section level4" number="17.3.1.2">
 <h4><span class="header-section-number">17.3.1.2</span> Exemple de carte choroplèthe</h4>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="ressources.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;World&quot;</span>)</span>
-<span id="cb62-2"><a href="ressources.html#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-3"><a href="ressources.html#cb62-3" aria-hidden="true" tabindex="-1"></a>tt<span class="ot">&lt;-</span>World <span class="sc">%&gt;%</span></span>
-<span id="cb62-4"><a href="ressources.html#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rename</span>(<span class="at">Country_or_Area_Code=</span>iso_a3) <span class="sc">%&gt;%</span></span>
-<span id="cb62-5"><a href="ressources.html#cb62-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(ODD_indicateur311 <span class="sc">%&gt;%</span></span>
-<span id="cb62-6"><a href="ressources.html#cb62-6" aria-hidden="true" tabindex="-1"></a>              <span class="fu">filter</span>(Age_group<span class="sc">==</span><span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</span>
-<span id="cb62-7"><a href="ressources.html#cb62-7" aria-hidden="true" tabindex="-1"></a>                     Sex<span class="sc">==</span><span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</span>
-<span id="cb62-8"><a href="ressources.html#cb62-8" aria-hidden="true" tabindex="-1"></a>                     Type_Zone<span class="sc">==</span><span class="st">&quot;Pays&quot;</span>,</span>
-<span id="cb62-9"><a href="ressources.html#cb62-9" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">is.na</span>(Value_type)) <span class="sc">%&gt;%</span></span>
-<span id="cb62-10"><a href="ressources.html#cb62-10" aria-hidden="true" tabindex="-1"></a>              <span class="fu">group_by</span>(Country_or_Area_Code) <span class="sc">%&gt;%</span></span>
-<span id="cb62-11"><a href="ressources.html#cb62-11" aria-hidden="true" tabindex="-1"></a>              <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Value)) <span class="sc">%&gt;%</span></span>
-<span id="cb62-12"><a href="ressources.html#cb62-12" aria-hidden="true" tabindex="-1"></a>              <span class="fu">filter</span>(Year<span class="sc">==</span><span class="fu">max</span>(Year)))</span>
-<span id="cb62-13"><a href="ressources.html#cb62-13" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year<span class="sc">==</span><span class="dv">2015</span>))<span class="sc">+</span></span>
-<span id="cb62-14"><a href="ressources.html#cb62-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;Value&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="ressources.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;World&quot;</span>)</span>
+<span id="cb66-2"><a href="ressources.html#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-3"><a href="ressources.html#cb66-3" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> World <span class="sc">%&gt;%</span></span>
+<span id="cb66-4"><a href="ressources.html#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Country_or_Area_Code =</span> iso_a3) <span class="sc">%&gt;%</span></span>
+<span id="cb66-5"><a href="ressources.html#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(ODD_indicateur311 <span class="sc">%&gt;%</span></span>
+<span id="cb66-6"><a href="ressources.html#cb66-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Age_group <span class="sc">==</span> <span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</span>
+<span id="cb66-7"><a href="ressources.html#cb66-7" aria-hidden="true" tabindex="-1"></a>      Sex <span class="sc">==</span> <span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</span>
+<span id="cb66-8"><a href="ressources.html#cb66-8" aria-hidden="true" tabindex="-1"></a>      Type_Zone <span class="sc">==</span> <span class="st">&quot;Pays&quot;</span>,</span>
+<span id="cb66-9"><a href="ressources.html#cb66-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(Value_type)) <span class="sc">%&gt;%</span></span>
+<span id="cb66-10"><a href="ressources.html#cb66-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Value)),</span>
+<span id="cb66-11"><a href="ressources.html#cb66-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="st">&quot;Country_or_Area_Code&quot;</span>)</span>
+<span id="cb66-12"><a href="ressources.html#cb66-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-13"><a href="ressources.html#cb66-13" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="dv">2015</span>)) <span class="sc">+</span></span>
+<span id="cb66-14"><a href="ressources.html#cb66-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;Value&quot;</span>)</span></code></pre></div>
 <p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_8-1.png" width="1152" /></p>
 <p>L’option <code>n=</code> permet de sélectionner le nombre de classes souhaitées, lorsque l’on réalise une carte sur une variable continue.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="ressources.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year<span class="sc">==</span><span class="dv">2015</span>))<span class="sc">+</span></span>
-<span id="cb63-2"><a href="ressources.html#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;Value&quot;</span>,<span class="at">n=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="ressources.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="dv">2015</span>)) <span class="sc">+</span></span>
+<span id="cb67-2"><a href="ressources.html#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;Value&quot;</span>, <span class="at">n =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_9-1.png" width="1152" /></p>
 </div>
 <div id="exemple-de-carte-à-ronds-proportionnels" class="section level4" number="17.3.1.3">
 <h4><span class="header-section-number">17.3.1.3</span> Exemple de carte à ronds proportionnels</h4>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="ressources.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year<span class="sc">==</span><span class="dv">2015</span>))<span class="sc">+</span></span>
-<span id="cb64-2"><a href="ressources.html#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>()<span class="sc">+</span></span>
-<span id="cb64-3"><a href="ressources.html#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_bubbles</span>(<span class="at">size=</span><span class="st">&quot;Value&quot;</span>,<span class="at">col=</span><span class="st">&quot;Value&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="ressources.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="dv">2015</span>)) <span class="sc">+</span></span>
+<span id="cb68-2"><a href="ressources.html#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>() <span class="sc">+</span></span>
+<span id="cb68-3"><a href="ressources.html#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_bubbles</span>(<span class="at">size =</span> <span class="st">&quot;Value&quot;</span>, <span class="at">col =</span> <span class="st">&quot;Value&quot;</span>)</span></code></pre></div>
 <p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_10-1.png" width="1152" /></p>
 </div>
 <div id="exemples-de-cartes-avec-facet" class="section level4" number="17.3.1.4">
 <h4><span class="header-section-number">17.3.1.4</span> Exemples de cartes avec facet</h4>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="ressources.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt)<span class="sc">+</span></span>
-<span id="cb65-2"><a href="ressources.html#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;Value&quot;</span>)<span class="sc">+</span></span>
-<span id="cb65-3"><a href="ressources.html#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_facets</span>(<span class="st">&quot;Year&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="ressources.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt) <span class="sc">+</span></span>
+<span id="cb69-2"><a href="ressources.html#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;Value&quot;</span>) <span class="sc">+</span></span>
+<span id="cb69-3"><a href="ressources.html#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_facets</span>(<span class="at">by =</span> <span class="st">&quot;Year&quot;</span>)</span></code></pre></div>
 <p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_11-1.png" width="768" /></p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="ressources.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year<span class="sc">==</span><span class="dv">2015</span>))<span class="sc">+</span></span>
-<span id="cb66-2"><a href="ressources.html#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;Value&quot;</span>)<span class="sc">+</span></span>
-<span id="cb66-3"><a href="ressources.html#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_facets</span>(<span class="st">&quot;Continent&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="ressources.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="dv">2015</span>)) <span class="sc">+</span></span>
+<span id="cb70-2"><a href="ressources.html#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;Value&quot;</span>) <span class="sc">+</span></span>
+<span id="cb70-3"><a href="ressources.html#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_facets</span>(<span class="st">&quot;Continent&quot;</span>)</span></code></pre></div>
 <p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_12-1.png" width="768" /></p>
 </div>
 <div id="gestion-des-palettes" class="section level4" number="17.3.1.5">
 <h4><span class="header-section-number">17.3.1.5</span> Gestion des palettes</h4>
 <p>La fonction <em>tmaptools::palette_explorer()</em> permet d’accéder à une interface très simple de définition d’une palette de couleurs à partir des palettes <em>brewer</em>.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="ressources.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year<span class="sc">==</span><span class="dv">2015</span>))<span class="sc">+</span></span>
-<span id="cb67-2"><a href="ressources.html#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;Value&quot;</span>,<span class="at">palette=</span><span class="fu">get_brewer_pal</span>(<span class="st">&quot;OrRd&quot;</span>, <span class="at">n =</span> <span class="dv">5</span>, <span class="at">contrast =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="dv">1</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="ressources.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="dv">2015</span>)) <span class="sc">+</span></span>
+<span id="cb71-2"><a href="ressources.html#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;Value&quot;</span>, <span class="at">palette =</span> <span class="fu">get_brewer_pal</span>(<span class="st">&quot;OrRd&quot;</span>, <span class="at">n =</span> <span class="dv">5</span>, <span class="at">contrast =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="dv">1</span>)))</span></code></pre></div>
 <p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_13-1.png" width="768" /><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_13-2.png" width="768" /></p>
 <p>On peut également utiliser n’importe quelle palette. Par exemple, la palette viridis, mais sans l’interface proposée par palette_explorer() :</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="ressources.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year<span class="sc">==</span><span class="dv">2015</span>))<span class="sc">+</span></span>
-<span id="cb68-2"><a href="ressources.html#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;Value&quot;</span>,<span class="at">palette=</span><span class="fu">viridis</span>(<span class="dv">5</span>, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">begin =</span> <span class="dv">0</span>, <span class="at">end =</span> <span class="dv">1</span>, <span class="at">direction =</span> <span class="dv">1</span>, <span class="at">option =</span> <span class="st">&quot;D&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="ressources.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="dv">2015</span>)) <span class="sc">+</span></span>
+<span id="cb72-2"><a href="ressources.html#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;Value&quot;</span>, <span class="at">palette =</span> <span class="fu">viridis</span>(<span class="dv">5</span>, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">begin =</span> <span class="dv">0</span>, <span class="at">end =</span> <span class="dv">1</span>, <span class="at">direction =</span> <span class="dv">1</span>, <span class="at">option =</span> <span class="st">&quot;D&quot;</span>))</span></code></pre></div>
 <p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_14-1.png" width="768" /></p>
 </div>
 <div id="la-mise-en-page" class="section level4" number="17.3.1.6">
@@ -390,51 +391,51 @@ Voici ce que proposait le support de formation de parcours-r à son sujet :</p>
 <p><strong><em>tm_layout()</em></strong> permet de contrôler les polices, la légende, les marges, les couleurs.
 L’option <code>design.mode=T</code> permet de voir visuellement les marges, la position de la légende.
 Le titre de la légende ne se définit pas dans <code>tm_layout()</code>, mais dans <code>tm_polygons()</code>. L’option <code>title</code> de ces fonctions est l’équivalent d’un libellé de la variable mise dans l’aesthetic.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="ressources.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year<span class="sc">==</span><span class="dv">2015</span>))<span class="sc">+</span></span>
-<span id="cb69-2"><a href="ressources.html#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;Value&quot;</span>,<span class="at">palette=</span><span class="fu">viridis</span>(<span class="dv">5</span>, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">begin =</span> <span class="dv">0</span>, <span class="at">end =</span> <span class="dv">1</span>, <span class="at">direction =</span> <span class="dv">1</span>, <span class="at">option =</span> <span class="st">&quot;D&quot;</span>),</span>
-<span id="cb69-3"><a href="ressources.html#cb69-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">title=</span><span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>)<span class="sc">+</span></span>
-<span id="cb69-4"><a href="ressources.html#cb69-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title=</span><span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances) dans le monde&quot;</span>,</span>
-<span id="cb69-5"><a href="ressources.html#cb69-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.size=</span><span class="fl">1.2</span>,</span>
-<span id="cb69-6"><a href="ressources.html#cb69-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">outer.margins=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb69-7"><a href="ressources.html#cb69-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.position=</span><span class="fu">c</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;bottom&quot;</span>),</span>
-<span id="cb69-8"><a href="ressources.html#cb69-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.outside =</span> F,</span>
-<span id="cb69-9"><a href="ressources.html#cb69-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</span>
-<span id="cb69-10"><a href="ressources.html#cb69-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">inner.margins =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="ressources.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="dv">2015</span>)) <span class="sc">+</span></span>
+<span id="cb73-2"><a href="ressources.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;Value&quot;</span>, <span class="at">palette =</span> <span class="fu">viridis</span>(<span class="dv">5</span>, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">begin =</span> <span class="dv">0</span>, <span class="at">end =</span> <span class="dv">1</span>, <span class="at">direction =</span> <span class="dv">1</span>, <span class="at">option =</span> <span class="st">&quot;D&quot;</span>),</span>
+<span id="cb73-3"><a href="ressources.html#cb73-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb73-4"><a href="ressources.html#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title =</span> <span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances) dans le monde&quot;</span>,</span>
+<span id="cb73-5"><a href="ressources.html#cb73-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">main.title.size =</span> <span class="fl">1.2</span>,</span>
+<span id="cb73-6"><a href="ressources.html#cb73-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">outer.margins =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb73-7"><a href="ressources.html#cb73-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>),</span>
+<span id="cb73-8"><a href="ressources.html#cb73-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.outside =</span> F,</span>
+<span id="cb73-9"><a href="ressources.html#cb73-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</span>
+<span id="cb73-10"><a href="ressources.html#cb73-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">inner.margins =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span></code></pre></div>
 <p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_15-1.png" width="768" /></p>
 <p>Avec les cartes en ronds proportionnels, on peut spécifier un titre pour la couleur et la taille du rond.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="ressources.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year<span class="sc">==</span><span class="dv">2015</span>))<span class="sc">+</span></span>
-<span id="cb70-2"><a href="ressources.html#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>()<span class="sc">+</span></span>
-<span id="cb70-3"><a href="ressources.html#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_bubbles</span>(<span class="at">size=</span><span class="st">&quot;Value&quot;</span>,<span class="at">col=</span><span class="st">&quot;Value&quot;</span>,</span>
-<span id="cb70-4"><a href="ressources.html#cb70-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">palette=</span><span class="fu">viridis</span>(<span class="dv">5</span>, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">begin =</span> <span class="dv">0</span>, <span class="at">end =</span> <span class="dv">1</span>, <span class="at">direction =</span> <span class="dv">1</span>, <span class="at">option =</span> <span class="st">&quot;D&quot;</span>),</span>
-<span id="cb70-5"><a href="ressources.html#cb70-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">title.col=</span><span class="st">&quot;&quot;</span>,</span>
-<span id="cb70-6"><a href="ressources.html#cb70-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">title.size=</span><span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>)<span class="sc">+</span></span>
-<span id="cb70-7"><a href="ressources.html#cb70-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title=</span><span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances) dans le monde&quot;</span>,</span>
-<span id="cb70-8"><a href="ressources.html#cb70-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.size=</span><span class="fl">1.2</span>,</span>
-<span id="cb70-9"><a href="ressources.html#cb70-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">outer.margins=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb70-10"><a href="ressources.html#cb70-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.position=</span><span class="fu">c</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;bottom&quot;</span>),</span>
-<span id="cb70-11"><a href="ressources.html#cb70-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.outside =</span> F,</span>
-<span id="cb70-12"><a href="ressources.html#cb70-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</span>
-<span id="cb70-13"><a href="ressources.html#cb70-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">inner.margins =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="ressources.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="dv">2015</span>)) <span class="sc">+</span></span>
+<span id="cb74-2"><a href="ressources.html#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>() <span class="sc">+</span></span>
+<span id="cb74-3"><a href="ressources.html#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_bubbles</span>(<span class="at">size =</span> <span class="st">&quot;Value&quot;</span>, <span class="at">col =</span> <span class="st">&quot;Value&quot;</span>,</span>
+<span id="cb74-4"><a href="ressources.html#cb74-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="fu">viridis</span>(<span class="dv">5</span>, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">begin =</span> <span class="dv">0</span>, <span class="at">end =</span> <span class="dv">1</span>, <span class="at">direction =</span> <span class="dv">1</span>, <span class="at">option =</span> <span class="st">&quot;D&quot;</span>),</span>
+<span id="cb74-5"><a href="ressources.html#cb74-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title.col =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb74-6"><a href="ressources.html#cb74-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title.size =</span> <span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb74-7"><a href="ressources.html#cb74-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title =</span> <span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances) dans le monde&quot;</span>,</span>
+<span id="cb74-8"><a href="ressources.html#cb74-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">main.title.size =</span> <span class="fl">1.2</span>,</span>
+<span id="cb74-9"><a href="ressources.html#cb74-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">outer.margins =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb74-10"><a href="ressources.html#cb74-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>),</span>
+<span id="cb74-11"><a href="ressources.html#cb74-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.outside =</span> F,</span>
+<span id="cb74-12"><a href="ressources.html#cb74-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</span>
+<span id="cb74-13"><a href="ressources.html#cb74-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">inner.margins =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span></code></pre></div>
 <p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_16-1.png" width="768" /></p>
 </div>
 <div id="export-dun-graphique" class="section level4" number="17.3.1.7">
 <h4><span class="header-section-number">17.3.1.7</span> Export d’un graphique</h4>
 <p>La fonction <code>tmap_save()</code> permet d’exporter une carte tmap en un fichier image.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="ressources.html#cb71-1" aria-hidden="true" tabindex="-1"></a>carte<span class="ot">&lt;-</span><span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year<span class="sc">==</span><span class="dv">2015</span>))<span class="sc">+</span></span>
-<span id="cb71-2"><a href="ressources.html#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>()<span class="sc">+</span></span>
-<span id="cb71-3"><a href="ressources.html#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_bubbles</span>(<span class="at">size=</span><span class="st">&quot;Value&quot;</span>,<span class="at">col=</span><span class="st">&quot;Value&quot;</span>,</span>
-<span id="cb71-4"><a href="ressources.html#cb71-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">palette=</span><span class="fu">viridis</span>(<span class="dv">5</span>, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">begin =</span> <span class="dv">0</span>, <span class="at">end =</span> <span class="dv">1</span>, <span class="at">direction =</span> <span class="dv">1</span>, <span class="at">option =</span> <span class="st">&quot;D&quot;</span>),</span>
-<span id="cb71-5"><a href="ressources.html#cb71-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">title.col=</span><span class="st">&quot;&quot;</span>,</span>
-<span id="cb71-6"><a href="ressources.html#cb71-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">title.size=</span><span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>)<span class="sc">+</span></span>
-<span id="cb71-7"><a href="ressources.html#cb71-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title=</span><span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances) dans le monde&quot;</span>,</span>
-<span id="cb71-8"><a href="ressources.html#cb71-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.size=</span><span class="fl">1.2</span>,</span>
-<span id="cb71-9"><a href="ressources.html#cb71-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">outer.margins=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb71-10"><a href="ressources.html#cb71-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.position=</span><span class="fu">c</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;bottom&quot;</span>),</span>
-<span id="cb71-11"><a href="ressources.html#cb71-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.outside =</span> F,</span>
-<span id="cb71-12"><a href="ressources.html#cb71-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</span>
-<span id="cb71-13"><a href="ressources.html#cb71-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">inner.margins =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span>
-<span id="cb71-14"><a href="ressources.html#cb71-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-15"><a href="ressources.html#cb71-15" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_save</span>(carte, <span class="at">filename=</span><span class="st">&quot;figures/Taux de mortalité de la mère dans le monde.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="ressources.html#cb75-1" aria-hidden="true" tabindex="-1"></a>carte <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="dv">2015</span>)) <span class="sc">+</span></span>
+<span id="cb75-2"><a href="ressources.html#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>() <span class="sc">+</span></span>
+<span id="cb75-3"><a href="ressources.html#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_bubbles</span>(<span class="at">size =</span> <span class="st">&quot;Value&quot;</span>, <span class="at">col =</span> <span class="st">&quot;Value&quot;</span>,</span>
+<span id="cb75-4"><a href="ressources.html#cb75-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="fu">viridis</span>(<span class="dv">5</span>, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">begin =</span> <span class="dv">0</span>, <span class="at">end =</span> <span class="dv">1</span>, <span class="at">direction =</span> <span class="dv">1</span>, <span class="at">option =</span> <span class="st">&quot;D&quot;</span>),</span>
+<span id="cb75-5"><a href="ressources.html#cb75-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title.col =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb75-6"><a href="ressources.html#cb75-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title.size =</span> <span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb75-7"><a href="ressources.html#cb75-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title =</span> <span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances) dans le monde&quot;</span>,</span>
+<span id="cb75-8"><a href="ressources.html#cb75-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">main.title.size =</span> <span class="fl">1.2</span>,</span>
+<span id="cb75-9"><a href="ressources.html#cb75-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">outer.margins =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb75-10"><a href="ressources.html#cb75-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>),</span>
+<span id="cb75-11"><a href="ressources.html#cb75-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.outside =</span> F,</span>
+<span id="cb75-12"><a href="ressources.html#cb75-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">main.title.position =</span> <span class="st">&quot;center&quot;</span>,</span>
+<span id="cb75-13"><a href="ressources.html#cb75-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">inner.margins =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb75-14"><a href="ressources.html#cb75-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-15"><a href="ressources.html#cb75-15" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_save</span>(carte, <span class="at">filename =</span> <span class="st">&quot;figures/Taux de mortalité de la mère dans le monde.png&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -468,7 +469,6 @@ Le titre de la légende ne se définit pas dans <code>tm_layout()</code>, mais d
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -508,6 +508,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

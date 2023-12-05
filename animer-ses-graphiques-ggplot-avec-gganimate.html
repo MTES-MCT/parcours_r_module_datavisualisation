@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapitre 14 Animer ses graphiques ggplot avec gganimate | Valoriser ses données avec R</title>
   <meta name="description" content="Valorisation des données sous R (module 5)" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapitre 14 Animer ses graphiques ggplot avec gganimate | Valoriser ses données avec R" />
   <meta property="og:type" content="book" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="créer-des-cartes-avec-ggplot2.html"/>
 <link rel="next" href="créer-des-graphiques-et-cartes-pour-le-web.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,15 +51,15 @@
 
 
 
-
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="libs/d3-5.7.0/d3.min.js"></script>
+<script src="libs/d3-bundle-5.16.0/d3-bundle.min.js"></script>
 <script src="libs/d3-lasso-0.0.5/d3-lasso.min.js"></script>
-<link href="libs/ggiraphjs-0.3.0/ggiraphjs.min.css" rel="stylesheet" />
-<script src="libs/ggiraphjs-0.3.0/ggiraphjs.min.js"></script>
-<script src="libs/girafe-binding-0.7.8/girafe.js"></script>
+<script src="libs/save-svg-as-png-1.4.17/save-svg-as-png.min.js"></script>
+<link href="libs/ggiraphjs-0.4.1/ggiraphjs.min.css" rel="stylesheet" />
+<script src="libs/ggiraphjs-0.4.1/ggiraphjs.min.js"></script>
+<script src="libs/girafe-binding-0.7.10/girafe.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
@@ -293,31 +294,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">14.1</span> Produire une animation</h2>
 <p>Nous allons voir comment animer notre premier graphique sur la répartition des pays en fonction du taux de mortalité et du PIB, en regardant comment celui ci évolue avec les années.</p>
 <p>Pour cela, nous partons des même données mais définies pour l’ensemble des années depuis 1990.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ODD_graphique_anime) <span class="sc">+</span> </span>
-<span id="cb48-2"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">log</span>(Gross_Domestic_Product_GDP),</span>
-<span id="cb48-3"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb48-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y=</span><span class="fu">log</span>(Maternal_mortality_ratio),</span>
-<span id="cb48-4"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb48-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span>Continent))<span class="sc">+</span></span>
-<span id="cb48-5"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Mortalité maternelle en fonction du PIB par habitant&quot;</span>,</span>
-<span id="cb48-6"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb48-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;En 2015&quot;</span>,</span>
-<span id="cb48-7"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb48-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">&quot;PIB&quot;</span>,</span>
-<span id="cb48-8"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb48-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>,</span>
-<span id="cb48-9"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb48-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">&quot;Source : ODD / ONU</span><span class="sc">\n</span><span class="st"> échelle logarithmique&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ODD_graphique_anime) <span class="sc">+</span></span>
+<span id="cb52-2"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(Gross_Domestic_Product_GDP),</span>
+<span id="cb52-3"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">log</span>(Maternal_mortality_ratio),</span>
+<span id="cb52-4"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb52-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> Continent)) <span class="sc">+</span></span>
+<span id="cb52-5"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Mortalité maternelle en fonction du PIB par habitant&quot;</span>,</span>
+<span id="cb52-6"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb52-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;En 2015&quot;</span>,</span>
+<span id="cb52-7"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb52-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;PIB&quot;</span>,</span>
+<span id="cb52-8"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb52-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>,</span>
+<span id="cb52-9"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb52-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Source : ODD / ONU</span><span class="sc">\n</span><span class="st"> échelle logarithmique&quot;</span>)</span></code></pre></div>
 <p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/gganim_1-1.png" width="672" /></p>
 <p>Le graphique précédent est bien sûr illisible, un même pays voit ces données affichées pour toutes les années.
 Nous allons utiliser la fonction <strong><em>transition_states()</em></strong> du package <code>gganimate</code> pour lui définir l’année comme la frame de notre graphique animé.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb49-1" aria-hidden="true" tabindex="-1"></a>anim <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> ODD_graphique_anime) <span class="sc">+</span> </span>
-<span id="cb49-2"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">log</span>(Gross_Domestic_Product_GDP),</span>
-<span id="cb49-3"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb49-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y=</span><span class="fu">log</span>(Maternal_mortality_ratio),</span>
-<span id="cb49-4"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb49-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span>Continent)) <span class="sc">+</span></span>
-<span id="cb49-5"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Mortalité maternelle en fonction du PIB par habitant&quot;</span>,</span>
-<span id="cb49-6"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb49-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;En {closest_state}&quot;</span>,</span>
-<span id="cb49-7"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb49-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">&quot;PIB&quot;</span>,</span>
-<span id="cb49-8"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb49-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>,</span>
-<span id="cb49-9"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb49-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">&quot;Source : ODD / ONU</span><span class="sc">\n</span><span class="st"> échelle logarithmique&quot;</span>)<span class="sc">+</span></span>
-<span id="cb49-10"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb49-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_states</span>(<span class="at">states=</span>Year,</span>
-<span id="cb49-11"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb49-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">transition_length =</span> <span class="dv">1</span>,</span>
-<span id="cb49-12"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb49-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">state_length =</span> <span class="dv">2</span>)</span>
-<span id="cb49-13"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb49-13" aria-hidden="true" tabindex="-1"></a>anim</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb53-1" aria-hidden="true" tabindex="-1"></a>anim <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> ODD_graphique_anime) <span class="sc">+</span></span>
+<span id="cb53-2"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(Gross_Domestic_Product_GDP),</span>
+<span id="cb53-3"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb53-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">log</span>(Maternal_mortality_ratio),</span>
+<span id="cb53-4"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb53-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> Continent)) <span class="sc">+</span></span>
+<span id="cb53-5"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Mortalité maternelle en fonction du PIB par habitant&quot;</span>,</span>
+<span id="cb53-6"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb53-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;En {closest_state}&quot;</span>,</span>
+<span id="cb53-7"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb53-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;PIB&quot;</span>,</span>
+<span id="cb53-8"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb53-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>,</span>
+<span id="cb53-9"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb53-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Source : ODD / ONU</span><span class="sc">\n</span><span class="st"> échelle logarithmique&quot;</span>) <span class="sc">+</span></span>
+<span id="cb53-10"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb53-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_states</span>(<span class="at">states =</span> Year,</span>
+<span id="cb53-11"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb53-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">transition_length =</span> <span class="dv">1</span>,</span>
+<span id="cb53-12"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb53-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">state_length =</span> <span class="dv">2</span>)</span>
+<span id="cb53-13"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb53-13" aria-hidden="true" tabindex="-1"></a>anim</span></code></pre></div>
 <p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/gganim_2,-1.gif" /><!-- --></p>
 <p><strong><em>Transition_states()</em></strong> peut s’assimiler à la création de facettes, mais qui vont être ensuite utilisées pour créer une animation. Les options permettant de paramétrer cette animation:</p>
 <ul>
@@ -333,20 +334,20 @@ Nous allons utiliser la fonction <strong><em>transition_states()</em></strong> d
 <li><p><strong><em>enter_xx()</em></strong> et <strong><em>exit_xx()</em></strong> permette de définir comment les objets apparaissent et disparaissent quand on change d’état.</p></li>
 </ul>
 <p>On peut utiliser gganimate avec des facettes.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb50-1" aria-hidden="true" tabindex="-1"></a>anim_facet <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> ODD_graphique_anime) <span class="sc">+</span> </span>
-<span id="cb50-2"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">log</span>(Gross_Domestic_Product_GDP),</span>
-<span id="cb50-3"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb50-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y=</span><span class="fu">log</span>(Maternal_mortality_ratio),</span>
-<span id="cb50-4"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb50-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span>Continent)) <span class="sc">+</span></span>
-<span id="cb50-5"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Mortalité maternelle en fonction du PIB par habitant&quot;</span>,</span>
-<span id="cb50-6"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb50-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;En {closest_state}&quot;</span>,</span>
-<span id="cb50-7"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb50-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">&quot;PIB&quot;</span>,</span>
-<span id="cb50-8"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb50-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>,</span>
-<span id="cb50-9"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb50-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">&quot;Source : ODD / ONU</span><span class="sc">\n</span><span class="st"> échelle logarithmique&quot;</span>)<span class="sc">+</span></span>
-<span id="cb50-10"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb50-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Continent) <span class="sc">+</span></span>
-<span id="cb50-11"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb50-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_states</span>(<span class="at">states=</span>Year,</span>
-<span id="cb50-12"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb50-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">transition_length =</span> <span class="dv">1</span>,</span>
-<span id="cb50-13"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb50-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">state_length =</span> <span class="dv">2</span>)</span>
-<span id="cb50-14"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb50-14" aria-hidden="true" tabindex="-1"></a>anim_facet</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb54-1" aria-hidden="true" tabindex="-1"></a>anim_facet <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> ODD_graphique_anime) <span class="sc">+</span></span>
+<span id="cb54-2"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(Gross_Domestic_Product_GDP),</span>
+<span id="cb54-3"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb54-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">log</span>(Maternal_mortality_ratio),</span>
+<span id="cb54-4"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb54-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> Continent)) <span class="sc">+</span></span>
+<span id="cb54-5"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Mortalité maternelle en fonction du PIB par habitant&quot;</span>,</span>
+<span id="cb54-6"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb54-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;En {closest_state}&quot;</span>,</span>
+<span id="cb54-7"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb54-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;PIB&quot;</span>,</span>
+<span id="cb54-8"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb54-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>,</span>
+<span id="cb54-9"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb54-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Source : ODD / ONU</span><span class="sc">\n</span><span class="st"> échelle logarithmique&quot;</span>) <span class="sc">+</span></span>
+<span id="cb54-10"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb54-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="st">&quot;Continent&quot;</span>) <span class="sc">+</span></span>
+<span id="cb54-11"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb54-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_states</span>(<span class="at">states =</span> Year,</span>
+<span id="cb54-12"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb54-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">transition_length =</span> <span class="dv">1</span>,</span>
+<span id="cb54-13"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb54-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">state_length =</span> <span class="dv">2</span>)</span>
+<span id="cb54-14"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb54-14" aria-hidden="true" tabindex="-1"></a>anim_facet</span></code></pre></div>
 <p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/gganim_3-1.gif" /><!-- --></p>
 </div>
 <div id="paramétrer-lanimation" class="section level2" number="14.2">
@@ -357,18 +358,18 @@ Nous allons utiliser la fonction <strong><em>transition_states()</em></strong> d
 - le frame rate
 - la durée</p>
 <p>Ici par exemple, nous paramétrons le rendu pour supprimer la boucle d’animation (<em>loop=FALSE</em>)</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">animate</span>(anim,<span class="at">renderer=</span><span class="fu">gifski_renderer</span>(<span class="at">file =</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">&quot;.gif&quot;</span>), </span>
-<span id="cb51-2"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb51-2" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">loop =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb51-3"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb51-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">width =</span> <span class="cn">NULL</span>,</span>
-<span id="cb51-4"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb51-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">height =</span> <span class="cn">NULL</span>)</span>
-<span id="cb51-5"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb51-5" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">animate</span>(anim, <span class="at">renderer =</span> <span class="fu">gifski_renderer</span>(<span class="at">file =</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">&quot;.gif&quot;</span>),</span>
+<span id="cb55-2"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">loop =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb55-3"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="cn">NULL</span>,</span>
+<span id="cb55-4"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="cn">NULL</span>)</span>
+<span id="cb55-5"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb55-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/gganim_4-1.gif" /><!-- --></p>
 </div>
 <div id="exporter-une-animation" class="section level2" number="14.3">
 <h2><span class="header-section-number">14.3</span> Exporter une animation</h2>
 <p>La fonction <strong><em>anime_save()</em></strong> permet de sauvegarder nos animations sous différent format à définir via le moteur de rendu.
 Par défaut, elle sauvegarde la dernière animation.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anim_save</span>(<span class="st">&quot;figures/ma_super_animation.gif&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anim_save</span>(<span class="st">&quot;figures/ma_super_animation.gif&quot;</span>)</span></code></pre></div>
 </div>
 <div id="exercice-6" class="section level2" number="14.4">
 <h2><span class="header-section-number">14.4</span> Exercice 6</h2>
@@ -392,7 +393,6 @@ Le graphique sera animé par département, uniquement pour ceux de la région Ce
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -432,6 +432,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
