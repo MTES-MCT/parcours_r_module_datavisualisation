@@ -1,6 +1,7 @@
 {
   "R": {
-    "Version": "4.1.2",
+
+    "Version": "4.2.1",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -62,8 +63,20 @@
       "Package": "RColorBrewer",
       "Version": "1.1-2",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Hash": "e031418365a7f7a766181ab5a41a5716"
+    },
+    "RCurl": {
+      "Package": "RCurl",
+      "Version": "1.98-1.9",
+      "Source": "Repository",
+      "Repository": "RSPM"
+    },
+    "RPostgreSQL": {
+      "Package": "RPostgreSQL",
+      "Version": "0.7-4",
+      "Source": "Repository",
+      "Repository": "RSPM"
     },
     "Rcpp": {
       "Package": "Rcpp",
@@ -116,10 +129,9 @@
     },
     "XML": {
       "Package": "XML",
-      "Version": "3.99-0.8",
+      "Version": "3.99-0.12",
       "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "d493b952a9073c62f72392a673d7c548"
+      "Repository": "RSPM"
     },
     "abind": {
       "Package": "abind",
@@ -827,10 +839,9 @@
     },
     "lwgeom": {
       "Package": "lwgeom",
-      "Version": "0.2-8",
+      "Version": "0.2-10",
       "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "68b7afe010f5ddc3d5a5c8113018bb39"
+      "Repository": "RSPM"
     },
     "magrittr": {
       "Package": "magrittr",
