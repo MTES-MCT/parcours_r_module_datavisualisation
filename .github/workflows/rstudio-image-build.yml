@@ -23,4 +23,12 @@ on:
 
 jobs:
   build-rstudio-image:
-    uses: MTES-MCT/parcours-r/.github/workflows/rstudio-image-build.yml@master
+    steps: 
+      - uses: MTES-MCT/parcours-r/.github/workflows/rstudio-image-build.yml@master
+      - name: Reaparation bug lien gganimate
+        run: |
+          download.file(url = "https://raw.githubusercontent.com/MTES-MCT/savoirfR/master/vignettes/mod5_exo6_solution-1.gif", 
+              destfile = "_book/Valorisation-des-données_files/figure-html/mod5_exo6_solution-192-1.gif")
+          download.file(url = "https://raw.githubusercontent.com/MTES-MCT/savoirfR/master/vignettes/mod5_exo6_solution-1.gif", 
+              destfile = "_book/Valorisation-des-données_files/figure-html/mod5_exo6_solution-1.gif")
+        shell: Rscript {0}
