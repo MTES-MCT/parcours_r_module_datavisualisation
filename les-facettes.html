@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapitre 11 Les facettes | Valoriser ses données avec R</title>
   <meta name="description" content="Valorisation des données sous R (module 5)" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapitre 11 Les facettes | Valoriser ses données avec R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Valorisation des données sous R (module 5)" />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Maël Theulière &amp; Murielle Lethrosne" />
 
 
-<meta name="date" content="2023-12-05" />
+<meta name="date" content="2023-12-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="la-mise-en-page-de-plusieurs-graphiques.html"/>
 <link rel="next" href="exporter-un-graphique.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,22 +49,24 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <script src="libs/d3-bundle-5.16.0/d3-bundle.min.js"></script>
 <script src="libs/d3-lasso-0.0.5/d3-lasso.min.js"></script>
 <script src="libs/save-svg-as-png-1.4.17/save-svg-as-png.min.js"></script>
-<link href="libs/ggiraphjs-0.4.1/ggiraphjs.min.css" rel="stylesheet" />
-<script src="libs/ggiraphjs-0.4.1/ggiraphjs.min.js"></script>
-<script src="libs/girafe-binding-0.7.10/girafe.js"></script>
+<script src="libs/flatbush-4.0.0/flatbush.min.js"></script>
+<link href="libs/ggiraphjs-0.4.6/ggiraphjs.min.css" rel="stylesheet" />
+<script src="libs/ggiraphjs-0.4.6/ggiraphjs.min.js"></script>
+<script src="libs/girafe-binding-0.8.7/girafe.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.2.1/leaflet.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -109,7 +109,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -122,7 +122,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -136,6 +136,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -154,7 +158,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Valoriser ses données avec R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#le-parcours-de-formation"><i class="fa fa-check"></i><b>1.1</b> Le parcours de formation</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#le-groupe-de-référents-r-du-pôle-ministériel"><i class="fa fa-check"></i><b>1.2</b> Le groupe de référents R du pôle ministériel</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#objectifs-du-module-5"><i class="fa fa-check"></i><b>1.3</b> Objectifs du module 5</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="une-typologie-des-représentations-graphiques.html"><a href="une-typologie-des-représentations-graphiques.html"><i class="fa fa-check"></i><b>2</b> Une typologie des représentations graphiques</a></li>
 <li class="chapter" data-level="3" data-path="bien-commencer.html"><a href="bien-commencer.html"><i class="fa fa-check"></i><b>3</b> Bien commencer</a>
 <ul>
@@ -287,84 +296,80 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="les-facettes" class="section level1" number="11">
-<h1><span class="header-section-number">Chapitre 11</span> Les facettes</h1>
+<div id="les-facettes" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapitre 11</span> Les facettes<a href="les-facettes.html#les-facettes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Lorsque l’on veut pouvoir réaliser un graphique pour plusieurs sous-ensembles, les facettes sont alors très utiles. On va ici l’illustrer avec la réalisation du même graphique ci-dessus, mais pour plusieurs années différentes.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="les-facettes.html#cb41-1" aria-hidden="true" tabindex="-1"></a>ODD_indicateur311 <span class="sc">%&gt;%</span></span>
-<span id="cb41-2"><a href="les-facettes.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Type_Zone <span class="sc">!=</span> <span class="st">&quot;Pays&quot;</span>,</span>
-<span id="cb41-3"><a href="les-facettes.html#cb41-3" aria-hidden="true" tabindex="-1"></a>    Age_group <span class="sc">==</span> <span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</span>
-<span id="cb41-4"><a href="les-facettes.html#cb41-4" aria-hidden="true" tabindex="-1"></a>    Sex <span class="sc">==</span> <span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</span>
-<span id="cb41-5"><a href="les-facettes.html#cb41-5" aria-hidden="true" tabindex="-1"></a>    Location <span class="sc">==</span> <span class="st">&quot;Total (national level)&quot;</span>,</span>
-<span id="cb41-6"><a href="les-facettes.html#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">is.na</span>(Value_type)</span>
-<span id="cb41-7"><a href="les-facettes.html#cb41-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb41-8"><a href="les-facettes.html#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">2005</span>, <span class="dv">2010</span>, <span class="dv">2015</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb41-9"><a href="les-facettes.html#cb41-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb41-10"><a href="les-facettes.html#cb41-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> Country_or_Area_Name, <span class="at">y =</span> Value, <span class="at">fill =</span> Country_or_Area_Name)) <span class="sc">+</span></span>
-<span id="cb41-11"><a href="les-facettes.html#cb41-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb41-12"><a href="les-facettes.html#cb41-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_ipsum</span>() <span class="sc">+</span></span>
-<span id="cb41-13"><a href="les-facettes.html#cb41-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb41-14"><a href="les-facettes.html#cb41-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Mortalité maternelle sur quelques zones du globe&quot;</span>,</span>
-<span id="cb41-15"><a href="les-facettes.html#cb41-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Années 2000 à 2015&quot;</span>,</span>
-<span id="cb41-16"><a href="les-facettes.html#cb41-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>,</span>
-<span id="cb41-17"><a href="les-facettes.html#cb41-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Zone&quot;</span>,</span>
-<span id="cb41-18"><a href="les-facettes.html#cb41-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Zone&quot;</span></span>
-<span id="cb41-19"><a href="les-facettes.html#cb41-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb41-20"><a href="les-facettes.html#cb41-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
-<span id="cb41-21"><a href="les-facettes.html#cb41-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="st">&quot;Year&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="les-facettes.html#cb43-1" aria-hidden="true" tabindex="-1"></a>ODD_indicateur311 <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="les-facettes.html#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Type_Zone <span class="sc">!=</span> <span class="st">&quot;Pays&quot;</span>,</span>
+<span id="cb43-3"><a href="les-facettes.html#cb43-3" aria-hidden="true" tabindex="-1"></a>    Age_group <span class="sc">==</span> <span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</span>
+<span id="cb43-4"><a href="les-facettes.html#cb43-4" aria-hidden="true" tabindex="-1"></a>    Sex <span class="sc">==</span> <span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</span>
+<span id="cb43-5"><a href="les-facettes.html#cb43-5" aria-hidden="true" tabindex="-1"></a>    Location <span class="sc">==</span> <span class="st">&quot;Total (national level)&quot;</span>,</span>
+<span id="cb43-6"><a href="les-facettes.html#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">is.na</span>(Value_type)</span>
+<span id="cb43-7"><a href="les-facettes.html#cb43-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb43-8"><a href="les-facettes.html#cb43-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">2005</span>, <span class="dv">2010</span>, <span class="dv">2015</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb43-9"><a href="les-facettes.html#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb43-10"><a href="les-facettes.html#cb43-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> Country_or_Area_Name, <span class="at">y =</span> Value, <span class="at">fill =</span> Country_or_Area_Name)) <span class="sc">+</span></span>
+<span id="cb43-11"><a href="les-facettes.html#cb43-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb43-12"><a href="les-facettes.html#cb43-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_ipsum</span>() <span class="sc">+</span></span>
+<span id="cb43-13"><a href="les-facettes.html#cb43-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb43-14"><a href="les-facettes.html#cb43-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Mortalité maternelle sur quelques zones du globe&quot;</span>,</span>
+<span id="cb43-15"><a href="les-facettes.html#cb43-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Années 2000 à 2015&quot;</span>,</span>
+<span id="cb43-16"><a href="les-facettes.html#cb43-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>,</span>
+<span id="cb43-17"><a href="les-facettes.html#cb43-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Zone&quot;</span>,</span>
+<span id="cb43-18"><a href="les-facettes.html#cb43-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Zone&quot;</span></span>
+<span id="cb43-19"><a href="les-facettes.html#cb43-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb43-20"><a href="les-facettes.html#cb43-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-21"><a href="les-facettes.html#cb43-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="st">&quot;Year&quot;</span>)</span></code></pre></div>
 <p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/f7_1-1.png" width="768" /></p>
 <p>Cet exemple “scinde” notre table en fonction d’une seule variable, mais on peut le faire sur plusieurs variables également.</p>
-<p>On peut choisir avec facet_wrap :
-- le nombre de colonnes ou de lignes sur lesquels on veut voir s’afficher le graphique ;
-- si on veut fixer l’échelle de l’un ou l’autre des axes ou les deux.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="les-facettes.html#cb42-1" aria-hidden="true" tabindex="-1"></a>ODD_indicateur311 <span class="sc">%&gt;%</span></span>
-<span id="cb42-2"><a href="les-facettes.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Type_Zone <span class="sc">!=</span> <span class="st">&quot;Pays&quot;</span>,</span>
-<span id="cb42-3"><a href="les-facettes.html#cb42-3" aria-hidden="true" tabindex="-1"></a>    Age_group <span class="sc">==</span> <span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</span>
-<span id="cb42-4"><a href="les-facettes.html#cb42-4" aria-hidden="true" tabindex="-1"></a>    Sex <span class="sc">==</span> <span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</span>
-<span id="cb42-5"><a href="les-facettes.html#cb42-5" aria-hidden="true" tabindex="-1"></a>    Location <span class="sc">==</span> <span class="st">&quot;Total (national level)&quot;</span>,</span>
-<span id="cb42-6"><a href="les-facettes.html#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">is.na</span>(Value_type)</span>
-<span id="cb42-7"><a href="les-facettes.html#cb42-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb42-8"><a href="les-facettes.html#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">2005</span>, <span class="dv">2010</span>, <span class="dv">2015</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb42-9"><a href="les-facettes.html#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb42-10"><a href="les-facettes.html#cb42-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> Country_or_Area_Name, <span class="at">y =</span> Value, <span class="at">fill =</span> Country_or_Area_Name)) <span class="sc">+</span></span>
-<span id="cb42-11"><a href="les-facettes.html#cb42-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb42-12"><a href="les-facettes.html#cb42-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_ipsum</span>() <span class="sc">+</span></span>
-<span id="cb42-13"><a href="les-facettes.html#cb42-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb42-14"><a href="les-facettes.html#cb42-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Mortalité maternelle sur quelques zones du globe&quot;</span>,</span>
-<span id="cb42-15"><a href="les-facettes.html#cb42-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Années 2000 à 2015&quot;</span>,</span>
-<span id="cb42-16"><a href="les-facettes.html#cb42-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>,</span>
-<span id="cb42-17"><a href="les-facettes.html#cb42-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Zone&quot;</span>,</span>
-<span id="cb42-18"><a href="les-facettes.html#cb42-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Zone&quot;</span></span>
-<span id="cb42-19"><a href="les-facettes.html#cb42-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb42-20"><a href="les-facettes.html#cb42-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
-<span id="cb42-21"><a href="les-facettes.html#cb42-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="at">facets =</span> <span class="st">&quot;Year&quot;</span>, <span class="at">ncol =</span> <span class="dv">4</span>)</span></code></pre></div>
-<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/f7_2-1.png" width="1152" /></p>
-<div id="exercice-4" class="section level2" number="11.1">
-<h2><span class="header-section-number">11.1</span> Exercice 4</h2>
-<blockquote>
-<p>A partir de la table rpls_aggrege, réaliser une facette sur un diagramme barre avec :</p>
+<p>On peut choisir avec <code>facet_wrap()</code> :</p>
 <ul>
-<li>en variable discrète les régions</li>
-<li>en variables continues les indicateurs suivants :
-<ul>
-<li>% de logements de 3 et 4 pièces</li>
-<li>% DPE énergie A,B,C</li>
-<li>% DPE GES A,B,C</li>
-<li>% de parc de moins de 5 ans</li>
-</ul></li>
-<li>une façon d’identifier la région Pays de la Loire (code region ‘52’)</li>
+<li><p>le nombre de colonnes ou de lignes sur lesquels on veut voir s’afficher le graphique ;</p></li>
+<li><p>si on veut fixer l’échelle de l’un ou l’autre des axes ou les deux.</p></li>
 </ul>
-</blockquote>
-<p>Pour avoir la liste des modalités dune variable :</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="les-facettes.html#cb44-1" aria-hidden="true" tabindex="-1"></a>ODD_indicateur311 <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="les-facettes.html#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Type_Zone <span class="sc">!=</span> <span class="st">&quot;Pays&quot;</span>,</span>
+<span id="cb44-3"><a href="les-facettes.html#cb44-3" aria-hidden="true" tabindex="-1"></a>         Age_group <span class="sc">==</span> <span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</span>
+<span id="cb44-4"><a href="les-facettes.html#cb44-4" aria-hidden="true" tabindex="-1"></a>         Sex <span class="sc">==</span> <span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</span>
+<span id="cb44-5"><a href="les-facettes.html#cb44-5" aria-hidden="true" tabindex="-1"></a>         Location <span class="sc">==</span> <span class="st">&quot;Total (national level)&quot;</span>,</span>
+<span id="cb44-6"><a href="les-facettes.html#cb44-6" aria-hidden="true" tabindex="-1"></a>         <span class="fu">is.na</span>(Value_type)</span>
+<span id="cb44-7"><a href="les-facettes.html#cb44-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb44-8"><a href="les-facettes.html#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">2005</span>, <span class="dv">2010</span>, <span class="dv">2015</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-9"><a href="les-facettes.html#cb44-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb44-10"><a href="les-facettes.html#cb44-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> Country_or_Area_Name, <span class="at">y =</span> Value, <span class="at">fill =</span> Country_or_Area_Name)) <span class="sc">+</span></span>
+<span id="cb44-11"><a href="les-facettes.html#cb44-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb44-12"><a href="les-facettes.html#cb44-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_ipsum</span>() <span class="sc">+</span></span>
+<span id="cb44-13"><a href="les-facettes.html#cb44-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb44-14"><a href="les-facettes.html#cb44-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Mortalité maternelle sur quelques zones du globe&quot;</span>,</span>
+<span id="cb44-15"><a href="les-facettes.html#cb44-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Années 2000 à 2015&quot;</span>,</span>
+<span id="cb44-16"><a href="les-facettes.html#cb44-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Taux de mortalité de la mère </span><span class="sc">\n</span><span class="st">(pour 100 000 naissances)&quot;</span>,</span>
+<span id="cb44-17"><a href="les-facettes.html#cb44-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Zone&quot;</span>,</span>
+<span id="cb44-18"><a href="les-facettes.html#cb44-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Zone&quot;</span></span>
+<span id="cb44-19"><a href="les-facettes.html#cb44-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb44-20"><a href="les-facettes.html#cb44-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb44-21"><a href="les-facettes.html#cb44-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="at">facets =</span> <span class="st">&quot;Year&quot;</span>, <span class="at">ncol =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/f7_2-1.png" width="1152" /></p>
+<div id="exercice-4" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Exercice 4<a href="les-facettes.html#exercice-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A partir de la table rpls_aggrege, réaliser une facette sur un diagramme barre avec :<br />
+- en variable discrète les régions (axe des x),<br />
+- en variables continues les indicateurs suivants (axe des y, les facettes) :<br />
+- % de logements de 3 et 4 pièces<br />
+- % DPE énergie A, B, C<br />
+- % DPE GES A, B, C<br />
+- % de parc de moins de 5 ans<br />
+- une façon d’identifier la région Pays de la Loire.</p>
+<p>Résultat attendu :</p>
+<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/mod5_exo4_solution,-1.png" width="1152" /></p>
+<p>Astuces : pour avoir la liste des modalités dune variable :</p>
 <ul>
 <li>Variables caractères ou factorielles :</li>
 </ul>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="les-facettes.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(rpls_aggrege<span class="sc">$</span>Indicateur)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="les-facettes.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(rpls_aggrege<span class="sc">$</span>Indicateur)</span></code></pre></div>
 <ul>
 <li>Variables factorielles :</li>
 </ul>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="les-facettes.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(rpls_aggrege<span class="sc">$</span>Indicateur)</span></code></pre></div>
-<p>Résultat attendu</p>
-<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/f7_5-1.png" width="1152" /></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="les-facettes.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(rpls_aggrege<span class="sc">$</span>Indicateur)</span></code></pre></div>
 
 </div>
 </div>

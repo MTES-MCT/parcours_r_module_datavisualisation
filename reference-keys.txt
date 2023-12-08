@@ -1,4 +1,7 @@
 introduction
+le-parcours-de-formation
+le-groupe-de-référents-r-du-pôle-ministériel
+objectifs-du-module-5
 une-typologie-des-représentations-graphiques
 bien-commencer
 créer-un-projet-sous-rstudio-pour-vous-permettre-de-recencer-vos-travaux.
