@@ -16,9 +16,11 @@ biblio-style: apalike
 
 ```{r setup, echo=F,eval=T,include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE)
+options(knitr.duplicate.label = "allow")
 library(ggplot2)
 theme_set(theme_gray())
 library(gifski)
+library(savoirfR)
 ```
 
 
@@ -27,6 +29,26 @@ library(gifski)
 <font size="2"> 
 *Crédit photographique Sébastien Colas*
 </font> 
+
+## Le parcours de formation
+
+```{r collecte prez parcours, results='asis', warning=FALSE, echo=FALSE}
+# Utilisation du chapitre de présentation du parcours présent dans https://github.com/MTES-MCT/parcours-r
+cat(stringi::stri_read_lines("https://raw.githubusercontent.com/MTES-MCT/parcours-r/master/parties_communes/le_parcours_R.Rmd", encoding = "UTF-8"), sep = "\n")
+```
+
+
+## Le groupe de référents R du pôle ministériel
+
+```{r collecte prez ref, warning=FALSE, echo=FALSE, results='asis'}
+# Utilisation du chapitre de présentation des référents présent dans https://github.com/MTES-MCT/parcours-r
+a <- knitr::knit_child(text = stringi::stri_read_lines("https://raw.githubusercontent.com/MTES-MCT/parcours-r/master/parties_communes/les_referents_R.Rmd", encoding = "UTF-8"), quiet = TRUE)
+cat(a, sep = '\n')
+```
+
+
+## Objectifs du module 5
+
 
 Ce module va vous permettre de découvrir un ensemble de méthodes sous R afin de produire : 
 
@@ -55,3 +77,17 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown', 'ggplot2'
 ), 'packages.bib')
 ```
+
+```{r recup dataset depuis savoirfR, message=FALSE, include=FALSE, warning=FALSE}
+library(dplyr)
+# récupération des jeux de données de savoir faire
+datasets_m5 <- read.csv2(system.file("extdata", "list_data_module.csv", package = "savoirfR")) %>% 
+  filter(module == "m5") %>% 
+  pull(file)
+dir.create("extdata/")
+file.copy(from = system.file("extdata", datasets_m5, package = "savoirfR"), 
+          to = paste0("extdata/", datasets_m5), overwrite = TRUE)
+
+```
+
+

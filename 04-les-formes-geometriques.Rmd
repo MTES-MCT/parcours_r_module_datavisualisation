@@ -2,8 +2,8 @@
 
 Pour spécifier le type de représentation que l'on souhaite, il faut utiliser les fonctions de la forme **geom_XX**
 
-Le tableau ci-dessous présente quelques représentations graphiques classiques.
-Il en existe un grand nombre que l'on peut retrouver grâce à l'aide
+Le tableau ci-dessous présente quelques représentations graphiques classiques. 
+Il en existe un grand nombre que l'on peut retrouver grâce à l'aide. 
 
 ```{r fg4_1, echo=T,eval=F,warning = FALSE,message = FALSE}
 help.search("^geom_", package = "ggplot2")
@@ -18,6 +18,10 @@ geom_col() |  Diagramme en barres  	| x, y, fill, color, alpha, linetype, size
 geom_histogram() |	Histogramme 	| x, fill, linetype, color, alpha, size, weight
 geom_boxplot() 	| Boîte à moustaches 	| x, alpha, colour, fill, group, linetype, shape, size, weight
 geom_density() 	| Courbe de densité |	x, y, alpha, color, fill, linetype, size, weight
+
+La feuille de triche de `{ggplot2}` peut aider aussi à avoir une idée du geom qu'on cherche. 
+
+![Feuille de triche ggplot2](images/cheat_sheet_ggplot2.png "Accéder à la feuille de triche ggplot2 depuis RStudio"){#id .class width=716}
 
 Il y a deux types de diagramme en barres : `geom_bar()` et `geom_col()`.   
 `geom_bar()` ne prend pas de variable `y` dans le mapping, la hauteur des barres est proportionnelle à l'occurrence de chaque modalité de `x`. On peut pondérer chaque occurrence de `x` par une autre variable à indiquer au niveau du paramètre `weight`.  

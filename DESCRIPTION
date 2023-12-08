@@ -1,8 +1,48 @@
-Package: Parcours-R
+Package: parcours_r_module_datavisualisation
 Type: Book
-Title: Formations à R
+Title: Formations R du MTES - Module 5 Datavisualisation
 Version: 0.1.0
+Authors@R: c(
+    person("Juliette", "Engelaere-Lefebvre", , "juliette.engelaere@developpement-durable.gouv.fr", role = c("aut", "cre")),
+    person("Murielle", "Delmotte", , "murielle@thinkr.fr", role = "aut", comment = c(ORCID = "0000-0002-1339-2424")),    
+    person("Mael", "Theuliere", , "mael.theuliere@gmail.com", role = "aut")
+  )
+Description: Valise pedagogique pour la formation a R au Ministere de la transition ecologique, 5e module sur la datavisualisation.
+License: LICENCE OUVERTE/ OPEN LICENCE Version 2.0
 URL: https://github.com/MTES-MCT/parcours_r_module_datavisualisation
-Imports: rmarkdown, htmltools, tidyverse, cartography, sf, GGally, dplyr, plotly, bookdown, RcppRoll, DT, RPostgreSQL, rsdmx, XML, lsr, ggmosaic, visNetwork, FactoMineR, factoextra, ggExtra, kableExtra, hrbrthemes, tmap, highcharter, gganimate, svglite, cowplot, gifski, docopt, webshot, ggspatial
-License: MIT
-Description: Valise pédagogique pour la formation à R
+Imports: 
+  apexcharter,
+  bookdown, 
+  COGiter,
+  cowplot,
+  dplyr,
+  forcats,
+  gganimate,
+  ggiraph,
+  ggplot2,
+  ggspatial,
+  gifski,
+  glue,
+  gouvdown,
+  gouvdown.fonts,
+  highcharter,
+  hrbrthemes,
+  htmltools,
+  htmlwidgets,
+  kableExtra,
+  knitr,
+  leaflet,
+  purrr,
+  rmarkdown,
+  scales,
+  savoirfR,
+  sf,
+  webshot
+Remotes: 
+    MaelTheuliere/COGiter,
+    MTES-MCT/savoirfR,
+    spyrales/gouvdown,
+    spyrales/gouvdown.fonts,
+    git::https://gitlab-forge.din.developpement-durable.gouv.fr/dreal-pdl/csd/mapfactory.git@main
+
+

@@ -8,22 +8,27 @@ Une fonction géométrique de ggplot2 permet l'utilisation de données géomatiq
 
 L'exemple suivant est une carte choroplèthe.
 
-```{r cart_1, echo=T,eval=T,fig.height=5,fig.width=12, cache=TRUE}
+```{r cart_1, echo=TRUE, eval=TRUE, fig.height=5, fig.width=12, cache=TRUE}
+
 data("World")
 
 tt <- World %>%
   rename(Country_or_Area_Code = iso_a3) %>%
-  inner_join(ODD_indicateur311 %>%
-    filter(Age_group == "All age ranges or no breakdown by age",
-      Sex == "Both sexes or no breakdown by sex",
-      Type_Zone == "Pays",
-      is.na(Value_type)) %>%
-    group_by(Country_or_Area_Code) %>%
-    filter(!is.na(Value)) %>%
-    filter(Year == max(Year)))
+  inner_join(
+    ODD_indicateur311 %>%
+      filter(Age_group == "All age ranges or no breakdown by age",
+             Sex == "Both sexes or no breakdown by sex",
+             Type_Zone == "Pays",
+             is.na(Value_type)) %>%
+      group_by(Country_or_Area_Code) %>%
+      filter(!is.na(Value)) %>%
+      filter(Year == max(Year)),
+    by = "Country_or_Area_Code")
 
 ggplot(data = tt) +
-  geom_sf(aes(fill = Value))
+  geom_sf(aes(fill = Value)) +
+  theme_gouv_map() + 
+  scale_fill_gouv_continuous(palette = "pal_gouv_h", reverse = TRUE)
 ```
 
 ## Les cartes à ronds proportionnels
@@ -31,7 +36,7 @@ ggplot(data = tt) +
 La fonction ***stat_sf_coordinates()*** permet d'extraire les coordonnées d'un objet 'sf'.
 Ainsi un rond proportionnel peut être attribué à un polygone.
 
-```{r cart_3, echo=T,eval=T,fig.height=5,fig.width=12, cache=TRUE}
+```{r cart_3, echo=TRUE, eval=TRUE, fig.height=5, fig.width=12, cache=TRUE}
 data("World")
 
 tt <- World %>%
@@ -46,10 +51,10 @@ tt <- World %>%
     filter(Year == max(Year)))
 
 ggplot(data = tt) +
-  geom_sf(fill = "grey97") +
+  geom_sf(fill = gouv_colors("r5")) +
+  theme_gouv_map() + 
   stat_sf_coordinates(aes(size = Value, fill = Value), color = "black", shape = 21) +
-  scale_fill_gradient2(name = "Valeur",
-    low = "darkblue", mid = "white", high = "darkred") +
+  scale_fill_gradient(name = "Valeur", low =  "white", high = gouv_colors("i1")) +
   scale_size_area(name = "Valeur", max_size = 10)
 ```
 
@@ -158,20 +163,9 @@ ggplot(data = tt %>% filter(continent == "Africa")) +
 
 ## Exercice 5 
 
-> Produire une carte du Loiret à l'EPCI du taux de logements collectifs dans le parc locatif social.
+```{r mod5_exo5, child=charge_exo('m5', 'exo5.rmd'), echo=FALSE}
 
-Résultat attendu
-
-```{r cart_7,eval=T,echo=F,message=F,warning=F}
-tt <- Carte_EPCI_France %>%
-  filter(CODE_DEPT == "45") %>%
-  left_join(rpls_aggrege) %>%
-  filter(Indicateur == "Logements collectifs_pourcent")
-ggplot(data = tt) +
-  geom_sf(aes(geometry = geometry, fill = Valeur)) +
-  labs(title = "Taux de logements collectifs par EPCI", subtitle = "Département du Loiret") +
-  theme(
-    axis.text.x = element_blank(),
-    axis.text.y = element_blank(),
-    axis.ticks = element_blank())
 ```
+
+
+Note : A partir du fond de carte `Carte_EPCI_FRANCE`.
