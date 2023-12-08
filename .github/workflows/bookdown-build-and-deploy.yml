@@ -8,8 +8,6 @@ on:
 
   workflow_dispatch:
 
-name: build-and-deploy-bookdown
-
 jobs:
   build-and-deploy-bookdown:
     Build and bookdown:
