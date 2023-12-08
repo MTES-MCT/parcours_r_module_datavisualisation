@@ -49,7 +49,7 @@ levels(rpls_aggrege$Indicateur)
 
 ## Exercice 6
 
-```{r mod5_exo6_cor, child=charge_exo('m5', 'exo6.rmd'), echo=TRUE, eval=FALSE}
+```{r mod5_exo6_cor, child=charge_exo('m5', 'exo6.rmd'), echo=TRUE}
 
 ```
 

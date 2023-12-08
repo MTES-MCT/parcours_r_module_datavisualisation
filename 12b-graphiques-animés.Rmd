@@ -105,7 +105,7 @@ anim_save("figures/ma_super_animation.gif")
 
 ## Exercice 6
 
-```{r mod5_exo6, child=charge_exo('m5', 'exo6.rmd'), echo=FALSE,eval=FALSE}
+```{r mod5_exo6, child=charge_exo('m5', 'exo6.rmd'), echo=FALSE}
 
 ```
 
