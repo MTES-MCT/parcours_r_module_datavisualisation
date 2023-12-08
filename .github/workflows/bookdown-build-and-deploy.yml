@@ -12,4 +12,11 @@ jobs:
     name: Build and bookdown
     uses: MTES-MCT/parcours-r/.github/workflows/bookdown-build-and-deploy.yml@master
     with:
-            r_version: '4.2.2'
+      r_version: '4.2.2'
+  reparation_lien_gg_animate:    
+    runs-on: ubuntu-latest
+    steps:
+    - name: Reaparation bug lien gganimate
+        run:|
+          curl -o _book/Valorisation-des-données_files/figure-html/mod5_exo6_solution-192-1.gif https://raw.githubusercontent.com/MTES-MCT/savoirfR/master/vignettes/mod5_exo6_solution-1.gif
+          curl -o _book/Valorisation-des-données_files/figure-html/mod5_exo6_solution-1.gif https://raw.githubusercontent.com/MTES-MCT/savoirfR/master/vignettes/mod5_exo6_solution-1.gif
