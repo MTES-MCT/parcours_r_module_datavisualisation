@@ -8,7 +8,7 @@
 
 Ce package rajoute des fonctionnalités à `ggplot2` comme par exemple [geom_bar_interactive()](https://davidgohel.github.io/ggiraph/reference/geom_bar_interactive.html),`geom_line_interactive()`, `geom_point_interactive()`, ... 
 
-Il existe 3 types d'ajout:
+Il existe 3 types d'ajout :
 
 - `tooltip`: l'information à afficher dans les infobulles au survol de la souris
 - `data_id`: l'identifiant à associer à l'élément (utilisé pour les actions de survol et de clic)
@@ -25,27 +25,27 @@ Voici un exemple de diagramme barre sur les données de mortalités.
 
 gg <- ODD_indicateur311 %>%
   filter(Type_Zone != "Pays",
-    Age_group == "All age ranges or no breakdown by age",
-    Sex == "Both sexes or no breakdown by sex",
-    Location == "Total (national level)",
-    is.na(Value_type)
+         Age_group == "All age ranges or no breakdown by age",
+         Sex == "Both sexes or no breakdown by sex",
+         Location == "Total (national level)",
+         is.na(Value_type)
   ) %>%
   filter(Year %in% c(2015)) %>%
   ggplot() +
   geom_col_interactive(aes(x = Country_or_Area_Name,
-    y = Value,
-    fill = Country_or_Area_Name,
-    tooltip = paste(Value, "décès pour 100 000 naissances"))) +
+                           y = Value,
+                           fill = Country_or_Area_Name,
+                           tooltip = paste(Value, "décès pour 100 000 naissances"))) +
   theme(legend.position = "none",
-    title = element_text(size = 8),
-    axis.text = element_text(size = 7)) +
+        title = element_text(size = 8),
+        axis.text = element_text(size = 7)) +
   scale_fill_ipsum() +
   coord_flip() +
   labs(title = "Mortalité maternelle sur quelques zones du globe",
-    subtitle = "En 2015",
-    y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
-    x = "Zone",
-    fill = "Zone"
+       subtitle = "En 2015",
+       y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
+       x = "Zone",
+       fill = "Zone"
   )
 
 girafe(ggobj = gg, height_svg = 3)
@@ -62,18 +62,18 @@ gg <- ggplot(data = ODD_graphique2) +
   geom_line(aes(x = Year, y = Value)) +
   geom_point(aes(x = Year, y = Value)) +
   geom_point_interactive(aes(x = Year, y = Value,
-    tooltip = paste(Year, "\n", Value, "décès pour 100 000 naissances"))) +
+                             tooltip = paste(Year, "\n", Value, "décès pour 100 000 naissances"))) +
   labs(title = "Mortalité maternelle sur quelques zones du globe",
-    subtitle = "En 2015",
-    y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
-    x = "Zone",
-    fill = "Zone"
+       subtitle = "En 2015",
+       y = "Taux de mortalité de la mère \n(pour 100 000 naissances)",
+       x = "Zone",
+       fill = "Zone"
   ) +
   theme_minimal()
 
 girafe(ggobj = gg, height_svg = 3,
-  options = list(
-    opts_tooltip(css = "background-color:gray;font-style:italic;border-radius:5px;padding:5px;")))
+       options = list(
+         opts_tooltip(css = "background-color:gray;font-style:italic;border-radius:5px;padding:5px;")))
 ```
 
 Les éléments associés à `data_id` sont animés au survol de la souris. Ces animations sont configurées par les options suivantes:
@@ -252,30 +252,8 @@ saveWidget(widget = carte_rond_proportionnel, file = "Taux de décès des mères
 ```
 
 
-
 ## Exercice 7
 
+```{r mod5_exo7, child=charge_exo('m5', 'exo7.rmd'), echo=FALSE}
 
-Reprendre le nuage de point obtenu à partir des données ODD : taux de mortalité maternelle (Maternal_mortality_ratio) en fonction du produit intérieur brut (Gross_Domestic_Product_GDP) (Chapitre 9)
-
-Obtenir ce graphique pour le web avec des infos bulles regroupant le nom du continent, de la zone, le PIB et le taux de mortalité maternelle.
-Paramétrer la surbrillance du continent au survol d'élément.
-
-Le résultat attendu : 
-
-```{r eval=T,message=F,warning=F,echo=FALSE}
-
-gg <- ggplot(ODD_graphique1) +
-  geom_point_interactive(aes(x = log(Gross_Domestic_Product_GDP),
-    y = log(Maternal_mortality_ratio),
-    color = Continent,
-    data_id = Continent,
-    tooltip = paste(Continent, "\n", Parent_Zone_libelle,
-      "\nPIB de", round(Gross_Domestic_Product_GDP, 1),
-      "\nun taux de mortalié maternelle de", Maternal_mortality_ratio,
-      "(pour 100 000 naissances)"))) +
-  scale_color_brewer(type = "qual")
-
-girafe(ggobj = gg, height_svg = 3, options = list(opts_hover(css = "fill:darkblue;")))
 ```
-

@@ -83,7 +83,7 @@ panel.background, panel.border, panel.grid.major, panel.grid.minor,...
 
 ## Quelques exemples 
 
-```{r fg7_0, echo=T,eval=T,fig.height=5,fig.width=10}
+```{r fg7_0, echo=TRUE,eval=TRUE,fig.height=5,fig.width=10}
 gg <- ggplot(ODD_graphique1) +
   geom_point(aes(x = log(Gross_Domestic_Product_GDP),
     y = log(Maternal_mortality_ratio),
@@ -104,14 +104,14 @@ gg +
 
 - Changer l'apparence du quadrillage ***panel_background***
 
-```{r fg7_2, echo=T,eval=T,fig.height=5,fig.width=10}
+```{r fg7_2, echo=TRUE,eval=TRUE,fig.height=5,fig.width=10}
 gg +
   theme(panel.grid.major = element_line(colour = "gray", size = 0.5, linetype = "dashed"))
 ```
 
 - Changer l'apparence des étiquettes des axes ***axis_xxx()***
 
-```{r fg7_3, echo=T,eval=T,fig.height=5,fig.width=10}
+```{r fg7_3, echo=TRUE,eval=TRUE,fig.height=5,fig.width=10}
 gg +
   theme(axis.text.x = element_text(colour = "blue", angle = 45),
     axis.title = element_text(face = "bold", colour = "orange"))
@@ -120,7 +120,7 @@ gg +
 Certains changements de paramètres ne nécessitent pas l'utilisation de fonction ***element_()*** .
 Par exemple, pour changer la position de la légende ***legend.xxx()***
 
-```{r fg7_4, echo=T,eval=T,fig.height=5,fig.width=10}
+```{r fg7_4, echo=TRUE,eval=TRUE,fig.height=5,fig.width=10}
 gg +
   theme(legend.position = "left", legend.title = element_blank())
 ```
@@ -129,7 +129,7 @@ gg +
 
 La fonction `theme_set()` vous permet de définir un thème par défaut pour l'ensemble de vos graphiques.
 
-```{r fg7_5, echo=T,eval=T,fig.height=5,fig.width=10}
+```{r fg7_5, echo=TRUE,eval=TRUE,fig.height=5,fig.width=10}
 theme_set(theme_dark())
 # Le theme_dark() sera appliqué à tous les graphiques à partir de maintenant
 
@@ -213,36 +213,12 @@ ggplot(ODD_graphique1) +
 
 NB: Pour les cartes, [theme_gouv_map()](https://spyrales.github.io/gouvdown/reference/theme_gouv_map.html) sera privilégié.
 
+Le thème ne joue pas sur la palette de couleurs employée par défaut, RDV au chapitre suivant. 
+
 ## Exercice 2
 
-> A partir des données de la table graphique 1 ('ODD_graphique1'), reprendre le nuage de point obtenu à partir des données ODD : taux de mortalité maternelle (Maternal_mortality_ratio) en fonction du produit intérieur brut (Gross_Domestic_Product_GDP) (Chapitre 7.1)
-> 
-> En modifier le thème:
-> 
-> - Insérer un titre de couleur, en gras, centré par rapport au graphe.
-> - Indiquer la source (ODD) et modifier sa taille
-> - Changer les titres des axes et leurs tailles.
-> - modifier la couleur de fond du graphe
-> - modifier le type de gadrillage (pointillés)
-
-Le résultat attendu
-
-```{r  fg7_7, eval=T,echo=F,message=F,warning=F}
-ggplot(ODD_graphique1) +
-  geom_point(aes(x = log(Gross_Domestic_Product_GDP),
-    y = log(Maternal_mortality_ratio),
-    color = Continent)) +
-  labs(title = "Croisement du PIB avec le taux de mortalité maternelle", y = "Taux de mortalité maternelle", x = "Produit Intérieur Brut", caption = "Source: ODD") +
-  theme(legend.position = "bottom",
-    plot.title = element_text(size = 15,
-      face = "bold",
-      color = "blue",
-      hjust = 0.5),
-    plot.caption = element_text(size = 15),
-    axis.title.x = element_text(size = 15),
-    axis.title.y = element_text(size = 15),
-    panel.background = element_rect(fill = "lightblue", colour = "lightblue", size = 0.5),
-    panel.grid.major = element_line(size = 0.5, linetype = "dotted"),
-    panel.grid.minor = element_line(size = 0.5, linetype = "dotted"))
+```{r mod5_exo2, child=charge_exo('m5', 'exo2.rmd'), echo=FALSE}
 
 ```
+
+
