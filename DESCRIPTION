@@ -36,7 +36,8 @@ Imports:
   rmarkdown,
   scales,
   savoirfR,
-  sf
+  sf,
+  webshot
 Remotes: 
     MaelTheuliere/COGiter,
     MTES-MCT/savoirfR,

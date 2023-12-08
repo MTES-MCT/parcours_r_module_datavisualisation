@@ -16,6 +16,7 @@ biblio-style: apalike
 
 ```{r setup, echo=F,eval=T,include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE)
+options(knitr.duplicate.label = "allow")
 library(ggplot2)
 theme_set(theme_gray())
 library(gifski)
