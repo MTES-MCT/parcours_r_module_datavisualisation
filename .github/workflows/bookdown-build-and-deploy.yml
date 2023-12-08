@@ -17,6 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Reaparation bug lien gganimate
-        run:|
+      run: |
           curl -o _book/Valorisation-des-données_files/figure-html/mod5_exo6_solution-192-1.gif https://raw.githubusercontent.com/MTES-MCT/savoirfR/master/vignettes/mod5_exo6_solution-1.gif
           curl -o _book/Valorisation-des-données_files/figure-html/mod5_exo6_solution-1.gif https://raw.githubusercontent.com/MTES-MCT/savoirfR/master/vignettes/mod5_exo6_solution-1.gif
