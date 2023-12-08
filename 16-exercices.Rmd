@@ -53,6 +53,8 @@ levels(rpls_aggrege$Indicateur)
 
 ```
 
+![](https://raw.githubusercontent.com/MTES-MCT/savoirfR/master/vignettes/mod5_exo6_solution-1.gif)
+
 
 ## Exercice 7
 
