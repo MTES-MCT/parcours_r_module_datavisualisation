@@ -12,17 +12,17 @@ name: build-and-deploy-bookdown
 
 jobs:
   build-and-deploy-bookdown:
-    name: Build and bookdown
-    steps: 
-      - uses: MTES-MCT/parcours-r/.github/workflows/bookdown-build-from-desc-and-deploy.yml@master
-        with:
-          r_version: '4.2.2'
+    Build and bookdown:
+      steps: 
+        - uses: MTES-MCT/parcours-r/.github/workflows/bookdown-build-from-desc-and-deploy.yml@master
+          with:
+            r_version: '4.2.2'
           
-      - name: Reaparation bug lien gganimate
-        run: |
-          download.file(url = "https://raw.githubusercontent.com/MTES-MCT/savoirfR/master/vignettes/mod5_exo6_solution-1.gif", 
-              destfile = "_book/Valorisation-des-données_files/figure-html/mod5_exo6_solution-192-1.gif")
-          # attention le numero 192 peut changer
-          download.file(url = "https://raw.githubusercontent.com/MTES-MCT/savoirfR/master/vignettes/mod5_exo6_solution-1.gif", 
-              destfile = "_book/Valorisation-des-données_files/figure-html/mod5_exo6_solution-1.gif")
-        shell: Rscript {0}
+        - name: Reaparation bug lien gganimate
+          run: |
+            download.file(url = "https://raw.githubusercontent.com/MTES-MCT/savoirfR/master/vignettes/mod5_exo6_solution-1.gif", 
+                destfile = "_book/Valorisation-des-données_files/figure-html/mod5_exo6_solution-192-1.gif")
+            # attention le numero 192 peut changer
+            download.file(url = "https://raw.githubusercontent.com/MTES-MCT/savoirfR/master/vignettes/mod5_exo6_solution-1.gif", 
+                destfile = "_book/Valorisation-des-données_files/figure-html/mod5_exo6_solution-1.gif")
+          shell: Rscript {0}
