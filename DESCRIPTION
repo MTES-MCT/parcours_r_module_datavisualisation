@@ -37,7 +37,7 @@ Imports:
   scales,
   savoirfR,
   sf,
-  webshot
+  webshot2
 Remotes: 
     MaelTheuliere/COGiter,
     MTES-MCT/savoirfR,
