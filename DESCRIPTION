@@ -37,6 +37,7 @@ Imports:
   scales,
   savoirfR,
   sf,
+  viridis,
   webshot2
 Remotes: 
     MaelTheuliere/COGiter,

@@ -98,14 +98,15 @@ tm_shape(tt %>% filter(Year == 2015)) +
 
 #### Gestion des palettes
 
-La fonction *tmaptools::palette_explorer()* permet d'accéder à une interface très simple de définition d'une palette de couleurs à partir des palettes *brewer*.
+On peut utiliser le package 'cols4all' pour définir les palettes à utiliser au niveau du paramètre `fill.scale` :  https://cols4all.github.io/cols4all-R/reference/c4a_palettes.html.  
+Ici un exemple qui mobilise la palette orange à rouge de la série 'brewer'. 
 
 ```{r cart_13, echo=T,eval=T,fig.height=5,fig.width=8}
 tm_shape(tt %>% filter(Year == 2015)) +
-  tm_polygons("Value", palette = get_brewer_pal("OrRd", n = 5, contrast = c(0.2, 1)))
+  tm_polygons("Value", fill.scale = tm_scale(values = "brewer.or_rd"))
 ```
 
-On peut également utiliser n'importe quelle palette. Par exemple, la palette viridis, mais sans l'interface proposée par palette_explorer() : 
+On peut également utiliser n'importe quelle palette prédéfinie. Par exemple, la palette viridis : 
 
 ```{r cart_14, echo=T,eval=T,fig.height=5,fig.width=8}
 tm_shape(tt %>% filter(Year == 2015)) +

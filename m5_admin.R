@@ -1,4 +1,4 @@
-# Commande pour générer à la main le book du module 5
+# fonction pour générer book pdf du module 5 depuis le SSP Cloud
 
 bookdown::render_book("index.Rmd", "bookdown::gitbook")
 
@@ -33,7 +33,7 @@ creer_pdf_book_ssp <- function (chemin_book = "_book/", nom_pdf = "book_complet.
 }
 
 # Commande pour générer un support pdf du module 5
-creer_pdf_book_ssp(
+propre.rpls::creer_pdf_book(
   chemin_book = "_book/", nom_pdf = "M5_dataviz.pdf",
   pages_html = c(
     "index.html",
