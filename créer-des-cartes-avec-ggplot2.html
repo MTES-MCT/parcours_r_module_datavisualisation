@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapitre 13 Créer des cartes avec ggplot2 | Valoriser ses données avec R</title>
   <meta name="description" content="Valorisation des données sous R (module 5)" />
-  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapitre 13 Créer des cartes avec ggplot2 | Valoriser ses données avec R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Maël Theulière &amp; Murielle Lethrosne" />
 
 
-<meta name="date" content="2024-11-29" />
+<meta name="date" content="2026-06-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,27 +52,27 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="libs/d3-bundle-5.16.0/d3-bundle.min.js"></script>
-<script src="libs/d3-lasso-0.0.5/d3-lasso.min.js"></script>
-<script src="libs/save-svg-as-png-1.4.17/save-svg-as-png.min.js"></script>
-<script src="libs/flatbush-4.4.0/flatbush.min.js"></script>
-<link href="libs/ggiraphjs-0.8.10/ggiraphjs.min.css" rel="stylesheet" />
-<script src="libs/ggiraphjs-0.8.10/ggiraphjs.min.js"></script>
-<script src="libs/girafe-binding-0.8.11/girafe.js"></script>
+<link href="libs/ggiraphjs-0.9.4/girafe.css" rel="stylesheet" />
+<script src="libs/ggiraphjs-0.9.4/girafe.js"></script>
+<script src="libs/girafe-binding-0.9.6/girafe.js"></script>
+<link href="libs/liberation-sans-0.5.1/css/liberation-sans.css" rel="stylesheet" />
+<link href="libs/liberation-serif-0.5.1/css/liberation-serif.css" rel="stylesheet" />
+<link href="libs/liberation-mono-0.5.1/css/liberation-mono.css" rel="stylesheet" />
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -162,37 +162,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#le-parcours-de-formation"><i class="fa fa-check"></i><b>1.1</b> Le parcours de formation</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#le-groupe-de-référents-r-du-pôle-ministériel"><i class="fa fa-check"></i><b>1.2</b> Le groupe de référents R du pôle ministériel</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#le-groupe-de-r%C3%A9f%C3%A9rents-r-du-p%C3%B4le-minist%C3%A9riel"><i class="fa fa-check"></i><b>1.2</b> Le groupe de référents R du pôle ministériel</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#objectifs-du-module-5"><i class="fa fa-check"></i><b>1.3</b> Objectifs du module 5</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="une-typologie-des-représentations-graphiques.html"><a href="une-typologie-des-représentations-graphiques.html"><i class="fa fa-check"></i><b>2</b> Une typologie des représentations graphiques</a></li>
 <li class="chapter" data-level="3" data-path="bien-commencer.html"><a href="bien-commencer.html"><i class="fa fa-check"></i><b>3</b> Bien commencer</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="bien-commencer.html"><a href="bien-commencer.html#créer-un-projet-sous-rstudio-pour-vous-permettre-de-recencer-vos-travaux."><i class="fa fa-check"></i><b>3.1</b> Créer un projet sous Rstudio pour vous permettre de recencer vos travaux.</a></li>
-<li class="chapter" data-level="3.2" data-path="bien-commencer.html"><a href="bien-commencer.html#intégrer-vos-données"><i class="fa fa-check"></i><b>3.2</b> Intégrer vos données</a></li>
-<li class="chapter" data-level="3.3" data-path="bien-commencer.html"><a href="bien-commencer.html#créer-votre-arborescence-de-projet"><i class="fa fa-check"></i><b>3.3</b> Créer votre arborescence de projet</a></li>
+<li class="chapter" data-level="3.1" data-path="bien-commencer.html"><a href="bien-commencer.html#cr%C3%A9er-un-projet-sous-rstudio-pour-vous-permettre-de-recencer-vos-travaux."><i class="fa fa-check"></i><b>3.1</b> Créer un projet sous Rstudio pour vous permettre de recencer vos travaux.</a></li>
+<li class="chapter" data-level="3.2" data-path="bien-commencer.html"><a href="bien-commencer.html#int%C3%A9grer-vos-donn%C3%A9es"><i class="fa fa-check"></i><b>3.2</b> Intégrer vos données</a></li>
+<li class="chapter" data-level="3.3" data-path="bien-commencer.html"><a href="bien-commencer.html#cr%C3%A9er-votre-arborescence-de-projet"><i class="fa fa-check"></i><b>3.3</b> Créer votre arborescence de projet</a></li>
 <li class="chapter" data-level="3.4" data-path="bien-commencer.html"><a href="bien-commencer.html#utilisation-du-package-savoirfr"><i class="fa fa-check"></i><b>3.4</b> Utilisation du package savoirfR</a></li>
-<li class="chapter" data-level="3.5" data-path="bien-commencer.html"><a href="bien-commencer.html#activer-les-packages-nécessaires"><i class="fa fa-check"></i><b>3.5</b> Activer les packages nécessaires</a></li>
+<li class="chapter" data-level="3.5" data-path="bien-commencer.html"><a href="bien-commencer.html#activer-les-packages-n%C3%A9cessaires"><i class="fa fa-check"></i><b>3.5</b> Activer les packages nécessaires</a></li>
 <li class="chapter" data-level="3.6" data-path="bien-commencer.html"><a href="bien-commencer.html#bien-structurer-ses-projets-data"><i class="fa fa-check"></i><b>3.6</b> Bien structurer ses projets data</a></li>
 </ul></li>
 <li class="part"><span><b>I Créer des graphiques sous R avec ggplot 2</b></span></li>
 <li class="chapter" data-level="4" data-path="package-ggplot2.html"><a href="package-ggplot2.html"><i class="fa fa-check"></i><b>4</b> Package ggplot2</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="package-ggplot2.html"><a href="package-ggplot2.html#présentation-de-ggplot2"><i class="fa fa-check"></i><b>4.1</b> Présentation de ggplot2</a></li>
+<li class="chapter" data-level="4.1" data-path="package-ggplot2.html"><a href="package-ggplot2.html#pr%C3%A9sentation-de-ggplot2"><i class="fa fa-check"></i><b>4.1</b> Présentation de ggplot2</a></li>
 <li class="chapter" data-level="4.2" data-path="package-ggplot2.html"><a href="package-ggplot2.html#le-tidyverse"><i class="fa fa-check"></i><b>4.2</b> Le Tidyverse</a></li>
 <li class="chapter" data-level="4.3" data-path="package-ggplot2.html"><a href="package-ggplot2.html#les-concepts-clefs"><i class="fa fa-check"></i><b>4.3</b> Les concepts clefs</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="le-mapping.html"><a href="le-mapping.html"><i class="fa fa-check"></i><b>5</b> Le mapping</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="le-mapping.html"><a href="le-mapping.html#les-paramètres-du-mapping"><i class="fa fa-check"></i><b>5.1</b> Les paramètres du mapping</a></li>
-<li class="chapter" data-level="5.2" data-path="le-mapping.html"><a href="le-mapping.html#les-autres-paramètres"><i class="fa fa-check"></i><b>5.2</b> Les “autres” paramètres</a></li>
+<li class="chapter" data-level="5.1" data-path="le-mapping.html"><a href="le-mapping.html#les-param%C3%A8tres-du-mapping"><i class="fa fa-check"></i><b>5.1</b> Les paramètres du mapping</a></li>
+<li class="chapter" data-level="5.2" data-path="le-mapping.html"><a href="le-mapping.html#les-autres-param%C3%A8tres"><i class="fa fa-check"></i><b>5.2</b> Les “autres” paramètres</a></li>
 <li class="chapter" data-level="5.3" data-path="le-mapping.html"><a href="le-mapping.html#exercice-1"><i class="fa fa-check"></i><b>5.3</b> Exercice 1</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="les-formes-géométriques.html"><a href="les-formes-géométriques.html"><i class="fa fa-check"></i><b>6</b> Les formes géométriques</a></li>
 <li class="chapter" data-level="7" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html"><i class="fa fa-check"></i><b>7</b> L’habillage simple</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html#titre-et-libellé-des-axes"><i class="fa fa-check"></i><b>7.1</b> Titre et libellé des axes</a></li>
-<li class="chapter" data-level="7.2" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html#légende"><i class="fa fa-check"></i><b>7.2</b> Légende</a></li>
+<li class="chapter" data-level="7.1" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html#titre-et-libell%C3%A9-des-axes"><i class="fa fa-check"></i><b>7.1</b> Titre et libellé des axes</a></li>
+<li class="chapter" data-level="7.2" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html#l%C3%A9gende"><i class="fa fa-check"></i><b>7.2</b> Légende</a></li>
 <li class="chapter" data-level="7.3" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html#annotations"><i class="fa fa-check"></i><b>7.3</b> Annotations</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="les-thèmes.html"><a href="les-thèmes.html"><i class="fa fa-check"></i><b>8</b> Les thèmes</a>
@@ -200,16 +200,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="les-thèmes.html"><a href="les-thèmes.html#les-fonctions-element"><i class="fa fa-check"></i><b>8.1</b> Les fonctions “element”</a></li>
 <li class="chapter" data-level="8.2" data-path="les-thèmes.html"><a href="les-thèmes.html#les-composantes"><i class="fa fa-check"></i><b>8.2</b> Les composantes</a></li>
 <li class="chapter" data-level="8.3" data-path="les-thèmes.html"><a href="les-thèmes.html#quelques-exemples"><i class="fa fa-check"></i><b>8.3</b> Quelques exemples</a></li>
-<li class="chapter" data-level="8.4" data-path="les-thèmes.html"><a href="les-thèmes.html#modifier-le-thème-par-défaut"><i class="fa fa-check"></i><b>8.4</b> Modifier le thème par défaut</a></li>
-<li class="chapter" data-level="8.5" data-path="les-thèmes.html"><a href="les-thèmes.html#créer-son-propre-thème"><i class="fa fa-check"></i><b>8.5</b> Créer son propre thème</a></li>
-<li class="chapter" data-level="8.6" data-path="les-thèmes.html"><a href="les-thèmes.html#thème---package-gouvdown"><i class="fa fa-check"></i><b>8.6</b> Thème - package gouvdown</a></li>
+<li class="chapter" data-level="8.4" data-path="les-thèmes.html"><a href="les-thèmes.html#modifier-le-th%C3%A8me-par-d%C3%A9faut"><i class="fa fa-check"></i><b>8.4</b> Modifier le thème par défaut</a></li>
+<li class="chapter" data-level="8.5" data-path="les-thèmes.html"><a href="les-thèmes.html#cr%C3%A9er-son-propre-th%C3%A8me"><i class="fa fa-check"></i><b>8.5</b> Créer son propre thème</a></li>
+<li class="chapter" data-level="8.6" data-path="les-thèmes.html"><a href="les-thèmes.html#th%C3%A8me---package-gouvdown"><i class="fa fa-check"></i><b>8.6</b> Thème - package gouvdown</a></li>
 <li class="chapter" data-level="8.7" data-path="les-thèmes.html"><a href="les-thèmes.html#exercice-2"><i class="fa fa-check"></i><b>8.7</b> Exercice 2</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="les-scales.html"><a href="les-scales.html"><i class="fa fa-check"></i><b>9</b> Les scales</a>
 <ul>
 <li class="chapter" data-level="9.1" data-path="les-scales.html"><a href="les-scales.html#les-fonctions"><i class="fa fa-check"></i><b>9.1</b> Les fonctions</a></li>
 <li class="chapter" data-level="9.2" data-path="les-scales.html"><a href="les-scales.html#scales---package-gouvdown"><i class="fa fa-check"></i><b>9.2</b> Scales - package gouvdown</a></li>
-<li class="chapter" data-level="9.3" data-path="les-scales.html"><a href="les-scales.html#formatage-spécifique"><i class="fa fa-check"></i><b>9.3</b> Formatage spécifique</a></li>
+<li class="chapter" data-level="9.3" data-path="les-scales.html"><a href="les-scales.html#formatage-sp%C3%A9cifique"><i class="fa fa-check"></i><b>9.3</b> Formatage spécifique</a></li>
 <li class="chapter" data-level="9.4" data-path="les-scales.html"><a href="les-scales.html#exercice-3"><i class="fa fa-check"></i><b>9.4</b> Exercice 3</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="la-mise-en-page-de-plusieurs-graphiques.html"><a href="la-mise-en-page-de-plusieurs-graphiques.html"><i class="fa fa-check"></i><b>10</b> La mise en page de plusieurs graphiques</a></li>
@@ -221,18 +221,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>II Créer des cartes sous R</b></span></li>
 <li class="chapter" data-level="13" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html"><i class="fa fa-check"></i><b>13</b> Créer des cartes avec ggplot2</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#les-cartes-choroplèthes"><i class="fa fa-check"></i><b>13.1</b> Les cartes choroplèthes</a></li>
-<li class="chapter" data-level="13.2" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#les-cartes-à-ronds-proportionnels"><i class="fa fa-check"></i><b>13.2</b> Les cartes à ronds proportionnels</a></li>
+<li class="chapter" data-level="13.1" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#les-cartes-choropl%C3%A8thes"><i class="fa fa-check"></i><b>13.1</b> Les cartes choroplèthes</a></li>
+<li class="chapter" data-level="13.2" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#les-cartes-%C3%A0-ronds-proportionnels"><i class="fa fa-check"></i><b>13.2</b> Les cartes à ronds proportionnels</a></li>
 <li class="chapter" data-level="13.3" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#les-facettes-1"><i class="fa fa-check"></i><b>13.3</b> Les facettes</a></li>
-<li class="chapter" data-level="13.4" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#ajouter-une-barre-déchelle-et-la-flèche-du-nord"><i class="fa fa-check"></i><b>13.4</b> Ajouter une barre d’échelle et la flèche du nord</a></li>
-<li class="chapter" data-level="13.5" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#ajouter-des-étiquettes-et-du-texte"><i class="fa fa-check"></i><b>13.5</b> Ajouter des étiquettes et du texte</a></li>
+<li class="chapter" data-level="13.4" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#ajouter-une-barre-d%C3%A9chelle-et-la-fl%C3%A8che-du-nord"><i class="fa fa-check"></i><b>13.4</b> Ajouter une barre d’échelle et la flèche du nord</a></li>
+<li class="chapter" data-level="13.5" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#ajouter-des-%C3%A9tiquettes-et-du-texte"><i class="fa fa-check"></i><b>13.5</b> Ajouter des étiquettes et du texte</a></li>
 <li class="chapter" data-level="13.6" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#exercice-5"><i class="fa fa-check"></i><b>13.6</b> Exercice 5</a></li>
 </ul></li>
 <li class="part"><span><b>III Graphiques animés</b></span></li>
 <li class="chapter" data-level="14" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html"><i class="fa fa-check"></i><b>14</b> Animer ses graphiques ggplot avec gganimate</a>
 <ul>
 <li class="chapter" data-level="14.1" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#produire-une-animation"><i class="fa fa-check"></i><b>14.1</b> Produire une animation</a></li>
-<li class="chapter" data-level="14.2" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#paramétrer-lanimation"><i class="fa fa-check"></i><b>14.2</b> Paramétrer l’animation</a></li>
+<li class="chapter" data-level="14.2" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#param%C3%A9trer-lanimation"><i class="fa fa-check"></i><b>14.2</b> Paramétrer l’animation</a></li>
 <li class="chapter" data-level="14.3" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#exporter-une-animation"><i class="fa fa-check"></i><b>14.3</b> Exporter une animation</a></li>
 <li class="chapter" data-level="14.4" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#exercice-6"><i class="fa fa-check"></i><b>14.4</b> Exercice 6</a></li>
 </ul></li>
@@ -298,154 +298,154 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="créer-des-cartes-avec-ggplot2" class="section level1 hasAnchor" number="13">
-<h1><span class="header-section-number">Chapitre 13</span> Créer des cartes avec ggplot2<a href="créer-des-cartes-avec-ggplot2.html#créer-des-cartes-avec-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<h1><span class="header-section-number">Chapitre 13</span> Créer des cartes avec ggplot2<a href="créer-des-cartes-avec-ggplot2.html#cr%C3%A9er-des-cartes-avec-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="les-cartes-choroplèthes" class="section level2 hasAnchor" number="13.1">
-<h2><span class="header-section-number">13.1</span> Les cartes choroplèthes<a href="créer-des-cartes-avec-ggplot2.html#les-cartes-choroplèthes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">13.1</span> Les cartes choroplèthes<a href="créer-des-cartes-avec-ggplot2.html#les-cartes-choropl%C3%A8thes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Une fonction géométrique de ggplot2 permet l’utilisation de données géomatiques : <code>geom_sf()</code></p>
 <p>L’exemple suivant est une carte choroplèthe.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="créer-des-cartes-avec-ggplot2.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;World&quot;</span>)</span>
-<span id="cb48-2"><a href="créer-des-cartes-avec-ggplot2.html#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-3"><a href="créer-des-cartes-avec-ggplot2.html#cb48-3" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> World <span class="sc">%&gt;%</span></span>
-<span id="cb48-4"><a href="créer-des-cartes-avec-ggplot2.html#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Country_or_Area_Code =</span> iso_a3) <span class="sc">%&gt;%</span></span>
-<span id="cb48-5"><a href="créer-des-cartes-avec-ggplot2.html#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(</span>
-<span id="cb48-6"><a href="créer-des-cartes-avec-ggplot2.html#cb48-6" aria-hidden="true" tabindex="-1"></a>    ODD_indicateur311 <span class="sc">%&gt;%</span></span>
-<span id="cb48-7"><a href="créer-des-cartes-avec-ggplot2.html#cb48-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(Age_group <span class="sc">==</span> <span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</span>
-<span id="cb48-8"><a href="créer-des-cartes-avec-ggplot2.html#cb48-8" aria-hidden="true" tabindex="-1"></a>             Sex <span class="sc">==</span> <span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</span>
-<span id="cb48-9"><a href="créer-des-cartes-avec-ggplot2.html#cb48-9" aria-hidden="true" tabindex="-1"></a>             Type_Zone <span class="sc">==</span> <span class="st">&quot;Pays&quot;</span>,</span>
-<span id="cb48-10"><a href="créer-des-cartes-avec-ggplot2.html#cb48-10" aria-hidden="true" tabindex="-1"></a>             <span class="fu">is.na</span>(Value_type)) <span class="sc">%&gt;%</span></span>
-<span id="cb48-11"><a href="créer-des-cartes-avec-ggplot2.html#cb48-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(Country_or_Area_Code) <span class="sc">%&gt;%</span></span>
-<span id="cb48-12"><a href="créer-des-cartes-avec-ggplot2.html#cb48-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Value)) <span class="sc">%&gt;%</span></span>
-<span id="cb48-13"><a href="créer-des-cartes-avec-ggplot2.html#cb48-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="fu">max</span>(Year)),</span>
-<span id="cb48-14"><a href="créer-des-cartes-avec-ggplot2.html#cb48-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">&quot;Country_or_Area_Code&quot;</span>)</span>
-<span id="cb48-15"><a href="créer-des-cartes-avec-ggplot2.html#cb48-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-16"><a href="créer-des-cartes-avec-ggplot2.html#cb48-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tt) <span class="sc">+</span></span>
-<span id="cb48-17"><a href="créer-des-cartes-avec-ggplot2.html#cb48-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Value)) <span class="sc">+</span></span>
-<span id="cb48-18"><a href="créer-des-cartes-avec-ggplot2.html#cb48-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gouv_map</span>() <span class="sc">+</span> </span>
-<span id="cb48-19"><a href="créer-des-cartes-avec-ggplot2.html#cb48-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gouv_continuous</span>(<span class="at">palette =</span> <span class="st">&quot;pal_gouv_h&quot;</span>, <span class="at">reverse =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_1-1.png" width="1152" /></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="créer-des-cartes-avec-ggplot2.html#cb48-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;World&quot;</span>)</span>
+<span id="cb48-2"><a href="créer-des-cartes-avec-ggplot2.html#cb48-2" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="créer-des-cartes-avec-ggplot2.html#cb48-3" tabindex="-1"></a>tt <span class="ot">&lt;-</span> World <span class="sc">%&gt;%</span></span>
+<span id="cb48-4"><a href="créer-des-cartes-avec-ggplot2.html#cb48-4" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Country_or_Area_Code =</span> iso_a3) <span class="sc">%&gt;%</span></span>
+<span id="cb48-5"><a href="créer-des-cartes-avec-ggplot2.html#cb48-5" tabindex="-1"></a>  <span class="fu">inner_join</span>(</span>
+<span id="cb48-6"><a href="créer-des-cartes-avec-ggplot2.html#cb48-6" tabindex="-1"></a>    ODD_indicateur311 <span class="sc">%&gt;%</span></span>
+<span id="cb48-7"><a href="créer-des-cartes-avec-ggplot2.html#cb48-7" tabindex="-1"></a>      <span class="fu">filter</span>(Age_group <span class="sc">==</span> <span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</span>
+<span id="cb48-8"><a href="créer-des-cartes-avec-ggplot2.html#cb48-8" tabindex="-1"></a>             Sex <span class="sc">==</span> <span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</span>
+<span id="cb48-9"><a href="créer-des-cartes-avec-ggplot2.html#cb48-9" tabindex="-1"></a>             Type_Zone <span class="sc">==</span> <span class="st">&quot;Pays&quot;</span>,</span>
+<span id="cb48-10"><a href="créer-des-cartes-avec-ggplot2.html#cb48-10" tabindex="-1"></a>             <span class="fu">is.na</span>(Value_type)) <span class="sc">%&gt;%</span></span>
+<span id="cb48-11"><a href="créer-des-cartes-avec-ggplot2.html#cb48-11" tabindex="-1"></a>      <span class="fu">group_by</span>(Country_or_Area_Code) <span class="sc">%&gt;%</span></span>
+<span id="cb48-12"><a href="créer-des-cartes-avec-ggplot2.html#cb48-12" tabindex="-1"></a>      <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Value)) <span class="sc">%&gt;%</span></span>
+<span id="cb48-13"><a href="créer-des-cartes-avec-ggplot2.html#cb48-13" tabindex="-1"></a>      <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="fu">max</span>(Year)),</span>
+<span id="cb48-14"><a href="créer-des-cartes-avec-ggplot2.html#cb48-14" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">&quot;Country_or_Area_Code&quot;</span>)</span>
+<span id="cb48-15"><a href="créer-des-cartes-avec-ggplot2.html#cb48-15" tabindex="-1"></a></span>
+<span id="cb48-16"><a href="créer-des-cartes-avec-ggplot2.html#cb48-16" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tt) <span class="sc">+</span></span>
+<span id="cb48-17"><a href="créer-des-cartes-avec-ggplot2.html#cb48-17" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Value)) <span class="sc">+</span></span>
+<span id="cb48-18"><a href="créer-des-cartes-avec-ggplot2.html#cb48-18" tabindex="-1"></a>  <span class="fu">theme_gouv_map</span>() <span class="sc">+</span> </span>
+<span id="cb48-19"><a href="créer-des-cartes-avec-ggplot2.html#cb48-19" tabindex="-1"></a>  <span class="fu">scale_fill_gouv_continuous</span>(<span class="at">palette =</span> <span class="st">&quot;pal_gouv_h&quot;</span>, <span class="at">reverse =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_1-1.png" alt="" width="1152" /></p>
 </div>
 <div id="les-cartes-à-ronds-proportionnels" class="section level2 hasAnchor" number="13.2">
-<h2><span class="header-section-number">13.2</span> Les cartes à ronds proportionnels<a href="créer-des-cartes-avec-ggplot2.html#les-cartes-à-ronds-proportionnels" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">13.2</span> Les cartes à ronds proportionnels<a href="créer-des-cartes-avec-ggplot2.html#les-cartes-%C3%A0-ronds-proportionnels" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>La fonction <strong><em>stat_sf_coordinates()</em></strong> permet d’extraire les coordonnées d’un objet ‘sf’.
 Ainsi un rond proportionnel peut être attribué à un polygone.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="créer-des-cartes-avec-ggplot2.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;World&quot;</span>)</span>
-<span id="cb49-2"><a href="créer-des-cartes-avec-ggplot2.html#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-3"><a href="créer-des-cartes-avec-ggplot2.html#cb49-3" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> World <span class="sc">%&gt;%</span></span>
-<span id="cb49-4"><a href="créer-des-cartes-avec-ggplot2.html#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Country_or_Area_Code =</span> iso_a3) <span class="sc">%&gt;%</span></span>
-<span id="cb49-5"><a href="créer-des-cartes-avec-ggplot2.html#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(ODD_indicateur311 <span class="sc">%&gt;%</span></span>
-<span id="cb49-6"><a href="créer-des-cartes-avec-ggplot2.html#cb49-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Age_group <span class="sc">==</span> <span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</span>
-<span id="cb49-7"><a href="créer-des-cartes-avec-ggplot2.html#cb49-7" aria-hidden="true" tabindex="-1"></a>      Sex <span class="sc">==</span> <span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</span>
-<span id="cb49-8"><a href="créer-des-cartes-avec-ggplot2.html#cb49-8" aria-hidden="true" tabindex="-1"></a>      Type_Zone <span class="sc">==</span> <span class="st">&quot;Pays&quot;</span>,</span>
-<span id="cb49-9"><a href="créer-des-cartes-avec-ggplot2.html#cb49-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(Value_type)) <span class="sc">%&gt;%</span></span>
-<span id="cb49-10"><a href="créer-des-cartes-avec-ggplot2.html#cb49-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Country_or_Area_Code) <span class="sc">%&gt;%</span></span>
-<span id="cb49-11"><a href="créer-des-cartes-avec-ggplot2.html#cb49-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Value)) <span class="sc">%&gt;%</span></span>
-<span id="cb49-12"><a href="créer-des-cartes-avec-ggplot2.html#cb49-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="fu">max</span>(Year)))</span>
-<span id="cb49-13"><a href="créer-des-cartes-avec-ggplot2.html#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-14"><a href="créer-des-cartes-avec-ggplot2.html#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tt) <span class="sc">+</span></span>
-<span id="cb49-15"><a href="créer-des-cartes-avec-ggplot2.html#cb49-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="fu">gouv_colors</span>(<span class="st">&quot;r5&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb49-16"><a href="créer-des-cartes-avec-ggplot2.html#cb49-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gouv_map</span>() <span class="sc">+</span> </span>
-<span id="cb49-17"><a href="créer-des-cartes-avec-ggplot2.html#cb49-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_sf_coordinates</span>(<span class="fu">aes</span>(<span class="at">size =</span> Value, <span class="at">fill =</span> Value), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
-<span id="cb49-18"><a href="créer-des-cartes-avec-ggplot2.html#cb49-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">name =</span> <span class="st">&quot;Valeur&quot;</span>, <span class="at">low =</span>  <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="fu">gouv_colors</span>(<span class="st">&quot;i1&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb49-19"><a href="créer-des-cartes-avec-ggplot2.html#cb49-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_area</span>(<span class="at">name =</span> <span class="st">&quot;Valeur&quot;</span>, <span class="at">max_size =</span> <span class="dv">10</span>)</span></code></pre></div>
-<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_3-1.png" width="1152" /></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="créer-des-cartes-avec-ggplot2.html#cb49-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;World&quot;</span>)</span>
+<span id="cb49-2"><a href="créer-des-cartes-avec-ggplot2.html#cb49-2" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="créer-des-cartes-avec-ggplot2.html#cb49-3" tabindex="-1"></a>tt <span class="ot">&lt;-</span> World <span class="sc">%&gt;%</span></span>
+<span id="cb49-4"><a href="créer-des-cartes-avec-ggplot2.html#cb49-4" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Country_or_Area_Code =</span> iso_a3) <span class="sc">%&gt;%</span></span>
+<span id="cb49-5"><a href="créer-des-cartes-avec-ggplot2.html#cb49-5" tabindex="-1"></a>  <span class="fu">inner_join</span>(ODD_indicateur311 <span class="sc">%&gt;%</span></span>
+<span id="cb49-6"><a href="créer-des-cartes-avec-ggplot2.html#cb49-6" tabindex="-1"></a>    <span class="fu">filter</span>(Age_group <span class="sc">==</span> <span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</span>
+<span id="cb49-7"><a href="créer-des-cartes-avec-ggplot2.html#cb49-7" tabindex="-1"></a>      Sex <span class="sc">==</span> <span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</span>
+<span id="cb49-8"><a href="créer-des-cartes-avec-ggplot2.html#cb49-8" tabindex="-1"></a>      Type_Zone <span class="sc">==</span> <span class="st">&quot;Pays&quot;</span>,</span>
+<span id="cb49-9"><a href="créer-des-cartes-avec-ggplot2.html#cb49-9" tabindex="-1"></a>      <span class="fu">is.na</span>(Value_type)) <span class="sc">%&gt;%</span></span>
+<span id="cb49-10"><a href="créer-des-cartes-avec-ggplot2.html#cb49-10" tabindex="-1"></a>    <span class="fu">group_by</span>(Country_or_Area_Code) <span class="sc">%&gt;%</span></span>
+<span id="cb49-11"><a href="créer-des-cartes-avec-ggplot2.html#cb49-11" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Value)) <span class="sc">%&gt;%</span></span>
+<span id="cb49-12"><a href="créer-des-cartes-avec-ggplot2.html#cb49-12" tabindex="-1"></a>    <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="fu">max</span>(Year)))</span>
+<span id="cb49-13"><a href="créer-des-cartes-avec-ggplot2.html#cb49-13" tabindex="-1"></a></span>
+<span id="cb49-14"><a href="créer-des-cartes-avec-ggplot2.html#cb49-14" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tt) <span class="sc">+</span></span>
+<span id="cb49-15"><a href="créer-des-cartes-avec-ggplot2.html#cb49-15" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="fu">gouv_colors</span>(<span class="st">&quot;r5&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb49-16"><a href="créer-des-cartes-avec-ggplot2.html#cb49-16" tabindex="-1"></a>  <span class="fu">theme_gouv_map</span>() <span class="sc">+</span> </span>
+<span id="cb49-17"><a href="créer-des-cartes-avec-ggplot2.html#cb49-17" tabindex="-1"></a>  <span class="fu">stat_sf_coordinates</span>(<span class="fu">aes</span>(<span class="at">size =</span> Value, <span class="at">fill =</span> Value), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
+<span id="cb49-18"><a href="créer-des-cartes-avec-ggplot2.html#cb49-18" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">name =</span> <span class="st">&quot;Valeur&quot;</span>, <span class="at">low =</span>  <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="fu">gouv_colors</span>(<span class="st">&quot;i1&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb49-19"><a href="créer-des-cartes-avec-ggplot2.html#cb49-19" tabindex="-1"></a>  <span class="fu">scale_size_area</span>(<span class="at">name =</span> <span class="st">&quot;Valeur&quot;</span>, <span class="at">max_size =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_3-1.png" alt="" width="1152" /></p>
 </div>
 <div id="les-facettes-1" class="section level2 hasAnchor" number="13.3">
 <h2><span class="header-section-number">13.3</span> Les facettes<a href="créer-des-cartes-avec-ggplot2.html#les-facettes-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>On peut exploiter de la même façon les différentes fonctions vues précédemment. Par exemple : avec un peu de thème et de facet.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="créer-des-cartes-avec-ggplot2.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;World&quot;</span>)</span>
-<span id="cb50-2"><a href="créer-des-cartes-avec-ggplot2.html#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-3"><a href="créer-des-cartes-avec-ggplot2.html#cb50-3" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> World <span class="sc">%&gt;%</span></span>
-<span id="cb50-4"><a href="créer-des-cartes-avec-ggplot2.html#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">4326</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb50-5"><a href="créer-des-cartes-avec-ggplot2.html#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Country_or_Area_Code =</span> iso_a3) <span class="sc">%&gt;%</span></span>
-<span id="cb50-6"><a href="créer-des-cartes-avec-ggplot2.html#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(ODD_indicateur311 <span class="sc">%&gt;%</span></span>
-<span id="cb50-7"><a href="créer-des-cartes-avec-ggplot2.html#cb50-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Age_group <span class="sc">==</span> <span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</span>
-<span id="cb50-8"><a href="créer-des-cartes-avec-ggplot2.html#cb50-8" aria-hidden="true" tabindex="-1"></a>      Sex <span class="sc">==</span> <span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</span>
-<span id="cb50-9"><a href="créer-des-cartes-avec-ggplot2.html#cb50-9" aria-hidden="true" tabindex="-1"></a>      Type_Zone <span class="sc">==</span> <span class="st">&quot;Pays&quot;</span>,</span>
-<span id="cb50-10"><a href="créer-des-cartes-avec-ggplot2.html#cb50-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(Value_type)) <span class="sc">%&gt;%</span></span>
-<span id="cb50-11"><a href="créer-des-cartes-avec-ggplot2.html#cb50-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Country_or_Area_Code) <span class="sc">%&gt;%</span></span>
-<span id="cb50-12"><a href="créer-des-cartes-avec-ggplot2.html#cb50-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Value)) <span class="sc">%&gt;%</span></span>
-<span id="cb50-13"><a href="créer-des-cartes-avec-ggplot2.html#cb50-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1990</span>, <span class="dv">2000</span>, <span class="dv">2010</span>, <span class="dv">2015</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb50-14"><a href="créer-des-cartes-avec-ggplot2.html#cb50-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb50-15"><a href="créer-des-cartes-avec-ggplot2.html#cb50-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">complete</span>(Year)</span>
-<span id="cb50-16"><a href="créer-des-cartes-avec-ggplot2.html#cb50-16" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb50-17"><a href="créer-des-cartes-avec-ggplot2.html#cb50-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-18"><a href="créer-des-cartes-avec-ggplot2.html#cb50-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tt) <span class="sc">+</span></span>
-<span id="cb50-19"><a href="créer-des-cartes-avec-ggplot2.html#cb50-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">log</span>(Value))) <span class="sc">+</span></span>
-<span id="cb50-20"><a href="créer-des-cartes-avec-ggplot2.html#cb50-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb50-21"><a href="créer-des-cartes-avec-ggplot2.html#cb50-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis</span>(<span class="at">option =</span> <span class="st">&quot;magma&quot;</span>,</span>
-<span id="cb50-22"><a href="créer-des-cartes-avec-ggplot2.html#cb50-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">direction =</span> <span class="dv">1</span>,</span>
-<span id="cb50-23"><a href="créer-des-cartes-avec-ggplot2.html#cb50-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>)) <span class="sc">+</span></span>
-<span id="cb50-24"><a href="créer-des-cartes-avec-ggplot2.html#cb50-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(</span>
-<span id="cb50-25"><a href="créer-des-cartes-avec-ggplot2.html#cb50-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">direction =</span> <span class="st">&quot;horizontal&quot;</span>,</span>
-<span id="cb50-26"><a href="créer-des-cartes-avec-ggplot2.html#cb50-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">keyheight =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>),</span>
-<span id="cb50-27"><a href="créer-des-cartes-avec-ggplot2.html#cb50-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">keywidth =</span> <span class="fu">unit</span>(<span class="dv">20</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>),</span>
-<span id="cb50-28"><a href="créer-des-cartes-avec-ggplot2.html#cb50-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">order =</span> <span class="dv">1</span>,</span>
-<span id="cb50-29"><a href="créer-des-cartes-avec-ggplot2.html#cb50-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">title.position =</span> <span class="st">&quot;top&quot;</span>,</span>
-<span id="cb50-30"><a href="créer-des-cartes-avec-ggplot2.html#cb50-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">title.hjust =</span> <span class="fl">0.5</span>,</span>
-<span id="cb50-31"><a href="créer-des-cartes-avec-ggplot2.html#cb50-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">nrow =</span> <span class="dv">1</span>,</span>
-<span id="cb50-32"><a href="créer-des-cartes-avec-ggplot2.html#cb50-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">label.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
-<span id="cb50-33"><a href="créer-des-cartes-avec-ggplot2.html#cb50-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">label.hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb50-34"><a href="créer-des-cartes-avec-ggplot2.html#cb50-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>) <span class="sc">+</span></span>
-<span id="cb50-35"><a href="créer-des-cartes-avec-ggplot2.html#cb50-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Log du taux de mortalité infantile&quot;</span>) <span class="sc">+</span></span>
-<span id="cb50-36"><a href="créer-des-cartes-avec-ggplot2.html#cb50-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="st">&quot;Year&quot;</span>, <span class="at">drop =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_4-1.png" width="1152" /></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="créer-des-cartes-avec-ggplot2.html#cb50-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;World&quot;</span>)</span>
+<span id="cb50-2"><a href="créer-des-cartes-avec-ggplot2.html#cb50-2" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="créer-des-cartes-avec-ggplot2.html#cb50-3" tabindex="-1"></a>tt <span class="ot">&lt;-</span> World <span class="sc">%&gt;%</span></span>
+<span id="cb50-4"><a href="créer-des-cartes-avec-ggplot2.html#cb50-4" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">4326</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb50-5"><a href="créer-des-cartes-avec-ggplot2.html#cb50-5" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Country_or_Area_Code =</span> iso_a3) <span class="sc">%&gt;%</span></span>
+<span id="cb50-6"><a href="créer-des-cartes-avec-ggplot2.html#cb50-6" tabindex="-1"></a>  <span class="fu">inner_join</span>(ODD_indicateur311 <span class="sc">%&gt;%</span></span>
+<span id="cb50-7"><a href="créer-des-cartes-avec-ggplot2.html#cb50-7" tabindex="-1"></a>    <span class="fu">filter</span>(Age_group <span class="sc">==</span> <span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</span>
+<span id="cb50-8"><a href="créer-des-cartes-avec-ggplot2.html#cb50-8" tabindex="-1"></a>      Sex <span class="sc">==</span> <span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</span>
+<span id="cb50-9"><a href="créer-des-cartes-avec-ggplot2.html#cb50-9" tabindex="-1"></a>      Type_Zone <span class="sc">==</span> <span class="st">&quot;Pays&quot;</span>,</span>
+<span id="cb50-10"><a href="créer-des-cartes-avec-ggplot2.html#cb50-10" tabindex="-1"></a>      <span class="fu">is.na</span>(Value_type)) <span class="sc">%&gt;%</span></span>
+<span id="cb50-11"><a href="créer-des-cartes-avec-ggplot2.html#cb50-11" tabindex="-1"></a>    <span class="fu">group_by</span>(Country_or_Area_Code) <span class="sc">%&gt;%</span></span>
+<span id="cb50-12"><a href="créer-des-cartes-avec-ggplot2.html#cb50-12" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Value)) <span class="sc">%&gt;%</span></span>
+<span id="cb50-13"><a href="créer-des-cartes-avec-ggplot2.html#cb50-13" tabindex="-1"></a>    <span class="fu">filter</span>(Year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1990</span>, <span class="dv">2000</span>, <span class="dv">2010</span>, <span class="dv">2015</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb50-14"><a href="créer-des-cartes-avec-ggplot2.html#cb50-14" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb50-15"><a href="créer-des-cartes-avec-ggplot2.html#cb50-15" tabindex="-1"></a>    <span class="fu">complete</span>(Year)</span>
+<span id="cb50-16"><a href="créer-des-cartes-avec-ggplot2.html#cb50-16" tabindex="-1"></a>  )</span>
+<span id="cb50-17"><a href="créer-des-cartes-avec-ggplot2.html#cb50-17" tabindex="-1"></a></span>
+<span id="cb50-18"><a href="créer-des-cartes-avec-ggplot2.html#cb50-18" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tt) <span class="sc">+</span></span>
+<span id="cb50-19"><a href="créer-des-cartes-avec-ggplot2.html#cb50-19" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">log</span>(Value))) <span class="sc">+</span></span>
+<span id="cb50-20"><a href="créer-des-cartes-avec-ggplot2.html#cb50-20" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb50-21"><a href="créer-des-cartes-avec-ggplot2.html#cb50-21" tabindex="-1"></a>  <span class="fu">scale_fill_viridis</span>(<span class="at">option =</span> <span class="st">&quot;magma&quot;</span>,</span>
+<span id="cb50-22"><a href="créer-des-cartes-avec-ggplot2.html#cb50-22" tabindex="-1"></a>    <span class="at">direction =</span> <span class="dv">1</span>,</span>
+<span id="cb50-23"><a href="créer-des-cartes-avec-ggplot2.html#cb50-23" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>)) <span class="sc">+</span></span>
+<span id="cb50-24"><a href="créer-des-cartes-avec-ggplot2.html#cb50-24" tabindex="-1"></a>  <span class="fu">guides</span>(</span>
+<span id="cb50-25"><a href="créer-des-cartes-avec-ggplot2.html#cb50-25" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">direction =</span> <span class="st">&quot;horizontal&quot;</span>,</span>
+<span id="cb50-26"><a href="créer-des-cartes-avec-ggplot2.html#cb50-26" tabindex="-1"></a>      <span class="at">keyheight =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>),</span>
+<span id="cb50-27"><a href="créer-des-cartes-avec-ggplot2.html#cb50-27" tabindex="-1"></a>      <span class="at">keywidth =</span> <span class="fu">unit</span>(<span class="dv">20</span>, <span class="at">units =</span> <span class="st">&quot;mm&quot;</span>),</span>
+<span id="cb50-28"><a href="créer-des-cartes-avec-ggplot2.html#cb50-28" tabindex="-1"></a>      <span class="at">order =</span> <span class="dv">1</span>,</span>
+<span id="cb50-29"><a href="créer-des-cartes-avec-ggplot2.html#cb50-29" tabindex="-1"></a>      <span class="at">title.position =</span> <span class="st">&quot;top&quot;</span>,</span>
+<span id="cb50-30"><a href="créer-des-cartes-avec-ggplot2.html#cb50-30" tabindex="-1"></a>      <span class="at">title.hjust =</span> <span class="fl">0.5</span>,</span>
+<span id="cb50-31"><a href="créer-des-cartes-avec-ggplot2.html#cb50-31" tabindex="-1"></a>      <span class="at">nrow =</span> <span class="dv">1</span>,</span>
+<span id="cb50-32"><a href="créer-des-cartes-avec-ggplot2.html#cb50-32" tabindex="-1"></a>      <span class="at">label.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb50-33"><a href="créer-des-cartes-avec-ggplot2.html#cb50-33" tabindex="-1"></a>      <span class="at">label.hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb50-34"><a href="créer-des-cartes-avec-ggplot2.html#cb50-34" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>) <span class="sc">+</span></span>
+<span id="cb50-35"><a href="créer-des-cartes-avec-ggplot2.html#cb50-35" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Log du taux de mortalité infantile&quot;</span>) <span class="sc">+</span></span>
+<span id="cb50-36"><a href="créer-des-cartes-avec-ggplot2.html#cb50-36" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="st">&quot;Year&quot;</span>, <span class="at">drop =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_4-1.png" alt="" width="1152" /></p>
 </div>
 <div id="ajouter-une-barre-déchelle-et-la-flèche-du-nord" class="section level2 hasAnchor" number="13.4">
-<h2><span class="header-section-number">13.4</span> Ajouter une barre d’échelle et la flèche du nord<a href="créer-des-cartes-avec-ggplot2.html#ajouter-une-barre-déchelle-et-la-flèche-du-nord" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">13.4</span> Ajouter une barre d’échelle et la flèche du nord<a href="créer-des-cartes-avec-ggplot2.html#ajouter-une-barre-d%C3%A9chelle-et-la-fl%C3%A8che-du-nord" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Le package <code>ggspatial</code> permet d’enrichir simplement nos cartes <code>ggplot2</code> avec une barre d’échelle et la flèche du nord.</p>
 <p>Les deux fonctions qui permettent cela sont <code>annotation_scale()</code> et <code>annotation_north_arrow()</code>.</p>
 <p>L’utilisation de ces fonctions nécessitent un système de coordonnées géographiques.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="créer-des-cartes-avec-ggplot2.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;World&quot;</span>)</span>
-<span id="cb51-2"><a href="créer-des-cartes-avec-ggplot2.html#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-3"><a href="créer-des-cartes-avec-ggplot2.html#cb51-3" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> World <span class="sc">%&gt;%</span></span>
-<span id="cb51-4"><a href="créer-des-cartes-avec-ggplot2.html#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Country_or_Area_Code =</span> iso_a3) <span class="sc">%&gt;%</span></span>
-<span id="cb51-5"><a href="créer-des-cartes-avec-ggplot2.html#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(ODD_indicateur311 <span class="sc">%&gt;%</span></span>
-<span id="cb51-6"><a href="créer-des-cartes-avec-ggplot2.html#cb51-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Age_group <span class="sc">==</span> <span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</span>
-<span id="cb51-7"><a href="créer-des-cartes-avec-ggplot2.html#cb51-7" aria-hidden="true" tabindex="-1"></a>      Sex <span class="sc">==</span> <span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</span>
-<span id="cb51-8"><a href="créer-des-cartes-avec-ggplot2.html#cb51-8" aria-hidden="true" tabindex="-1"></a>      Type_Zone <span class="sc">==</span> <span class="st">&quot;Pays&quot;</span>,</span>
-<span id="cb51-9"><a href="créer-des-cartes-avec-ggplot2.html#cb51-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(Value_type)) <span class="sc">%&gt;%</span></span>
-<span id="cb51-10"><a href="créer-des-cartes-avec-ggplot2.html#cb51-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Country_or_Area_Code) <span class="sc">%&gt;%</span></span>
-<span id="cb51-11"><a href="créer-des-cartes-avec-ggplot2.html#cb51-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Value)) <span class="sc">%&gt;%</span></span>
-<span id="cb51-12"><a href="créer-des-cartes-avec-ggplot2.html#cb51-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="fu">max</span>(Year)))</span>
-<span id="cb51-13"><a href="créer-des-cartes-avec-ggplot2.html#cb51-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-14"><a href="créer-des-cartes-avec-ggplot2.html#cb51-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Africa&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb51-15"><a href="créer-des-cartes-avec-ggplot2.html#cb51-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Value)) <span class="sc">+</span></span>
-<span id="cb51-16"><a href="créer-des-cartes-avec-ggplot2.html#cb51-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotation_scale</span>(<span class="at">location =</span> <span class="st">&quot;br&quot;</span>, <span class="at">line_width =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb51-17"><a href="créer-des-cartes-avec-ggplot2.html#cb51-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotation_north_arrow</span>(<span class="at">location =</span> <span class="st">&quot;bl&quot;</span>, <span class="at">height =</span> <span class="fu">unit</span>(<span class="fl">0.7</span>, <span class="st">&quot;cm&quot;</span>), <span class="at">width =</span> <span class="fu">unit</span>(<span class="fl">0.7</span>, <span class="st">&quot;cm&quot;</span>))</span></code></pre></div>
-<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_5-1.png" width="1152" /></p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="créer-des-cartes-avec-ggplot2.html#cb51-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;World&quot;</span>)</span>
+<span id="cb51-2"><a href="créer-des-cartes-avec-ggplot2.html#cb51-2" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="créer-des-cartes-avec-ggplot2.html#cb51-3" tabindex="-1"></a>tt <span class="ot">&lt;-</span> World <span class="sc">%&gt;%</span></span>
+<span id="cb51-4"><a href="créer-des-cartes-avec-ggplot2.html#cb51-4" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Country_or_Area_Code =</span> iso_a3) <span class="sc">%&gt;%</span></span>
+<span id="cb51-5"><a href="créer-des-cartes-avec-ggplot2.html#cb51-5" tabindex="-1"></a>  <span class="fu">inner_join</span>(ODD_indicateur311 <span class="sc">%&gt;%</span></span>
+<span id="cb51-6"><a href="créer-des-cartes-avec-ggplot2.html#cb51-6" tabindex="-1"></a>    <span class="fu">filter</span>(Age_group <span class="sc">==</span> <span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</span>
+<span id="cb51-7"><a href="créer-des-cartes-avec-ggplot2.html#cb51-7" tabindex="-1"></a>      Sex <span class="sc">==</span> <span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</span>
+<span id="cb51-8"><a href="créer-des-cartes-avec-ggplot2.html#cb51-8" tabindex="-1"></a>      Type_Zone <span class="sc">==</span> <span class="st">&quot;Pays&quot;</span>,</span>
+<span id="cb51-9"><a href="créer-des-cartes-avec-ggplot2.html#cb51-9" tabindex="-1"></a>      <span class="fu">is.na</span>(Value_type)) <span class="sc">%&gt;%</span></span>
+<span id="cb51-10"><a href="créer-des-cartes-avec-ggplot2.html#cb51-10" tabindex="-1"></a>    <span class="fu">group_by</span>(Country_or_Area_Code) <span class="sc">%&gt;%</span></span>
+<span id="cb51-11"><a href="créer-des-cartes-avec-ggplot2.html#cb51-11" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Value)) <span class="sc">%&gt;%</span></span>
+<span id="cb51-12"><a href="créer-des-cartes-avec-ggplot2.html#cb51-12" tabindex="-1"></a>    <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="fu">max</span>(Year)))</span>
+<span id="cb51-13"><a href="créer-des-cartes-avec-ggplot2.html#cb51-13" tabindex="-1"></a></span>
+<span id="cb51-14"><a href="créer-des-cartes-avec-ggplot2.html#cb51-14" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Africa&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb51-15"><a href="créer-des-cartes-avec-ggplot2.html#cb51-15" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Value)) <span class="sc">+</span></span>
+<span id="cb51-16"><a href="créer-des-cartes-avec-ggplot2.html#cb51-16" tabindex="-1"></a>  <span class="fu">annotation_scale</span>(<span class="at">location =</span> <span class="st">&quot;br&quot;</span>, <span class="at">line_width =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb51-17"><a href="créer-des-cartes-avec-ggplot2.html#cb51-17" tabindex="-1"></a>  <span class="fu">annotation_north_arrow</span>(<span class="at">location =</span> <span class="st">&quot;bl&quot;</span>, <span class="at">height =</span> <span class="fu">unit</span>(<span class="fl">0.7</span>, <span class="st">&quot;cm&quot;</span>), <span class="at">width =</span> <span class="fu">unit</span>(<span class="fl">0.7</span>, <span class="st">&quot;cm&quot;</span>))</span></code></pre></div>
+<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_5-1.png" alt="" width="1152" /></p>
 </div>
 <div id="ajouter-des-étiquettes-et-du-texte" class="section level2 hasAnchor" number="13.5">
-<h2><span class="header-section-number">13.5</span> Ajouter des étiquettes et du texte<a href="créer-des-cartes-avec-ggplot2.html#ajouter-des-étiquettes-et-du-texte" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">13.5</span> Ajouter des étiquettes et du texte<a href="créer-des-cartes-avec-ggplot2.html#ajouter-des-%C3%A9tiquettes-et-du-texte" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Les 2 fonctions <strong>geom_sf_text()</strong> et <strong>geom_sf_label()</strong> permettent respectivement d’afficher du texte et des étiquettes sur des objets de types <strong>sf</strong></p>
 <p><code>geom_sf_text</code> :</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="créer-des-cartes-avec-ggplot2.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;World&quot;</span>)</span>
-<span id="cb52-2"><a href="créer-des-cartes-avec-ggplot2.html#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-3"><a href="créer-des-cartes-avec-ggplot2.html#cb52-3" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> World <span class="sc">%&gt;%</span></span>
-<span id="cb52-4"><a href="créer-des-cartes-avec-ggplot2.html#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Country_or_Area_Code =</span> iso_a3) <span class="sc">%&gt;%</span></span>
-<span id="cb52-5"><a href="créer-des-cartes-avec-ggplot2.html#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(ODD_indicateur311 <span class="sc">%&gt;%</span></span>
-<span id="cb52-6"><a href="créer-des-cartes-avec-ggplot2.html#cb52-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Age_group <span class="sc">==</span> <span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</span>
-<span id="cb52-7"><a href="créer-des-cartes-avec-ggplot2.html#cb52-7" aria-hidden="true" tabindex="-1"></a>      Sex <span class="sc">==</span> <span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</span>
-<span id="cb52-8"><a href="créer-des-cartes-avec-ggplot2.html#cb52-8" aria-hidden="true" tabindex="-1"></a>      Type_Zone <span class="sc">==</span> <span class="st">&quot;Pays&quot;</span>,</span>
-<span id="cb52-9"><a href="créer-des-cartes-avec-ggplot2.html#cb52-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(Value_type)) <span class="sc">%&gt;%</span></span>
-<span id="cb52-10"><a href="créer-des-cartes-avec-ggplot2.html#cb52-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Country_or_Area_Code) <span class="sc">%&gt;%</span></span>
-<span id="cb52-11"><a href="créer-des-cartes-avec-ggplot2.html#cb52-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Value)) <span class="sc">%&gt;%</span></span>
-<span id="cb52-12"><a href="créer-des-cartes-avec-ggplot2.html#cb52-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="fu">max</span>(Year)))</span>
-<span id="cb52-13"><a href="créer-des-cartes-avec-ggplot2.html#cb52-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-14"><a href="créer-des-cartes-avec-ggplot2.html#cb52-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Africa&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb52-15"><a href="créer-des-cartes-avec-ggplot2.html#cb52-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Value)) <span class="sc">+</span></span>
-<span id="cb52-16"><a href="créer-des-cartes-avec-ggplot2.html#cb52-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>, <span class="at">fontface =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
-<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_6-1.png" width="1152" /></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="créer-des-cartes-avec-ggplot2.html#cb52-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;World&quot;</span>)</span>
+<span id="cb52-2"><a href="créer-des-cartes-avec-ggplot2.html#cb52-2" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="créer-des-cartes-avec-ggplot2.html#cb52-3" tabindex="-1"></a>tt <span class="ot">&lt;-</span> World <span class="sc">%&gt;%</span></span>
+<span id="cb52-4"><a href="créer-des-cartes-avec-ggplot2.html#cb52-4" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Country_or_Area_Code =</span> iso_a3) <span class="sc">%&gt;%</span></span>
+<span id="cb52-5"><a href="créer-des-cartes-avec-ggplot2.html#cb52-5" tabindex="-1"></a>  <span class="fu">inner_join</span>(ODD_indicateur311 <span class="sc">%&gt;%</span></span>
+<span id="cb52-6"><a href="créer-des-cartes-avec-ggplot2.html#cb52-6" tabindex="-1"></a>    <span class="fu">filter</span>(Age_group <span class="sc">==</span> <span class="st">&quot;All age ranges or no breakdown by age&quot;</span>,</span>
+<span id="cb52-7"><a href="créer-des-cartes-avec-ggplot2.html#cb52-7" tabindex="-1"></a>      Sex <span class="sc">==</span> <span class="st">&quot;Both sexes or no breakdown by sex&quot;</span>,</span>
+<span id="cb52-8"><a href="créer-des-cartes-avec-ggplot2.html#cb52-8" tabindex="-1"></a>      Type_Zone <span class="sc">==</span> <span class="st">&quot;Pays&quot;</span>,</span>
+<span id="cb52-9"><a href="créer-des-cartes-avec-ggplot2.html#cb52-9" tabindex="-1"></a>      <span class="fu">is.na</span>(Value_type)) <span class="sc">%&gt;%</span></span>
+<span id="cb52-10"><a href="créer-des-cartes-avec-ggplot2.html#cb52-10" tabindex="-1"></a>    <span class="fu">group_by</span>(Country_or_Area_Code) <span class="sc">%&gt;%</span></span>
+<span id="cb52-11"><a href="créer-des-cartes-avec-ggplot2.html#cb52-11" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Value)) <span class="sc">%&gt;%</span></span>
+<span id="cb52-12"><a href="créer-des-cartes-avec-ggplot2.html#cb52-12" tabindex="-1"></a>    <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="fu">max</span>(Year)))</span>
+<span id="cb52-13"><a href="créer-des-cartes-avec-ggplot2.html#cb52-13" tabindex="-1"></a></span>
+<span id="cb52-14"><a href="créer-des-cartes-avec-ggplot2.html#cb52-14" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Africa&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb52-15"><a href="créer-des-cartes-avec-ggplot2.html#cb52-15" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Value)) <span class="sc">+</span></span>
+<span id="cb52-16"><a href="créer-des-cartes-avec-ggplot2.html#cb52-16" tabindex="-1"></a>  <span class="fu">geom_sf_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>, <span class="at">fontface =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_6-1.png" alt="" width="1152" /></p>
 <p><code>geom_sf_label</code></p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="créer-des-cartes-avec-ggplot2.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Africa&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb53-2"><a href="créer-des-cartes-avec-ggplot2.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Value)) <span class="sc">+</span></span>
-<span id="cb53-3"><a href="créer-des-cartes-avec-ggplot2.html#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> name))</span></code></pre></div>
-<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_6b-1.png" width="1152" /></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="créer-des-cartes-avec-ggplot2.html#cb53-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Africa&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb53-2"><a href="créer-des-cartes-avec-ggplot2.html#cb53-2" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Value)) <span class="sc">+</span></span>
+<span id="cb53-3"><a href="créer-des-cartes-avec-ggplot2.html#cb53-3" tabindex="-1"></a>  <span class="fu">geom_sf_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> name))</span></code></pre></div>
+<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/cart_6b-1.png" alt="" width="1152" /></p>
 </div>
 <div id="exercice-5" class="section level2 hasAnchor" number="13.6">
 <h2><span class="header-section-number">13.6</span> Exercice 5<a href="créer-des-cartes-avec-ggplot2.html#exercice-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A partir des jeux de données rpls_aggrege.RData et Carte_EPCI_France.RData, produire une carte du Loiret à l’EPCI représentant le taux de logements collectifs dans le parc locatif social (variable “Logements collectifs_pourcent”).</p>
 <p>Résultat attendu :</p>
-<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/mod5_exo5_solution-1.png" width="672" /></p>
+<p><img src="Valorisation-des-donn%C3%A9es_files/figure-html/mod5_exo5_solution-1.png" alt="" width="672" /></p>
 <p>Note : A partir du fond de carte <code>Carte_EPCI_FRANCE</code>.</p>
 
 </div>
@@ -473,42 +473,42 @@ Ainsi un rond proportionnel peut être attribué à un polygone.</p>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

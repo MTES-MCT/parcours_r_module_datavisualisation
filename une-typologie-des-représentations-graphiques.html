@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapitre 2 Une typologie des représentations graphiques | Valoriser ses données avec R</title>
   <meta name="description" content="Valorisation des données sous R (module 5)" />
-  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapitre 2 Une typologie des représentations graphiques | Valoriser ses données avec R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Maël Theulière &amp; Murielle Lethrosne" />
 
 
-<meta name="date" content="2024-11-29" />
+<meta name="date" content="2026-06-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,27 +52,27 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="libs/d3-bundle-5.16.0/d3-bundle.min.js"></script>
-<script src="libs/d3-lasso-0.0.5/d3-lasso.min.js"></script>
-<script src="libs/save-svg-as-png-1.4.17/save-svg-as-png.min.js"></script>
-<script src="libs/flatbush-4.4.0/flatbush.min.js"></script>
-<link href="libs/ggiraphjs-0.8.10/ggiraphjs.min.css" rel="stylesheet" />
-<script src="libs/ggiraphjs-0.8.10/ggiraphjs.min.js"></script>
-<script src="libs/girafe-binding-0.8.11/girafe.js"></script>
+<link href="libs/ggiraphjs-0.9.4/girafe.css" rel="stylesheet" />
+<script src="libs/ggiraphjs-0.9.4/girafe.js"></script>
+<script src="libs/girafe-binding-0.9.6/girafe.js"></script>
+<link href="libs/liberation-sans-0.5.1/css/liberation-sans.css" rel="stylesheet" />
+<link href="libs/liberation-serif-0.5.1/css/liberation-serif.css" rel="stylesheet" />
+<link href="libs/liberation-mono-0.5.1/css/liberation-mono.css" rel="stylesheet" />
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -162,37 +162,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#le-parcours-de-formation"><i class="fa fa-check"></i><b>1.1</b> Le parcours de formation</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#le-groupe-de-référents-r-du-pôle-ministériel"><i class="fa fa-check"></i><b>1.2</b> Le groupe de référents R du pôle ministériel</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#le-groupe-de-r%C3%A9f%C3%A9rents-r-du-p%C3%B4le-minist%C3%A9riel"><i class="fa fa-check"></i><b>1.2</b> Le groupe de référents R du pôle ministériel</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#objectifs-du-module-5"><i class="fa fa-check"></i><b>1.3</b> Objectifs du module 5</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="une-typologie-des-représentations-graphiques.html"><a href="une-typologie-des-représentations-graphiques.html"><i class="fa fa-check"></i><b>2</b> Une typologie des représentations graphiques</a></li>
 <li class="chapter" data-level="3" data-path="bien-commencer.html"><a href="bien-commencer.html"><i class="fa fa-check"></i><b>3</b> Bien commencer</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="bien-commencer.html"><a href="bien-commencer.html#créer-un-projet-sous-rstudio-pour-vous-permettre-de-recencer-vos-travaux."><i class="fa fa-check"></i><b>3.1</b> Créer un projet sous Rstudio pour vous permettre de recencer vos travaux.</a></li>
-<li class="chapter" data-level="3.2" data-path="bien-commencer.html"><a href="bien-commencer.html#intégrer-vos-données"><i class="fa fa-check"></i><b>3.2</b> Intégrer vos données</a></li>
-<li class="chapter" data-level="3.3" data-path="bien-commencer.html"><a href="bien-commencer.html#créer-votre-arborescence-de-projet"><i class="fa fa-check"></i><b>3.3</b> Créer votre arborescence de projet</a></li>
+<li class="chapter" data-level="3.1" data-path="bien-commencer.html"><a href="bien-commencer.html#cr%C3%A9er-un-projet-sous-rstudio-pour-vous-permettre-de-recencer-vos-travaux."><i class="fa fa-check"></i><b>3.1</b> Créer un projet sous Rstudio pour vous permettre de recencer vos travaux.</a></li>
+<li class="chapter" data-level="3.2" data-path="bien-commencer.html"><a href="bien-commencer.html#int%C3%A9grer-vos-donn%C3%A9es"><i class="fa fa-check"></i><b>3.2</b> Intégrer vos données</a></li>
+<li class="chapter" data-level="3.3" data-path="bien-commencer.html"><a href="bien-commencer.html#cr%C3%A9er-votre-arborescence-de-projet"><i class="fa fa-check"></i><b>3.3</b> Créer votre arborescence de projet</a></li>
 <li class="chapter" data-level="3.4" data-path="bien-commencer.html"><a href="bien-commencer.html#utilisation-du-package-savoirfr"><i class="fa fa-check"></i><b>3.4</b> Utilisation du package savoirfR</a></li>
-<li class="chapter" data-level="3.5" data-path="bien-commencer.html"><a href="bien-commencer.html#activer-les-packages-nécessaires"><i class="fa fa-check"></i><b>3.5</b> Activer les packages nécessaires</a></li>
+<li class="chapter" data-level="3.5" data-path="bien-commencer.html"><a href="bien-commencer.html#activer-les-packages-n%C3%A9cessaires"><i class="fa fa-check"></i><b>3.5</b> Activer les packages nécessaires</a></li>
 <li class="chapter" data-level="3.6" data-path="bien-commencer.html"><a href="bien-commencer.html#bien-structurer-ses-projets-data"><i class="fa fa-check"></i><b>3.6</b> Bien structurer ses projets data</a></li>
 </ul></li>
 <li class="part"><span><b>I Créer des graphiques sous R avec ggplot 2</b></span></li>
 <li class="chapter" data-level="4" data-path="package-ggplot2.html"><a href="package-ggplot2.html"><i class="fa fa-check"></i><b>4</b> Package ggplot2</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="package-ggplot2.html"><a href="package-ggplot2.html#présentation-de-ggplot2"><i class="fa fa-check"></i><b>4.1</b> Présentation de ggplot2</a></li>
+<li class="chapter" data-level="4.1" data-path="package-ggplot2.html"><a href="package-ggplot2.html#pr%C3%A9sentation-de-ggplot2"><i class="fa fa-check"></i><b>4.1</b> Présentation de ggplot2</a></li>
 <li class="chapter" data-level="4.2" data-path="package-ggplot2.html"><a href="package-ggplot2.html#le-tidyverse"><i class="fa fa-check"></i><b>4.2</b> Le Tidyverse</a></li>
 <li class="chapter" data-level="4.3" data-path="package-ggplot2.html"><a href="package-ggplot2.html#les-concepts-clefs"><i class="fa fa-check"></i><b>4.3</b> Les concepts clefs</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="le-mapping.html"><a href="le-mapping.html"><i class="fa fa-check"></i><b>5</b> Le mapping</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="le-mapping.html"><a href="le-mapping.html#les-paramètres-du-mapping"><i class="fa fa-check"></i><b>5.1</b> Les paramètres du mapping</a></li>
-<li class="chapter" data-level="5.2" data-path="le-mapping.html"><a href="le-mapping.html#les-autres-paramètres"><i class="fa fa-check"></i><b>5.2</b> Les “autres” paramètres</a></li>
+<li class="chapter" data-level="5.1" data-path="le-mapping.html"><a href="le-mapping.html#les-param%C3%A8tres-du-mapping"><i class="fa fa-check"></i><b>5.1</b> Les paramètres du mapping</a></li>
+<li class="chapter" data-level="5.2" data-path="le-mapping.html"><a href="le-mapping.html#les-autres-param%C3%A8tres"><i class="fa fa-check"></i><b>5.2</b> Les “autres” paramètres</a></li>
 <li class="chapter" data-level="5.3" data-path="le-mapping.html"><a href="le-mapping.html#exercice-1"><i class="fa fa-check"></i><b>5.3</b> Exercice 1</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="les-formes-géométriques.html"><a href="les-formes-géométriques.html"><i class="fa fa-check"></i><b>6</b> Les formes géométriques</a></li>
 <li class="chapter" data-level="7" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html"><i class="fa fa-check"></i><b>7</b> L’habillage simple</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html#titre-et-libellé-des-axes"><i class="fa fa-check"></i><b>7.1</b> Titre et libellé des axes</a></li>
-<li class="chapter" data-level="7.2" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html#légende"><i class="fa fa-check"></i><b>7.2</b> Légende</a></li>
+<li class="chapter" data-level="7.1" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html#titre-et-libell%C3%A9-des-axes"><i class="fa fa-check"></i><b>7.1</b> Titre et libellé des axes</a></li>
+<li class="chapter" data-level="7.2" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html#l%C3%A9gende"><i class="fa fa-check"></i><b>7.2</b> Légende</a></li>
 <li class="chapter" data-level="7.3" data-path="lhabillage-simple.html"><a href="lhabillage-simple.html#annotations"><i class="fa fa-check"></i><b>7.3</b> Annotations</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="les-thèmes.html"><a href="les-thèmes.html"><i class="fa fa-check"></i><b>8</b> Les thèmes</a>
@@ -200,16 +200,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="les-thèmes.html"><a href="les-thèmes.html#les-fonctions-element"><i class="fa fa-check"></i><b>8.1</b> Les fonctions “element”</a></li>
 <li class="chapter" data-level="8.2" data-path="les-thèmes.html"><a href="les-thèmes.html#les-composantes"><i class="fa fa-check"></i><b>8.2</b> Les composantes</a></li>
 <li class="chapter" data-level="8.3" data-path="les-thèmes.html"><a href="les-thèmes.html#quelques-exemples"><i class="fa fa-check"></i><b>8.3</b> Quelques exemples</a></li>
-<li class="chapter" data-level="8.4" data-path="les-thèmes.html"><a href="les-thèmes.html#modifier-le-thème-par-défaut"><i class="fa fa-check"></i><b>8.4</b> Modifier le thème par défaut</a></li>
-<li class="chapter" data-level="8.5" data-path="les-thèmes.html"><a href="les-thèmes.html#créer-son-propre-thème"><i class="fa fa-check"></i><b>8.5</b> Créer son propre thème</a></li>
-<li class="chapter" data-level="8.6" data-path="les-thèmes.html"><a href="les-thèmes.html#thème---package-gouvdown"><i class="fa fa-check"></i><b>8.6</b> Thème - package gouvdown</a></li>
+<li class="chapter" data-level="8.4" data-path="les-thèmes.html"><a href="les-thèmes.html#modifier-le-th%C3%A8me-par-d%C3%A9faut"><i class="fa fa-check"></i><b>8.4</b> Modifier le thème par défaut</a></li>
+<li class="chapter" data-level="8.5" data-path="les-thèmes.html"><a href="les-thèmes.html#cr%C3%A9er-son-propre-th%C3%A8me"><i class="fa fa-check"></i><b>8.5</b> Créer son propre thème</a></li>
+<li class="chapter" data-level="8.6" data-path="les-thèmes.html"><a href="les-thèmes.html#th%C3%A8me---package-gouvdown"><i class="fa fa-check"></i><b>8.6</b> Thème - package gouvdown</a></li>
 <li class="chapter" data-level="8.7" data-path="les-thèmes.html"><a href="les-thèmes.html#exercice-2"><i class="fa fa-check"></i><b>8.7</b> Exercice 2</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="les-scales.html"><a href="les-scales.html"><i class="fa fa-check"></i><b>9</b> Les scales</a>
 <ul>
 <li class="chapter" data-level="9.1" data-path="les-scales.html"><a href="les-scales.html#les-fonctions"><i class="fa fa-check"></i><b>9.1</b> Les fonctions</a></li>
 <li class="chapter" data-level="9.2" data-path="les-scales.html"><a href="les-scales.html#scales---package-gouvdown"><i class="fa fa-check"></i><b>9.2</b> Scales - package gouvdown</a></li>
-<li class="chapter" data-level="9.3" data-path="les-scales.html"><a href="les-scales.html#formatage-spécifique"><i class="fa fa-check"></i><b>9.3</b> Formatage spécifique</a></li>
+<li class="chapter" data-level="9.3" data-path="les-scales.html"><a href="les-scales.html#formatage-sp%C3%A9cifique"><i class="fa fa-check"></i><b>9.3</b> Formatage spécifique</a></li>
 <li class="chapter" data-level="9.4" data-path="les-scales.html"><a href="les-scales.html#exercice-3"><i class="fa fa-check"></i><b>9.4</b> Exercice 3</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="la-mise-en-page-de-plusieurs-graphiques.html"><a href="la-mise-en-page-de-plusieurs-graphiques.html"><i class="fa fa-check"></i><b>10</b> La mise en page de plusieurs graphiques</a></li>
@@ -221,18 +221,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>II Créer des cartes sous R</b></span></li>
 <li class="chapter" data-level="13" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html"><i class="fa fa-check"></i><b>13</b> Créer des cartes avec ggplot2</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#les-cartes-choroplèthes"><i class="fa fa-check"></i><b>13.1</b> Les cartes choroplèthes</a></li>
-<li class="chapter" data-level="13.2" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#les-cartes-à-ronds-proportionnels"><i class="fa fa-check"></i><b>13.2</b> Les cartes à ronds proportionnels</a></li>
+<li class="chapter" data-level="13.1" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#les-cartes-choropl%C3%A8thes"><i class="fa fa-check"></i><b>13.1</b> Les cartes choroplèthes</a></li>
+<li class="chapter" data-level="13.2" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#les-cartes-%C3%A0-ronds-proportionnels"><i class="fa fa-check"></i><b>13.2</b> Les cartes à ronds proportionnels</a></li>
 <li class="chapter" data-level="13.3" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#les-facettes-1"><i class="fa fa-check"></i><b>13.3</b> Les facettes</a></li>
-<li class="chapter" data-level="13.4" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#ajouter-une-barre-déchelle-et-la-flèche-du-nord"><i class="fa fa-check"></i><b>13.4</b> Ajouter une barre d’échelle et la flèche du nord</a></li>
-<li class="chapter" data-level="13.5" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#ajouter-des-étiquettes-et-du-texte"><i class="fa fa-check"></i><b>13.5</b> Ajouter des étiquettes et du texte</a></li>
+<li class="chapter" data-level="13.4" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#ajouter-une-barre-d%C3%A9chelle-et-la-fl%C3%A8che-du-nord"><i class="fa fa-check"></i><b>13.4</b> Ajouter une barre d’échelle et la flèche du nord</a></li>
+<li class="chapter" data-level="13.5" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#ajouter-des-%C3%A9tiquettes-et-du-texte"><i class="fa fa-check"></i><b>13.5</b> Ajouter des étiquettes et du texte</a></li>
 <li class="chapter" data-level="13.6" data-path="créer-des-cartes-avec-ggplot2.html"><a href="créer-des-cartes-avec-ggplot2.html#exercice-5"><i class="fa fa-check"></i><b>13.6</b> Exercice 5</a></li>
 </ul></li>
 <li class="part"><span><b>III Graphiques animés</b></span></li>
 <li class="chapter" data-level="14" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html"><i class="fa fa-check"></i><b>14</b> Animer ses graphiques ggplot avec gganimate</a>
 <ul>
 <li class="chapter" data-level="14.1" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#produire-une-animation"><i class="fa fa-check"></i><b>14.1</b> Produire une animation</a></li>
-<li class="chapter" data-level="14.2" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#paramétrer-lanimation"><i class="fa fa-check"></i><b>14.2</b> Paramétrer l’animation</a></li>
+<li class="chapter" data-level="14.2" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#param%C3%A9trer-lanimation"><i class="fa fa-check"></i><b>14.2</b> Paramétrer l’animation</a></li>
 <li class="chapter" data-level="14.3" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#exporter-une-animation"><i class="fa fa-check"></i><b>14.3</b> Exporter une animation</a></li>
 <li class="chapter" data-level="14.4" data-path="animer-ses-graphiques-ggplot-avec-gganimate.html"><a href="animer-ses-graphiques-ggplot-avec-gganimate.html#exercice-6"><i class="fa fa-check"></i><b>14.4</b> Exercice 6</a></li>
 </ul></li>
@@ -298,7 +298,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="une-typologie-des-représentations-graphiques" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapitre 2</span> Une typologie des représentations graphiques<a href="une-typologie-des-représentations-graphiques.html#une-typologie-des-représentations-graphiques" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<h1><span class="header-section-number">Chapitre 2</span> Une typologie des représentations graphiques<a href="une-typologie-des-représentations-graphiques.html#une-typologie-des-repr%C3%A9sentations-graphiques" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <style>
 #wrap { width: 600px; height: 390px; padding: 0; overflow: hidden; }
 #frame { width: 800px; height: 520px; border: 1px solid black; }
@@ -337,42 +337,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
